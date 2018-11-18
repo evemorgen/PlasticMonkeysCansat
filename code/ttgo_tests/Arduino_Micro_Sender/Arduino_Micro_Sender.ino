@@ -6,9 +6,9 @@ void setup() {
   pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
   Serial.begin(9600);
-  while (!Serial){
+  /*while (!Serial){
     delay(200);
-  }
+  }*/
   Serial.println("Hello Arduino Lora Sender");
   int c=0;
   while (!LoRa.begin(433E6)){
