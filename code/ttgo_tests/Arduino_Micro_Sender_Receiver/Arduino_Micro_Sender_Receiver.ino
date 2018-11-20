@@ -1,41 +1,39 @@
-#include <LoRa.h>
-int counter = 0;
+#include <LoRa.h> //External library by Sandeep Mistry https://github.com/sandeepmistry/arduino-LoRa
 
-String rssi ;
+int counter = 0; //Counting packets
+
 String packSize ;
-String packet = "ABCDEFGHIJKLMNO";
-String sentPacket ;
+String packet = "ABCDEFGHIJKLMNO"; //placeholder for the first packet to be received
+String sentPacket ; //packet to be sent
 
-bool success;
+bool success; //was a packet recieved during  slave-talk frame?
 
 void readPacket(int packetSize) {
+  //Reads last packet from radio socket
   packet ="";
-  packSize = String(packetSize,DEC);
   for (int i = 0; i < packetSize; i++) {
     packet += (char) LoRa.read();
   }
-  rssi = "ArdRSSI " + String(LoRa.packetRssi(), DEC) ;
   Serial.print("Received Packet: ");
   Serial.println(packet);
 }
 
 void sendPacket(){
+   //Transmits packet with following properties
+   //Returns number sent by TTGO
+   sentPacket = "";
+   sentPacket += "Ra02: ";
    if (success) {
-     sentPacket = "";
-     sentPacket += "Ra02: ";
      sentPacket += "Tms ";
      for (int i = 5; i < 12; i++){
-        sentPacket += packet[i]; 
+       sentPacket += packet[i]; 
      }  
-     sentPacket += " C:";
-     sentPacket += String(counter);
    } else {
-     sentPacket = "";
-     sentPacket += "Ra02: ";
      sentPacket += "READ FAIL";
-     sentPacket += " C:";
-     sentPacket += String(counter);
    }
+   sentPacket += " C:";
+   sentPacket += String(counter);
+ 
    Serial.println("");
    Serial.print("Sending packet: ");
    Serial.println(sentPacket);
@@ -50,35 +48,30 @@ void setup() {
   pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
   Serial.begin(9600);
-  while (!Serial){
+  /*while (!Serial){ //use to wait for serial monitor activation
     delay(200);
-  }
-  Serial.println("Hello Arduino Lora Sender");
-  int c=0;
-  while (!LoRa.begin(433E6)){
-    delay(200);
-    c++;
+  }*/
+  Serial.println("Serial init OK");
+  if (!LoRa.begin(433E6)){
     Serial.println("LoRa Initialization failed:");  
-    Serial.print(c);
+    while(1);
   }
   Serial.println("LoRa setup successful");
-  
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  digitalWrite(13, HIGH);
+  digitalWrite(13, HIGH); //Turn on LED
   delay(70);
 
   sendPacket();
 
   counter++;
-  digitalWrite(13, LOW);
+  digitalWrite(13, LOW); //Turn off LED
   delay(15);
   int time0 = millis();
-  int window = 3000;
+  int window = 3000;    //Slave responce tmie window
   success = false;
-  while (window > 0){
+  while (window > 0){   //Listen for packs
     window = 3000 - (millis()-time0);
     int packetSize = LoRa.parsePacket();
     if (packetSize) {
@@ -86,8 +79,7 @@ void loop() {
       success = true;
       break;
     }
-    delay(5);
   }
   if (!success) Serial.println("Read falied.");
-  if (window > 0) delay(window);
+  if (window > 0) delay(window); //Wait with TX till end of window
 }
