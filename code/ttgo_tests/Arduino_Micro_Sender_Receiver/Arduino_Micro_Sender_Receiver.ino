@@ -3,8 +3,12 @@
 int counter = 0; //Counting packets
 
 String packSize ;
-String packet = "ABCDEFGHIJKLMNO"; //placeholder for the first packet to be received
+String packet ; //received packet
 String sentPacket ; //packet to be sent
+
+int packetsSent = 0;
+int packetsRcvd = 0;
+int successRatio = 100;
 
 bool success; //was a packet recieved during  slave-talk frame?
 
@@ -16,24 +20,30 @@ void readPacket(int packetSize) {
   }
   Serial.print("Received Packet: ");
   Serial.println(packet);
+  packetsRcvd++;
 }
 
 void sendPacket(){
    //Transmits packet with following properties
    //Returns number sent by TTGO
    sentPacket = "";
-   sentPacket += "Ra02: ";
+   sentPacket += "ID: ";
    if (success) {
-     sentPacket += "Tms ";
-     for (int i = 5; i < 12; i++){
+     for (int i = 4; i <= 7; i++){
        sentPacket += packet[i]; 
      }  
    } else {
-     sentPacket += "READ FAIL";
+     sentPacket += "FAIL";
    }
-   sentPacket += " C:";
-   sentPacket += String(counter);
- 
+   
+   successRatio = packetsSent != 0 ? ((int)(100*packetsRcvd/packetsSent)) : 0;
+   sentPacket += " Succ: ";
+   sentPacket += successRatio;   
+   sentPacket += "% Sent: ";
+   sentPacket += packetsSent;
+   sentPacket += " Rcvd: ";
+   sentPacket += packetsRcvd;
+   
    Serial.println("");
    Serial.print("Sending packet: ");
    Serial.println(sentPacket);
@@ -41,6 +51,7 @@ void sendPacket(){
    LoRa.beginPacket();
    LoRa.print(sentPacket);
    LoRa.endPacket();
+   packetsSent++;
 }
 
 void setup() {

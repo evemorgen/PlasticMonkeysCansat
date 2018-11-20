@@ -17,19 +17,12 @@ String packSize ;
 String packet ;
 String sentPacket ;
 
-int packetsSent = 0;
-int packetsRcvd = 0;
-float successRatio = 100;
-
 void displayLoraData(){
   //Prints various statistics and data to OLED
   display.clear();
-  display.drawString(0 , 15 , "Bytes: " + packSize);
-  display.drawStringMaxWidth(0 , 33 , 128, packet);
+  display.drawString(50 , 0 , "Bytes: " + packSize);
+  display.drawStringMaxWidth(0 , 15 , 128, "RX:  " + packet);
   display.drawString(0, 0, "RSSI: "+ rssi);  
-  display.drawString(50, 0, "TX: "+ String(packetsSent));
-  display.drawString(85, 0, "RX: "+ String(packetsRcvd));
-  display.drawString(50, 15, "Succ: "+ String(successRatio)+"%");
   display.display();
 }
 
@@ -40,24 +33,21 @@ void readPacket(int packetSize) {
   for (int i = 0; i < packetSize; i++) {
     packet += (char) LoRa.read();
   }
+    
   rssi = String(LoRa.packetRssi(), DEC) ;
-  packetsRcvd++;
   displayLoraData();
 }
 
 void sendPacket(){
   //Sends LoRa packet containing a number (milliseconds since start)
-  sentPacket = "TTGO: ";
-  sentPacket += String(millis());
-  sentPacket += " ms";
+  sentPacket = "TT: ";
+  sentPacket += String(millis() % 1000 + 1000); //Generate "random" four-digit id (1000, 1999)
   
   LoRa.beginPacket();
   LoRa.print(sentPacket);
   LoRa.endPacket();
-
-  packetsSent++;
   
-  display.drawString(0, 44, "Sent: "+sentPacket);
+  display.drawString(0, 44, "TX:  "+sentPacket);
   display.display();
 }
 
@@ -101,10 +91,8 @@ void loop() {
   int packetSize = LoRa.parsePacket();
   while(!packetSize){
     packetSize = LoRa.parsePacket();
-    delay(5);
   };
   if (packetSize) readPacket(packetSize);
   delay(300);
   sendPacket();
-  successRatio = ((int)(1000*packetsRcvd/packetsSent))/10;
 }
