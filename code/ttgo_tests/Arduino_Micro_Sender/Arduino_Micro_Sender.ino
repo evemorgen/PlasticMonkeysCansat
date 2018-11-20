@@ -1,4 +1,4 @@
-#include <LoRa.h>
+#include <LoRa.h> 
 int counter = 0;
 
 void setup() {
@@ -10,15 +10,11 @@ void setup() {
     delay(200);
   }*/
   Serial.println("Hello Arduino Lora Sender");
-  int c=0;
-  while (!LoRa.begin(433E6)){
-    delay(200);
-    c++;
+  if (!LoRa.begin(433E6)){
     Serial.println("LoRa Initialization failed:");  
-    Serial.print(c);
+    while(1);
   }
-  Serial.println("LoRa setup successful");
-  
+  Serial.println("LoRa initialization successful");
 }
 
 void loop() {
