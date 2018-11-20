@@ -25,8 +25,7 @@ void displayLoraData(){
   display.drawString(0 , 15 , "Received "+ packSize + " bytes");
   display.drawStringMaxWidth(0 , 26 , 128, packet);
   display.drawString(0, 0, rssi);  
-  display.drawString(0, 40, "Sent: "+sentPacket);
-  display.display();
+  
 }
 
 void readPacket(int packetSize) {
@@ -46,7 +45,8 @@ void sendPacket(){
   LoRa.beginPacket();
   LoRa.print(sentPacket);
   LoRa.endPacket();
-  
+  display.drawString(0, 40, "Sent: "+sentPacket);
+  display.display();
 }
 
 void setup() {
@@ -90,7 +90,7 @@ void loop() {
     delay(20);
   };
   if (packetSize) readPacket(packetSize);
-  delay(20);
+  delay(300);
   sendPacket();
   
 }
