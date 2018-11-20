@@ -22,6 +22,7 @@ int packetsRcvd = 0;
 float successRatio = 100;
 
 void displayLoraData(){
+  //Prints various statistics and data to OLED
   display.clear();
   display.drawString(0 , 15 , "Bytes: " + packSize);
   display.drawStringMaxWidth(0 , 33 , 128, packet);
@@ -100,7 +101,7 @@ void loop() {
   int packetSize = LoRa.parsePacket();
   while(!packetSize){
     packetSize = LoRa.parsePacket();
-    delay(20);
+    delay(5);
   };
   if (packetSize) readPacket(packetSize);
   delay(300);
