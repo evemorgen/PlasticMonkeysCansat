@@ -1,7 +1,6 @@
-#include <LoRa.h>
-#include <SPI.h>
+#include <LoRa.h> //https://github.com/sandeepmistry/arduino-LoRa
+#include <SPI.h>  
 #include <Wire.h>
-#include <SPI.h>
 #include "SSD1306.h" 
 
 #define SCK     5    // GPIO5  -- SX1278's SCK
@@ -18,39 +17,51 @@ String packSize ;
 String packet ;
 String sentPacket ;
 
-
+int packetsSent = 0;
+int packetsRcvd = 0;
+float successRatio = 100;
 
 void displayLoraData(){
   display.clear();
-  display.drawString(0 , 15 , "Received "+ packSize + " bytes");
-  display.drawStringMaxWidth(0 , 26 , 128, packet);
-  display.drawString(0, 0, rssi);  
-  
+  display.drawString(0 , 15 , "Bytes: " + packSize);
+  display.drawStringMaxWidth(0 , 33 , 128, packet);
+  display.drawString(0, 0, "RSSI: "+ rssi);  
+  display.drawString(50, 0, "TX: "+ String(packetsSent));
+  display.drawString(85, 0, "RX: "+ String(packetsRcvd));
+  display.drawString(50, 15, "Succ: "+ String(successRatio)+"%");
+  display.display();
 }
 
 void readPacket(int packetSize) {
+  //Reads packet from radio socket
   packet ="";
   packSize = String(packetSize,DEC);
   for (int i = 0; i < packetSize; i++) {
     packet += (char) LoRa.read();
   }
-  rssi = "RSSI " + String(LoRa.packetRssi(), DEC) ;
+  rssi = String(LoRa.packetRssi(), DEC) ;
+  packetsRcvd++;
   displayLoraData();
 }
 
 void sendPacket(){
+  //Sends LoRa packet containing a number (milliseconds since start)
   sentPacket = "TTGO: ";
   sentPacket += String(millis());
   sentPacket += " ms";
+  
   LoRa.beginPacket();
   LoRa.print(sentPacket);
   LoRa.endPacket();
-  display.drawString(0, 40, "Sent: "+sentPacket);
+
+  packetsSent++;
+  
+  display.drawString(0, 44, "Sent: "+sentPacket);
   display.display();
 }
 
 void setup() {
-  pinMode(16,OUTPUT);
+  pinMode(16,OUTPUT); //OLED reset pin
 
   //Reset OLED
   digitalWrite(16, LOW); 
@@ -73,14 +84,16 @@ void setup() {
   if (!LoRa.begin(433E6)) {
     Serial.println("Starting LoRa failed!");
     display.drawString(0, 40, "LoRa Init FAIL");
+    display.display();
     while (1);
   }
-  LoRa.receive();
+  //LoRa.receive();
   Serial.println("Init OK");
   display.drawString(0, 40, "LoRa Init OK");
   display.display();
   
-  delay(5000);
+  delay(3000);
+  display.clear();
 }
 
 void loop() {
@@ -92,5 +105,5 @@ void loop() {
   if (packetSize) readPacket(packetSize);
   delay(300);
   sendPacket();
-  
+  successRatio = ((int)(1000*packetsRcvd/packetsSent))/10;
 }
