@@ -16,8 +16,6 @@ String rssi ;
 String packSize ;
 String packet ;
 
-
-
 void displayLoraData(){
   display.clear();
   display.drawString(0 , 15 , "Received "+ packSize + " bytes");
@@ -60,6 +58,7 @@ void setup() {
   if (!LoRa.begin(433E6)) {
     Serial.println("Starting LoRa failed!");
     display.drawString(0, 40, "LoRa Init FAIL");
+    display.display();
     while (1);
   }
   LoRa.receive();
@@ -67,7 +66,7 @@ void setup() {
   display.drawString(0, 40, "LoRa Init OK");
   display.display();
   
-  delay(5000);
+  delay(3000);
 }
 
 void loop() {
