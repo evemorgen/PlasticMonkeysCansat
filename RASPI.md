@@ -38,14 +38,20 @@ https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md
 Running script at boot:
 
 sudo nano /etc/rc.local
+
 And add your command before "exit 0", for instace:
+
 sudo python /home/pi/blink.py
 
 
 To create a backup of SD Card:
 
 sudo fdisk -l
+
 will list all disks with their names and localizations
+
 sudo dd if=/dev/mmcblk0 of=~/beacan1.img
+
 will copy everything to our new backup image.
+
 if= is a directory of SD Card (from previous command) and of= is a output directory
