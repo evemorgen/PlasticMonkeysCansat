@@ -1,10 +1,10 @@
 # Raspbian Headless installation:
 
-1 [Download latest raspbianhttps](://www.raspberrypi.org/downloads/)
-2 Flash it on SD Card using [Etcher](https://www.balena.io/etcher/ (Windows))
-3 Eject the card and plug it in again
-4 Create new file in boot directory: `wpa_supplicant.conf`  
-- Write to this file:
+1. [Download latest raspbianhttps](://www.raspberrypi.org/downloads/)
+2. Flash it on SD Card using [Etcher](https://www.balena.io/etcher/ (Windows))
+3. Eject the card and plug it in again
+4. Create new file in boot directory: `wpa_supplicant.conf`  
+5. Write to this file:
 ```bash
 country=PL
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -15,13 +15,13 @@ network={
 	key_mgmt=WPA-PSK
 }
 ```
-- Create an empty file called `ssh` (without any extension)
-- Insert card to raspberry, wait for it to connect
-- Switch to Linux
-- Using Linux program nmap or in your router details find raspberrys IP address
-- Connect to SSH using this command:  `ssh pi@<IP>`
+6. Create an empty file called `ssh` (without any extension)
+7. Insert card to raspberry, wait for it to connect
+8. Switch to Linux
+9. Using Linux program nmap or in your router details find raspberrys IP address
+10. Connect to SSH using this command:  `ssh pi@<IP>`
 (replace <IP> with raspberryPi adress, e.g. `ssh pi@192.168.1.1`)
-- Login using password: raspberry
+11. Login using password: raspberry
 That's it!
 
 You can exit using the command: `exit` 
