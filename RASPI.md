@@ -1,4 +1,4 @@
-Raspbian Headless installation:
+**Raspbian Headless installation:**
 
 - Download latest raspbian: https://www.raspberrypi.org/downloads/
 - Flash it on SD Card using Etcher: https://www.balena.io/etcher/ (Windows)
@@ -22,35 +22,35 @@ network={
 - Login using password: raspberry
 That's it!
 
-You can exit using the command: exit
+You can exit using the command: exit  
 And format your sd card using program DISKPART from your cmd (Windows), in cmd:
-diskpart
-list disk
-select disk x
-clean
-create partition primary
+> diskpart  
+> list disk  
+> select disk x  
+> clean  
+> create partition primary  
 
 Links:
 https://core-electronics.com.au/tutorials/raspberry-pi-zerow-headless-wifi-setup.html
 https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md
 
 
-Running script at boot:
+**Running script at boot:**
 
-sudo nano /etc/rc.local
+> sudo nano /etc/rc.local    
 
-And add your command before "exit 0", for instace:
+And add your command before "exit 0", for instace:  
 
-sudo python /home/pi/blink.py
+> sudo python /home/pi/blink.py 
 
 
-To create a backup of SD Card:
+**To create a backup of SD Card:**
 
-sudo fdisk -l
+> sudo fdisk -l </br> 
 
-will list all disks with their names and localizations
+will list all disks with their names and localizations </br>
 
-sudo dd if=/dev/mmcblk0 of=~/beacan1.img
+> sudo dd if=/dev/mmcblk0 of=~/beacan1.img </br> 
 
 will copy everything to our new backup image.
 
