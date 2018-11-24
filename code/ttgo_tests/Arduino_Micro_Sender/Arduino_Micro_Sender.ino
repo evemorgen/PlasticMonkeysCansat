@@ -6,9 +6,6 @@ void setup() {
   pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
   Serial.begin(9600);
-  /*while (!Serial){
-    delay(200);
-  }*/
   Serial.println("Hello Arduino Lora Sender");
   if (!LoRa.begin(433E6)){
     Serial.println("LoRa Initialization failed:");  
@@ -20,8 +17,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   digitalWrite(13, HIGH);
-  Serial.print("Sending packet: ");
-  Serial.println(counter);
+  Serial.print("Sending packet: " + counter);
 
   LoRa.beginPacket();
   LoRa.print("Hello LoRa: ");

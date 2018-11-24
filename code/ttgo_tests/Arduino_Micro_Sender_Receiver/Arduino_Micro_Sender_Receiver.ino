@@ -2,9 +2,9 @@
 
 int counter = 0; //Counting packets
 
-String packSize ;
-String packet ; //received packet
-String sentPacket ; //packet to be sent
+String packSize;
+String packet; //received packet
+String sentPacket; //packet to be sent
 
 int packetsSent = 0;
 int packetsRcvd = 0;
@@ -80,7 +80,7 @@ void loop() {
   digitalWrite(13, LOW); //Turn off LED
   delay(15);
   int time0 = millis();
-  int window = 3000;    //Slave responce tmie window
+  int window = 3000;    //Slave responce time window
   success = false;
   while (window > 0){   //Listen for packs
     window = 3000 - (millis()-time0);
