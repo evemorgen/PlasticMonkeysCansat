@@ -27,4 +27,4 @@ def read_temp():
 		temp = float(temp_string)/1000.0
 		return temp
 
-print("DS18B20 Temp: {t:.1f}".format(t=read_temp()))
+print("DS18B20 Temp: {t:.1f}\n".format(t=read_temp()))
