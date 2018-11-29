@@ -10,7 +10,6 @@
 /*================================================================*/
 
 String receivedText;
-String receivedRssi;
 
 #define SS      18 //some pins for LoRa
 #define RST     14
@@ -24,7 +23,6 @@ unsigned long firstReadingTime = 0; //when we received the first reading - neces
 
 // the OLED used
 U8X8_SSD1306_128X64_NONAME_SW_I2C u8x8(/* clock=*/ 15, /* data=*/ 4, /* reset=*/ 16);
-
 
 /*================================================================*/
 /* Simple function to display a String on our OLED
@@ -44,7 +42,7 @@ void setup() {
   SPI.begin(5, 19, 27, 18); //necessary for OLED
   LoRa.setPins(SS, RST, DI0); //set up a LoRa
 
-  Serial.begin(9600); //start comunicating with a computer
+  Serial.begin(9600); //start comunication with a computer
   delay(1000);
 
   u8x8.begin(); //start Displaying stuff
@@ -66,10 +64,9 @@ void setup() {
 
 void loop() {
   u8x8.drawString(0, 3, "o"); //this is a basic indicator - each time TTGO receives a packet it changes to "x"
-
-  // try to parse packet
-  int packetSize = LoRa.parsePacket();
-  bool correctPacket = 0; //to check if we received a correct packet
+  
+  int packetSize = LoRa.parsePacket(); // try to parse packet
+  bool correctPacket = 0; //to check if we've received a correct packet
   if (packetSize) { //if we received a correct packet
     while (LoRa.available()) {
       correctPacket = 1;
