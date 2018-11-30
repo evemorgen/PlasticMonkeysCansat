@@ -1,10 +1,8 @@
 #include <LoRa.h> //External library by Sandeep Mistry https://github.com/sandeepmistry/arduino-LoRa
-
+#define LED_PIN 13
 int counter = 0; //Counting packets
 
-String packSize;
 String packet; //received packet
-String sentPacket; //packet to be sent
 
 int packetsSent = 0;
 int packetsRcvd = 0;
@@ -14,19 +12,15 @@ bool success; //was a packet recieved during  slave-talk frame?
 
 void readPacket(int packetSize) {
   //Reads last packet from radio socket
-  packet ="";
-  for (int i = 0; i < packetSize; i++) {
-    packet += (char) LoRa.read();
-  }
-  Serial.print("Received Packet: ");
-  Serial.println(packet);
+  packet = LoRa.readString();
+  Serial.println("Received Packet: " + packet);
   packetsRcvd++;
 }
 
 void sendPacket(){
    //Transmits packet with following properties
    //Returns number sent by TTGO
-   sentPacket = "";
+   String sentPacket = "";
    sentPacket += "ID: ";
    if (success) {
      for (int i = 4; i <= 7; i++){
@@ -37,12 +31,9 @@ void sendPacket(){
    }
    
    successRatio = packetsSent != 0 ? ((int)(100*packetsRcvd/packetsSent)) : 0;
-   sentPacket += " Succ: ";
-   sentPacket += successRatio;   
-   sentPacket += "% Sent: ";
-   sentPacket += packetsSent;
-   sentPacket += " Rcvd: ";
-   sentPacket += packetsRcvd;
+   sentPacket += " Succ: " + successRatio;
+   sentPacket += "% Sent: " + packetsSent;
+   sentPacket += " Rcvd: " + packetsRcvd;
    
    Serial.println("");
    Serial.print("Sending packet: ");
@@ -56,12 +47,9 @@ void sendPacket(){
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(13, OUTPUT);
-  digitalWrite(13, LOW);
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, LOW);
   Serial.begin(9600);
-  /*while (!Serial){ //use to wait for serial monitor activation
-    delay(200);
-  }*/
   Serial.println("Serial init OK");
   if (!LoRa.begin(433E6)){
     Serial.println("LoRa Initialization failed:");  
@@ -71,13 +59,13 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(13, HIGH); //Turn on LED
+  digitalWrite(LED_PIN, HIGH); //Turn on LED
   delay(70);
 
   sendPacket();
 
   counter++;
-  digitalWrite(13, LOW); //Turn off LED
+  digitalWrite(LED_PIN, LOW); //Turn off LED
   delay(15);
   int time0 = millis();
   int window = 3000;    //Slave responce time window
