@@ -1,10 +1,11 @@
 #include <LoRa.h> 
+#include <LED.h>
 int counter = 0;
+LED led (13);
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(13, OUTPUT);
-  digitalWrite(13, LOW);
+  led.off();
   Serial.begin(9600);
   Serial.println("Hello Arduino Lora Sender");
   if (!LoRa.begin(433E6)){
@@ -16,7 +17,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  digitalWrite(13, HIGH);
+  led.on();
   Serial.print("Sending packet: " + counter);
 
   LoRa.beginPacket();
@@ -26,6 +27,6 @@ void loop() {
 
   counter++;
   delay(100);
-  digitalWrite(13, LOW);
+  led.off();
   delay(2000);
 }

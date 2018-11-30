@@ -1,5 +1,5 @@
+#include <LED.h>
 #include <LoRa.h> //External library by Sandeep Mistry https://github.com/sandeepmistry/arduino-LoRa
-#define LED_PIN 13
 int counter = 0; //Counting packets
 
 String packet; //received packet
@@ -9,6 +9,8 @@ int packetsRcvd = 0;
 int successRatio = 100;
 
 bool success; //was a packet recieved during  slave-talk frame?
+
+LED led = LED(13);
 
 void readPacket(int packetSize) {
   //Reads last packet from radio socket
@@ -47,8 +49,7 @@ void sendPacket(){
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(LED_PIN, OUTPUT);
-  digitalWrite(LED_PIN, LOW);
+  led.off();
   Serial.begin(9600);
   Serial.println("Serial init OK");
   if (!LoRa.begin(433E6)){
@@ -59,13 +60,13 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(LED_PIN, HIGH); //Turn on LED
+  led.on();
   delay(70);
 
   sendPacket();
 
   counter++;
-  digitalWrite(LED_PIN, LOW); //Turn off LED
+  led.off();
   delay(15);
   int time0 = millis();
   int window = 3000;    //Slave responce time window
