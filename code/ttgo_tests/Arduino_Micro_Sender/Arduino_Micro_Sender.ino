@@ -1,10 +1,9 @@
 #include <LoRa.h> 
 #include <LED.h>
 int counter = 0;
-LED led (13);
+LED led = LED(13);
 
 void setup() {
-  // put your setup code here, to run once:
   led.off();
   Serial.begin(9600);
   Serial.println("Hello Arduino Lora Sender");
@@ -16,13 +15,11 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   led.on();
   Serial.print("Sending packet: " + counter);
 
   LoRa.beginPacket();
-  LoRa.print("Hello LoRa: ");
-  LoRa.print(counter);
+  LoRa.print("Hello LoRa: " + counter);
   LoRa.endPacket();
 
   counter++;
