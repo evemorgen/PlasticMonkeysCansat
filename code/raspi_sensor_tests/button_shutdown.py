@@ -21,7 +21,7 @@ def press(channel):
 GPIO.setmode(GPIO.BOARD)
 
 btn_input = 40
-led_output = 11
+led_output = 37
 
 GPIO.setup(btn_input, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(led_output, GPIO.OUT)
