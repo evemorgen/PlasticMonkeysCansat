@@ -1,7 +1,7 @@
 # Welcome to Plastic Monkeys - Emergency Beacan repo
 
 <img src="https://static.wixstatic.com/media/1deb81_0d41e1c3a6934c5c9e7dc7eb9a1f9b9e~mv2.png/v1/fill/w_437,h_858,al_c,usm_0.66_1.00_0.01/Untitled-2.png" align="right"
-     title="Emergency beacan cad render" width="120" height="178">
+     title="Emergency beacan cad render" width="240" height="356">
 
 This is the place where we keep all our work related to Emergency Beacan project.
 
@@ -23,7 +23,7 @@ Emergency Beacan is multidisciplinary project involving software, electronics, m
 ## Where to find us
 
 We are present in most of modern social media platforms, you can follow us at:
-  - our website <plastic-monkeys.space>
+  - our website <http://plastic-monkeys.space>
   - [facebook](https://www.facebook.com/pmcansat/)
   - [instagram](https://www.instagram.com/pmcansat/)
   - [youtube](https://www.youtube.com/channel/UCQk3wuW7xEt5WVLtaiRNTGQ)
