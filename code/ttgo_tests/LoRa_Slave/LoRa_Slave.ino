@@ -89,7 +89,7 @@ void loop()
       int rssi = rf95.lastRssi();
       String received = (char*)buf;
 
-      String message = "Hello TTGO whatever";
+      String message = "Hello TTGO whatevQQ";
       int msglen = 19;
       
       Serial.print("Received:  ");
@@ -104,8 +104,15 @@ void loop()
       display.display();
       delay(1000);
       Serial.println("TX: " + message);
+
+      uint8_t data[50];
       
-      uint8_t data[] = "Hello TTGO whatever";
+      for (int i = 0; i < msglen; i++){
+        data[i] = (uint8_t) message[i];
+      }
+      
+      //uint8_t data[] = "Hello TTGO whatever";
+      
       rf95.send(data, msglen); //sizeof(data)
       rf95.waitPacketSent();
       digitalWrite(LED, LOW);
