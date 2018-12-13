@@ -21,7 +21,7 @@ void displayLoraData(){
   //Prints various statistics and data to OLED
   display.clear();
   display.drawString(50 , 0 , "Bytes: " + packSize);
-  display.drawStringMaxWidth(0 , 15 , 128, "RX:  " + packet);
+  display.drawString(0 , 15, "RX: " + packet);
   display.drawString(0, 0, "RSSI: "+ rssi);  
   display.display();
 }
@@ -41,7 +41,7 @@ void readPacket(int packetSize) {
 void sendPacket(){
   //Sends LoRa packet containing a number (milliseconds since start)
   sentPacket = "TT: ";
-  sentPacket += String(millis() % 1000 + 1000); //Generate "random" four-digit id (1000, 1999)
+  sentPacket += String(micros() % 10000 + 10000); //Generate "random" four-digit id (1000, 1999)
   
   LoRa.beginPacket();
   LoRa.print(sentPacket);
@@ -83,7 +83,7 @@ void setup() {
   display.drawString(0, 40, "LoRa Init OK");
   display.display();
   
-  delay(3000);
+  delay(2000);
   display.clear();
 }
 
@@ -93,6 +93,5 @@ void loop() {
     packetSize = LoRa.parsePacket();
   };
   if (packetSize) readPacket(packetSize);
-  delay(300);
   sendPacket();
 }
