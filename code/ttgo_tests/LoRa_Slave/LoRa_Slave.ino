@@ -26,6 +26,9 @@ RH_RF95 rf95(RFM95_CS, RFM95_INT);
 //OLED
 SSD1306 display(0x3c, 4, 15);
 
+uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];    
+uint8_t len = sizeof(buf);
+
 void setup() 
 {
   pinMode(LED, OUTPUT);     
@@ -43,7 +46,7 @@ void setup()
   Serial.begin(9600);
   delay(100);
   Serial.println("Serial initialized");
-  
+  Serial.println(len);
   // manual reset
   digitalWrite(RFM95_RST, LOW);
   delay(10);
@@ -74,9 +77,21 @@ void setup()
   delay(4000);
   Serial.println("Here");
 }
-    
-uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];    
-uint8_t len = sizeof(buf);
+
+int packet_length = 0;
+bool rcv_success = false;
+
+String createPacket(){
+  int id = micros()%1000+1000;
+  String p = "";
+  p += "ID: ";
+  p += String(id);
+  p += " ACK: ";
+  p += String(rcv_success);
+  packet_length = 15;
+
+  return p;
+}
 
 void loop()
 {
@@ -84,13 +99,12 @@ void loop()
     Serial.println("Available");
     if (rf95.recv(buf, &len)){
       digitalWrite(LED, HIGH);
-      //RH_RF95::printBuffer("Got: ", buf, len);
       
       int rssi = rf95.lastRssi();
       String received = (char*)buf;
-
-      String message = "Hello TTGO whatevQQ";
-      int msglen = 19;
+      rcv_success = true;
+      
+      String message = createPacket();
       
       Serial.print("Received:  ");
       Serial.println(received);
@@ -107,13 +121,13 @@ void loop()
 
       uint8_t data[50];
       
-      for (int i = 0; i < msglen; i++){
+      for (int i = 0; i < packet_length; i++){
         data[i] = (uint8_t) message[i];
       }
       
       //uint8_t data[] = "Hello TTGO whatever";
       
-      rf95.send(data, msglen); //sizeof(data)
+      rf95.send(data, packet_length); //sizeof(data)
       rf95.waitPacketSent();
       digitalWrite(LED, LOW);
     }
