@@ -25,7 +25,7 @@ class mylora(LoRa):
         self.rcvd = bytes(payload[4:]).decode("utf-8")
         print("RX: {0}".format(self.rcvd))
         self.stats['rcvd'] += 1
-        sr = round(self.stats['sent']/self.stats['rcvd'], 3)
+        sr = round(self.stats['rcvd']/self.stats['sent'], 4)
         self.stats['successRatio'] = str(sr*100) + "%"
         print(self.stats)
 
@@ -102,22 +102,25 @@ class mylora(LoRa):
 lora = mylora(verbose=False)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
 
+lora.set_freq(433.0)
 #     Slow+long range  Bw = 125 kHz, Cr = 4/8, Sf = 4096chips/symbol, CRC on. 13 dBm
 lora.set_pa_config(pa_select=1, max_power=21, output_power=17)
 lora.set_bw(BW.BW125)
-lora.set_coding_rate(CODING_RATE.CR4_8)
-lora.set_spreading_factor(12)
+lora.set_coding_rate(CODING_RATE.CR4_5)
+lora.set_spreading_factor(10)
 lora.set_rx_crc(True)
+lora.set_preamble(12)
 #lora.set_implicit_header_mode(False)
 #lora.set_lna_gain(GAIN.G1)
-#lora.set_implicit_header_mode(False)
-lora.set_low_data_rate_optim(True)
+lora.set_low_data_rate_optim(False)
 
 #  Medium Range  Defaults after init are 434.0MHz, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on 13 dBm
 #lora.set_pa_config(pa_select=1)
 print(lora.get_modem_config_1())
-
+print("Preamble: {0}".format(lora.get_preamble()))
 assert(lora.get_agc_auto_on() == 1)
+
+print(lora.get_all_registers())
 
 try:
     print("START")
