@@ -22,16 +22,42 @@ bool startReading = 0; //important to distinguish first reading with others
 unsigned long firstReadingTime = 0; //when we received the first reading - necessary to calculate data speed
 
 // the OLED used
-U8X8_SSD1306_128X64_NONAME_SW_I2C u8x8(/* clock=*/ 15, /* data=*/ 4, /* reset=*/ 16);
+U8X8_SSD1306_128X64_NONAME_SW_I2C OLED(/* clock=*/ 15, /* data=*/ 4, /* reset=*/ 16);
 
 /*================================================================*/
-/* Simple function to display a String on our OLED
+/* Some small functions
 /*================================================================*/
 
 void printStringOled(String a, int x, int y){
   char temp[64];
   a.toCharArray(temp, 64);
-  u8x8.drawString(x, y, temp);
+  OLED.drawString(x, y, temp);
+}
+
+void calcPercent(double &percent,int numInt){
+  percent = ((double)((packetNum))/(numInt-first))*100;
+}
+
+void calcSpeed(double &dSpeed){
+  dSpeed = ((double)packetNum*1000)/(millis()-firstReadingTime); //calculate speed of received packets/s
+}
+
+void readData(int packetSize,String &data,String &num){
+  for (int i = 0; i < packetSize; i++) {
+      char letter = (char) LoRa.read();
+      data += letter;
+      if(letter - 48 < 10) //if the current char is a number
+        num += letter;
+  }
+}
+
+String makeInfo(int numInt){ //creates a string with all statistics
+  double percent;
+  double dataSpeed;
+  calcPercent(percent,numInt); 
+  calcSpeed(dataSpeed);
+  String result = String(percent) + "% " + String(dataSpeed) + "/s"; //String with all needed data
+  return result; 
 }
 
 /*================================================================*/
@@ -43,17 +69,16 @@ void setup() {
   LoRa.setPins(SS, RST, DI0); //set up a LoRa
 
   Serial.begin(9600); //start comunication with a computer
-  delay(1000);
 
-  u8x8.begin(); //start Displaying stuff
-  u8x8.setFont(u8x8_font_chroma48medium8_r); //set a nice font
+  OLED.begin(); //start Displaying stuff
+  OLED.setFont(u8x8_font_chroma48medium8_r); //set a nice font
 
   Serial.println("LoRa Receiver");
-  u8x8.drawString(0, 1, "LoRa Receiver"); //print some intro stuff
+  OLED.drawString(0, 1, "LoRa Receiver"); //print some intro stuff
 
   if (!LoRa.begin(BAND)) {
     Serial.println("Starting LoRa failed!");
-    u8x8.drawString(0, 1, "Starting LoRa failed!");
+    OLED.drawString(0, 1, "Starting LoRa failed!");
     while (1);
   }
 }
@@ -63,35 +88,30 @@ void setup() {
 /*================================================================*/
 
 void loop() {
-  u8x8.drawString(0, 3, "o"); //this is a basic indicator - each time TTGO receives a packet it changes to "x"
+  OLED.drawString(0, 3, "o"); //this is a basic indicator - each time TTGO receives a packet it changes to "x"
   
   int packetSize = LoRa.parsePacket(); // try to parse packet
-  bool correctPacket = 0; //to check if we've received a correct packet
+  bool correctPacket = false; //to check if we've received a correct packet
+  
   if (packetSize) { //if we received a correct packet
     while (LoRa.available()) {
-      correctPacket = 1;
-      u8x8.drawString(0, 3, "x");
+      correctPacket = true;
+      OLED.drawString(0, 3, "x");
       String receivedText =""; //our received text
       String num = ""; // just to obtain our packet ID
-      
-      for (int i = 0; i < packetSize; i++) {
-        char letter = (char) LoRa.read();
-        receivedText += letter;
-        if(letter - 48 < 10) //if the current char is a number
-          num += letter;
-      }
+
+      readData(packetSize,receivedText,num);
       
       int numInt = num.toInt(); //convert obtained packet ID to int
       Serial.print(receivedText); //print our received text
       
-      if(startReading == 0){ //some stuff that happens only once - set number of first packet and time when we got it. Necessary for calculating a percentage of received packets.
-        startReading = 1;
+      if(startReading == false){ //some stuff that happens only once - set number of first packet and time when we got it. Necessary for calculating a percentage of received packets.
+        startReading = true;
         first = numInt;
         firstReadingTime = millis()-1; //-1 so we dont divide by 0 during first reading, when calculating data speed
       }
-      double percent = ((double)((packetNum))/(numInt-first))*100; //calculate percentage of received packets
-      double dataSpeed = (double)(((double)packetNum*1000)/(millis()-firstReadingTime)); //calculate speed of received packets/s
-      String info = String(percent) + "% " + String(dataSpeed) + "/s"; //String with all needed data
+      
+      String info = makeInfo(numInt);
    
       Serial.println(" -- " + info); //print it to a computer
       printStringOled(info,0,4); //print it to a OLED
