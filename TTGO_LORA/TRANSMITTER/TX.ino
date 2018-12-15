@@ -1,14 +1,30 @@
 #include <LoRa.h> 
 
 #define BAND 433E6
+#define SERIAL_RATE 9600
+
+class LED{
+  private:
+    int myPin;
+  public:
+    LED(int pin){ 
+      pinMode(pin,OUTPUT); 
+      myPin = pin;
+    }
+    void on(){
+      digitalWrite(myPin,1);
+    }
+    void off(){
+      digitalWrite(myPin,0);
+    }
+};
 
 int counter = 0;
 int delayTime = 100;
+LED led = LED(13);
 
 void setup() {
-  pinMode(13, OUTPUT);
-  digitalWrite(13, LOW);
-  Serial.begin(9600);
+  Serial.begin(SERIAL_RATE);
   Serial.println("Hello Arduino Lora Sender");
   if (!LoRa.begin(BAND)){
     Serial.println("LoRa Initialization failed:");  
@@ -20,7 +36,7 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(13, HIGH);
+  led.on();
   Serial.print("Sending packet: ");
   Serial.println(counter);
 
@@ -31,6 +47,6 @@ void loop() {
   counter++;
   
   delay(delayTime/2);
-  digitalWrite(13, LOW);
+  led.off();
   delay(delayTime/2);
 }
