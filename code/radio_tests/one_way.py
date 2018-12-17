@@ -85,7 +85,7 @@ lora = mylora(verbose=False, delay=args.delay, length=args.packet_length)
 
 lora.set_freq(433.0)
 #     Slow+long range  Bw = 125 kHz, Cr = 4/8, Sf = 4096chips/symbol, CRC on. 13 dBm
-lora.set_pa_config(pa_select=1, max_power=21, output_power=17)
+lora.set_pa_config(pa_select=1, max_power=21, output_power=20)
 lora.set_bw(BW.BW125)
 cr_dict = {
     5: CODING_RATE.CR4_5,        

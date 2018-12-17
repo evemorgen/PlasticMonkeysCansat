@@ -19,6 +19,7 @@ class mylora(LoRa):
         self.stats = {"sent": 0, "rcvd": 0, "successRatio": "100%"}
 
     def on_rx_done(self):
+        """
         BOARD.led_on()
         self.clear_irq_flags(RxDone=1)
         payload = self.read_payload(nocheck=True)
@@ -31,8 +32,9 @@ class mylora(LoRa):
 
         id_index = self.rcvd.find("ID: ")
         self.last_rcvd_ID = self.rcvd[id_index+5:id_index+8]
-        BOARD.led_off()
         time.sleep(0.5)
+        BOARD.led_off()
+        """
         self.var=1
 
     def on_tx_done(self):
@@ -63,41 +65,29 @@ class mylora(LoRa):
     def utf8_packet(str):
         return (el.encode("utf-8") for el in str)
 
-    def create_packet(self):
-        p = ""
-        p += "LastID: "
-        p += str(self.last_rcvd_ID)
-        p += "Sent: "
-        p += str(self.stats['sent'])
-        p += "Rcvd: "
-        p += str(self.stats['rcvd'])
-        p += "Succ: "
-        p += self.stats['successRatio']
-        return p
-
     def start(self):
+        i = 0
         while True:
             while (self.var==0):
-                #payload_str = self.create_packet()
-                payload_str = "ABCDEFG"
+                payload_str = str(self.stats['sent']) + "A" * 50
                 payload_b = list(bytearray(payload_str, "utf-8"))
                 payload = [255, 255, 0, 0] + payload_b
                 print("TX: {0}".format(payload_str))
                 self.write_payload(payload) # Send INF
                 self.set_mode(MODE.TX)
                 self.stats['sent'] += 1
-                time.sleep(2) # there must be a better solution but sleep() works
+                time.sleep(0.3) # there must be a better solution but sleep() works
                 self.reset_ptr_rx()
                 self.set_mode(MODE.RXCONT) # Receiver mode
             
-                start_time = time.time()
-                while (time.time() - start_time < 3): # wait until receive data or 10s
-                    pass;
+                #start_time = time.time()
+                #while (time.time() - start_time < 3): # wait until receive data or 10s
+                #    pass
             
             self.var=0
             self.reset_ptr_rx()
             self.set_mode(MODE.RXCONT) # Receiver mode
-            time.sleep(3)
+            time.sleep(0.9)
 
 lora = mylora(verbose=False)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
@@ -112,6 +102,8 @@ lora.set_rx_crc(True)
 lora.set_preamble(12)
 #lora.set_implicit_header_mode(False)
 #lora.set_lna_gain(GAIN.G1)
+
+#FIXME For sf lower than 11 set to FALSE 
 lora.set_low_data_rate_optim(False)
 
 #  Medium Range  Defaults after init are 434.0MHz, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on 13 dBm
