@@ -33,7 +33,7 @@ Just type in your terminal:
 ### Step 3 - Install Python graphite library:
 
 To complete this step you need to have both Python and pip installed. You can google it very easily.
-Then you can install our library:
+Then you can install [graphyte library](https://pypi.org/project/graphyte/):
 
 >pip install graphyte
 
