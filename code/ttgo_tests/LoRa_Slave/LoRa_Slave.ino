@@ -81,9 +81,9 @@ void setup()
   display.clear();
   display.drawString(0, 20, "INIT OK");
   display.display();
-  Serial.print(rf95.printRegisters());
+  //Serial.print(rf95.printRegisters());
   delay(4000);
-  Serial.println("Here");
+  Serial.println("INIT OK");
 }
 
 int packet_length = 0;
@@ -125,33 +125,33 @@ void loop()
       rcv_success = true;
 
       //memset(buf, 0, RH_RF95_MAX_MESSAGE_LEN);
-      rf95.clearRxBuf();
+      //rf95.clearRxBuf();
 
       /*for (int i = 0; i < RH_RF95_MAX_MESSAGE_LEN; i++){
         buf[i] = 0;
       }*/
-      String message = createPacket();
+      //String message = createPacket();
 
       Serial.print("RX: ");
-      Serial.println(received);
-      Serial.print("Len: ");
-      Serial.println(received.length());
-      Serial.println(len);
-      Serial.print("RSSI: ");
-      Serial.println(rssi, DEC);
-      Serial.print("Millis since start: ");
-      Serial.println(millis());
+      Serial.print(received);
+      //Serial.print("Len: ");
+      //Serial.println(received.length());
+      //Serial.println(len);
+      Serial.print(" RSSI: ");
+      Serial.print(rssi, DEC);
+      Serial.print(" Time: ");
+      Serial.print(millis());
       Serial.println(" ");
 
       display.clear();
       display.drawString(0 , 15, "RX: " + received);
       display.drawString(0, 0, "RSSI: " + String(rssi));
-      display.drawString(0, 40, "TX: " + message);
+      //display.drawString(0, 40, "TX: " + message);
       display.display();
       //delay(100);
-      Serial.println("TX: " + message);
+      //Serial.println("TX: " + message);
 
-      uint8_t data[50];
+      /*uint8_t data[50];
 
       for (int i = 0; i < packet_length; i++) {
         data[i] = (uint8_t) message[i];
@@ -161,6 +161,7 @@ void loop()
 
       rf95.send(data, packet_length); //sizeof(data)
       rf95.waitPacketSent();
+      */
       digitalWrite(LED, LOW);
     }
     else
