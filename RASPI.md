@@ -143,3 +143,142 @@ Add the following lines above exit 0:
 # Disable HDMI
 /usr/bin/tvservice -o
 ```
+13. Installing Python 3.5
+
+a. Install the required build-tools (some might already be installed on your system).
+
+ ```
+        sudo apt-get update
+        sudo apt-get install build-essential tk-dev
+        sudo apt-get install libncurses5-dev libncursesw5-dev libreadline6-dev
+        sudo apt-get install libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev
+        sudo apt-get install libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
+ ```
+
+   If one of the packages cannot be found, try a newer version number (e.g. ``libdb5.4-dev`` instead of ``libdb5.3-dev``).
+
+b. Download and install Python 3.5. When downloading the source code, select the most recent release of Python 3.5, available
+   on the `official site <https://www.python.org/downloads/source/>`_. Adjust the file names accordingly.
+
+```
+        wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
+        tar zxvf Python-3.5.2.tgz
+        cd Python-3.5.2
+        ./configure --prefix=/usr/local/opt/python-3.5.2
+        make
+        sudo make install
+```
+	
+
+c. Make the compiled binaries globally available.
+
+ ```
+        sudo ln -s /usr/local/opt/python-3.5.2/bin/pydoc3.5 /usr/bin/pydoc3.5
+        sudo ln -s /usr/local/opt/python-3.5.2/bin/python3.5 /usr/bin/python3.5
+        sudo ln -s /usr/local/opt/python-3.5.2/bin/python3.5m /usr/bin/python3.5m
+        sudo ln -s /usr/local/opt/python-3.5.2/bin/pyvenv-3.5 /usr/bin/pyvenv-3.5
+        sudo ln -s /usr/local/opt/python-3.5.2/bin/pip3.5 /usr/bin/pip3.5
+ ```
+
+   You should now have a fully working Python 3.5 installation on your Raspberry Pi!
+d. How to change from default to alternative Python version:
+```
+alias python='/usr/bin/python3.5'
+. ~/.bashrc
+```
+14. GPS setup – described [here](http://ozzmaker.com/berrygps-setup-guide-raspberry-pi/)
+
+At the beginnig: 
+```
+git clone http://github.com/ozzmaker/BerryIMU.git
+```
+Then update software and OS
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo reboot
+```
+Open raspi-config and disable serial console.
+
+To display GPS data:
+```
+sudo apt-get install screen
+screen /dev/serial0 9600
+```
+
+Install, gpsd, gpsmon and cgps;
+```
+sudo apt-get install gpsd-clients gpsd -y
+```
+
+If you need to stop gpsd, you can use
+```
+sudo killall gpsd
+```
+
+Be default, gpsd is configured to stat at boot and run in the background. If you are fine with this, you will need to edit the config file so that gpsd uses the correct serial device.
+```
+sudo nano /etc/default/gpsd
+```
+Look for
+`DEVICES=""`
+and change it to
+`DEVICES="/dev/serial0"`
+If you want to manually run gpsd, you will need to disable it from starting at boot;
+```
+sudo systemctl stop gpsd.socket
+sudo systemctl disable gpsd.socket
+```
+
+To force it to autostart again at boot;
+```
+sudo systemctl enable gpsd.socket
+sudo systemctl start gpsd.socket
+```
+
+You can now use gpsmon or cgps to view GPS data.
+
+We will be using gpspipe to capture the NMEA sentence from the BerryGPS and storing these into a file. The command to use is;
+```
+gpspipe -r -d -l -o /home/pi/`date +"%Y%m%d-%H-%M-%S"`.nmea
+```
+-r = Output raw NMEA sentences.
+-d = Causes gpspipe to run as a daemon.
+-l = Causes gpspipe to sleep for ten seconds before attempting to connect to gpsd.
+-o = Output to file.
+Now we need to force the above command to run at boot. This can be done by editing the rc.local file.
+```
+sudo nano /etc/rc.local
+```
+Just before the last line, which will be 'exit 0', paste in the below line;
+`gpspipe -r -d -l -o /home/pi/`date +"%Y%m%d-%H-%M-%S"`.nmea`
+
+15. What do we need for IMU:
+
+```
+git clone http://github.com/ozzmaker/BerryIMU.git
+sudo apt-get update
+sudo apt-get install i2c-tools libi2c-dev python-smbus
+sudo nano /etc/modprobe.d/raspi-blacklist.conf
+```
+Place a hash '#' in front of blacklist i2c-bcm2708
+If the above file is blank or doesn't exist, then skip the above step
+You now need to edit the modules conf file.
+```
+ sudo nano /etc/modules
+```
+Add these two lines;
+```
+i2c-dev
+i2c-bcm2708
+```
+Update /boot/config.txt
+```
+sudo nano /boot/config.txt
+```
+Add to the bottom;
+```
+dtparam=i2c_arm=on
+dtparam=i2c1=on
+```
+More: http://ozzmaker.com/berryimu/
