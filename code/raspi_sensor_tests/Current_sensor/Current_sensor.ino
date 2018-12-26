@@ -34,7 +34,7 @@ void loop() {
   // This will calculate the actual current (in mA)
   // Using the Vref and sensitivity settings you configure
   float current = (voltage - Vref) * sensitivity;
-  Serial.print(current);
+  Serial.println(current);
   //integral += current*avgSamples*2/1000;
   //Serial.print(" ");
   //Serial.println((int)integral);
