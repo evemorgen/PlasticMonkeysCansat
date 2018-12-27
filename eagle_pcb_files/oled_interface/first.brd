@@ -30,7 +30,7 @@
 <layer number="20" name="Dimension" color="24" fill="1" visible="no" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
@@ -205,40 +205,6 @@
 <wire x1="17.78" y1="2.54" x2="16.51" y2="3.81" width="0.127" layer="21" curve="90"/>
 <wire x1="16.51" y1="3.81" x2="-10.16" y2="3.81" width="0.127" layer="21"/>
 <text x="-7.62" y="-20.32" size="2.54" layer="21" font="vector">0.96" OLED</text>
-</package>
-</packages>
-</library>
-<library name="switch-tact">
-<description>&lt;b&gt;Diptronics THMD &amp; SMD tact switches&lt;/b&gt;
-&lt;p&gt;&lt;ul&gt;
-&lt;li&gt;DTS-3: 3.5x6mm THMD tact switch
-&lt;li&gt;DTS-6, DTS-64: 6x6mm THMD tact switch
-&lt;li&gt;DTSM-3: 3.5x6mm SMD tact switch
-&lt;li&gt;DTSM-6, DTSM-64: 6x6mm SMD tact switch
-&lt;/ul&gt;&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Doublecheck before using!&lt;/b&gt;&lt;/p&gt;</description>
-<packages>
-<package name="DTSM-3">
-<wire x1="-3" y1="1.75" x2="3" y2="1.75" width="0.2032" layer="51"/>
-<wire x1="3" y1="1.75" x2="3" y2="-1.75" width="0.2032" layer="51"/>
-<wire x1="3" y1="-1.75" x2="-3" y2="-1.75" width="0.2032" layer="51"/>
-<wire x1="-3" y1="-1.75" x2="-3" y2="1.75" width="0.2032" layer="51"/>
-<wire x1="-1.5" y1="0.75" x2="1.5" y2="0.75" width="0.2032" layer="51"/>
-<wire x1="1.5" y1="0.75" x2="1.5" y2="-0.75" width="0.2032" layer="51"/>
-<wire x1="1.5" y1="-0.75" x2="-1.5" y2="-0.75" width="0.2032" layer="51"/>
-<wire x1="-1.5" y1="-0.75" x2="-1.5" y2="0.75" width="0.2032" layer="51"/>
-<wire x1="-3" y1="1.75" x2="-3" y2="1.25" width="0.2032" layer="21"/>
-<wire x1="-3" y1="1.75" x2="3" y2="1.75" width="0.2032" layer="21"/>
-<wire x1="3" y1="1.75" x2="3" y2="1.25" width="0.2032" layer="21"/>
-<wire x1="3" y1="-1.25" x2="3" y2="-1.75" width="0.2032" layer="21"/>
-<wire x1="3" y1="-1.75" x2="-3" y2="-1.75" width="0.2032" layer="21"/>
-<wire x1="-3" y1="-1.75" x2="-3" y2="-1.25" width="0.2032" layer="21"/>
-<wire x1="-1.25" y1="0.75" x2="1.25" y2="0.75" width="0.2032" layer="21"/>
-<wire x1="-1.25" y1="-0.75" x2="1.2" y2="-0.75" width="0.2032" layer="21"/>
-<smd name="1" x="-2.7" y="0" dx="2" dy="1.6" layer="1"/>
-<smd name="2" x="2.7" y="0" dx="2" dy="1.6" layer="1"/>
-<text x="-2.54" y="-3.81" size="1.27" layer="27">&gt;VALUE</text>
-<text x="-2.54" y="2.54" size="1.27" layer="25">&gt;NAME</text>
 </package>
 </packages>
 </library>
@@ -1459,6 +1425,51 @@ MELF 0.25 W</description>
 </package3d>
 </packages3d>
 </library>
+<library name="SparkFun-Switches">
+<description>&lt;h3&gt;SparkFun Switches, Buttons, Encoders&lt;/h3&gt;
+In this library you'll find switches, buttons, joysticks, and anything that moves to create or disrupt an electrical connection.
+&lt;br&gt;
+&lt;br&gt;
+We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application. 
+&lt;br&gt;
+&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
+&lt;br&gt;
+&lt;br&gt;
+You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
+<packages>
+<package name="TACTILE_SWITCH_SMD_6.0X3.5MM">
+<description>&lt;h3&gt;Momentary Switch (Pushbutton) - SPST - SMD, 6.0 x 3.5 mm&lt;/h3&gt;
+&lt;p&gt;Normally-open (NO) SPST momentary switches (buttons, pushbuttons).&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.sparkfun.com/datasheets/Components/1101.pdf"&gt;Datasheet&lt;/a&gt;&lt;/p&gt;</description>
+<wire x1="-3" y1="1.1" x2="-3" y2="-1.1" width="0.127" layer="51"/>
+<wire x1="3" y1="1.1" x2="3" y2="-1.1" width="0.127" layer="51"/>
+<wire x1="-2.75" y1="1.75" x2="-3" y2="1.5" width="0.2032" layer="21" curve="90"/>
+<wire x1="-2.75" y1="1.75" x2="2.75" y2="1.75" width="0.2032" layer="21"/>
+<wire x1="2.75" y1="1.75" x2="3" y2="1.5" width="0.2032" layer="21" curve="-90"/>
+<wire x1="3" y1="-1.5" x2="2.75" y2="-1.75" width="0.2032" layer="21" curve="-90"/>
+<wire x1="2.75" y1="-1.75" x2="-2.75" y2="-1.75" width="0.2032" layer="21"/>
+<wire x1="-3" y1="-1.5" x2="-2.75" y2="-1.75" width="0.2032" layer="21" curve="90"/>
+<wire x1="-3" y1="-1.5" x2="-3" y2="-1.1" width="0.2032" layer="21"/>
+<wire x1="-3" y1="1.1" x2="-3" y2="1.5" width="0.2032" layer="21"/>
+<wire x1="3" y1="1.1" x2="3" y2="1.5" width="0.2032" layer="21"/>
+<wire x1="3" y1="-1.5" x2="3" y2="-1.1" width="0.2032" layer="21"/>
+<wire x1="-1.5" y1="0.75" x2="1.5" y2="0.75" width="0.2032" layer="21"/>
+<wire x1="1.5" y1="-0.75" x2="-1.5" y2="-0.75" width="0.2032" layer="21"/>
+<wire x1="-1.5" y1="-0.75" x2="-1.5" y2="0.75" width="0.2032" layer="21"/>
+<wire x1="1.5" y1="-0.75" x2="1.5" y2="0.75" width="0.2032" layer="21"/>
+<wire x1="-2" y1="0" x2="-1" y2="0" width="0.127" layer="51"/>
+<wire x1="-1" y1="0" x2="0.1" y2="0.5" width="0.127" layer="51"/>
+<wire x1="0.3" y1="0" x2="2" y2="0" width="0.127" layer="51"/>
+<smd name="1" x="-3.15" y="0" dx="2.3" dy="1.6" layer="1" rot="R180"/>
+<smd name="2" x="3.15" y="0" dx="2.3" dy="1.6" layer="1" rot="R180"/>
+<text x="0" y="1.905" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;Name</text>
+<text x="0" y="-1.905" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;Value</text>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1653,9 +1664,6 @@ design rules under a new name.</description>
 </autorouter>
 <elements>
 <element name="U$1" library="DIYMall_OLED" package="I2C_OLED_PACKAGE" value="I2C_OLED" x="15.367" y="31.242" smashed="yes"/>
-<element name="S1" library="switch-tact" package="DTSM-3" value="DTSM-3" x="18.669" y="4.064" smashed="yes"/>
-<element name="S2" library="switch-tact" package="DTSM-3" value="DTSM-3" x="29.337" y="4.064" smashed="yes"/>
-<element name="S3" library="switch-tact" package="DTSM-3" value="DTSM-3" x="7.62" y="4.064" smashed="yes"/>
 <element name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="M1206" package3d_urn="urn:adsk.eagle:package:23566/1" value="" x="19.939" y="8.89" smashed="yes">
 <attribute name="SPICEPREFIX" value="10K" x="19.939" y="8.89" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="18.669" y="6.35" size="1.27" layer="27"/>
@@ -1674,6 +1682,24 @@ design rules under a new name.</description>
 <element name="BME680" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X05" package3d_urn="urn:adsk.eagle:package:22469/2" value="" x="12.7" y="19.05" smashed="yes">
 <attribute name="NAME" x="12.6238" y="15.7988" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="6.35" y="15.875" size="1.27" layer="27"/>
+</element>
+<element name="S4" library="SparkFun-Switches" package="TACTILE_SWITCH_SMD_6.0X3.5MM" value="MOMENTARY-SWITCH-SPST-SMD-6.0X3.5MM" x="18.415" y="3.683" smashed="yes">
+<attribute name="NAME" x="18.415" y="5.588" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
+<attribute name="PROD_ID" value="SWCH-00815" x="18.415" y="3.683" size="1.778" layer="27" display="off"/>
+<attribute name="SF_SKU" value="COM-08229" x="18.415" y="3.683" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="18.415" y="1.778" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
+</element>
+<element name="S5" library="SparkFun-Switches" package="TACTILE_SWITCH_SMD_6.0X3.5MM" value="MOMENTARY-SWITCH-SPST-SMD-6.0X3.5MM" x="6.35" y="3.81" smashed="yes" rot="R180">
+<attribute name="NAME" x="6.35" y="1.905" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
+<attribute name="PROD_ID" value="SWCH-00815" x="6.35" y="3.81" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="SF_SKU" value="COM-08229" x="6.35" y="3.81" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="6.35" y="5.715" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
+</element>
+<element name="S6" library="SparkFun-Switches" package="TACTILE_SWITCH_SMD_6.0X3.5MM" value="MOMENTARY-SWITCH-SPST-SMD-6.0X3.5MM" x="30.48" y="3.683" smashed="yes" rot="R180">
+<attribute name="NAME" x="30.48" y="1.778" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
+<attribute name="PROD_ID" value="SWCH-00815" x="30.48" y="3.683" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="SF_SKU" value="COM-08229" x="30.48" y="3.683" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="30.48" y="5.588" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
 </element>
 </elements>
 <signals>
@@ -1702,63 +1728,60 @@ design rules under a new name.</description>
 <wire x1="11.43" y1="16.51" x2="10.16" y2="17.78" width="0.508" layer="1"/>
 </signal>
 <signal name="B3">
-<contactref element="S2" pad="2"/>
 <contactref element="R3" pad="1"/>
 <contactref element="SDA" pad="7"/>
-<wire x1="32.037" y1="4.064" x2="29.334" y2="6.767" width="0.508" layer="1"/>
-<wire x1="29.334" y1="6.767" x2="29.334" y2="8.89" width="0.508" layer="1"/>
 <wire x1="26.67" y1="11.554" x2="29.334" y2="8.89" width="0.508" layer="1"/>
 <wire x1="26.67" y1="25.4" x2="26.67" y2="11.554" width="0.508" layer="1"/>
+<contactref element="S6" pad="1"/>
+<wire x1="29.334" y1="8.89" x2="29.334" y2="7.496" width="0.508" layer="1"/>
+<wire x1="33.147" y1="3.683" x2="33.63" y2="3.683" width="0.508" layer="1"/>
+<wire x1="29.334" y1="7.496" x2="33.147" y2="3.683" width="0.508" layer="1"/>
 </signal>
 <signal name="B2">
-<contactref element="S1" pad="2"/>
 <contactref element="R1" pad="1"/>
 <contactref element="SDA" pad="6"/>
 <wire x1="24.13" y1="25.4" x2="24.13" y2="14.481" width="0.508" layer="1"/>
 <wire x1="24.13" y1="14.481" x2="18.539" y2="8.89" width="0.508" layer="1"/>
-<wire x1="18.539" y1="8.89" x2="18.539" y2="6.894" width="0.508" layer="1"/>
-<wire x1="18.539" y1="6.894" x2="21.369" y2="4.064" width="0.508" layer="1"/>
+<contactref element="S4" pad="2"/>
+<wire x1="18.539" y1="8.89" x2="18.539" y2="6.709" width="0.508" layer="1"/>
+<wire x1="18.539" y1="6.709" x2="21.565" y2="3.683" width="0.508" layer="1"/>
 </signal>
 <signal name="B1">
-<contactref element="S3" pad="2"/>
 <contactref element="R2" pad="1"/>
 <contactref element="SDA" pad="5"/>
 <wire x1="7.49" y1="8.89" x2="7.555" y2="8.825" width="0.1524" layer="1"/>
-<wire x1="7.174" y1="8.444" x2="10.32" y2="5.298" width="0.508" layer="1"/>
-<wire x1="10.32" y1="5.298" x2="10.32" y2="4.064" width="0.508" layer="1"/>
 <wire x1="21.59" y1="25.4" x2="21.59" y2="15.24" width="0.508" layer="1"/>
 <wire x1="21.59" y1="15.24" x2="17.78" y2="11.43" width="0.508" layer="1"/>
 <wire x1="17.78" y1="11.43" x2="8.89" y2="11.43" width="0.508" layer="1"/>
 <wire x1="8.89" y1="11.43" x2="7.62" y2="8.89" width="0.508" layer="1"/>
 <wire x1="7.62" y1="8.89" x2="7.555" y2="8.825" width="0.1524" layer="1"/>
-<wire x1="7.555" y1="8.825" x2="7.174" y2="8.444" width="0.1524" layer="1"/>
+<contactref element="S5" pad="1"/>
+<wire x1="7.49" y1="8.89" x2="7.49" y2="5.82" width="0.508" layer="1"/>
+<wire x1="7.49" y1="5.82" x2="9.5" y2="3.81" width="0.508" layer="1"/>
 </signal>
 <signal name="VCC">
-<contactref element="S3" pad="1"/>
-<contactref element="S1" pad="1"/>
-<contactref element="S2" pad="1"/>
 <contactref element="SDA" pad="1"/>
-<wire x1="4.92" y1="4.064" x2="5.08" y2="4.064" width="0.1524" layer="1"/>
-<wire x1="20.32" y1="1.4606" x2="22.58994375" y2="1.4606" width="0.508" layer="1"/>
-<wire x1="26.637" y1="4.064" x2="25.19334375" y2="4.064" width="0.508" layer="1"/>
-<wire x1="25.19334375" y1="4.064" x2="22.58994375" y2="1.4606" width="0.508" layer="1"/>
 <wire x1="11.43" y1="25.4" x2="7.62" y2="25.4" width="0.508" layer="1"/>
 <wire x1="7.62" y1="25.4" x2="5.08" y2="22.86" width="0.508" layer="1"/>
 <wire x1="5.08" y1="22.86" x2="5.08" y2="19.05" width="0.508" layer="1"/>
-<wire x1="5.08" y1="19.05" x2="5.08" y2="4.064" width="0.508" layer="1"/>
-<wire x1="15.969" y1="4.064" x2="16.14765625" y2="4.064" width="0.508" layer="1"/>
-<wire x1="16.14765625" y1="4.064" x2="18.75105625" y2="1.4606" width="0.508" layer="1"/>
-<wire x1="4.92" y1="2.794" x2="6.244171875" y2="1.469828125" width="0.508" layer="1"/>
-<wire x1="4.92" y1="4.064" x2="4.92" y2="2.794" width="0.508" layer="1"/>
 <contactref element="U$1" pad="1"/>
 <wire x1="11.43" y1="25.4" x2="15.24" y2="29.21" width="0.508" layer="1"/>
 <wire x1="15.367" y1="29.337" x2="15.24" y2="29.21" width="0.1524" layer="1"/>
 <wire x1="15.367" y1="31.242" x2="15.367" y2="29.337" width="0.508" layer="1"/>
-<wire x1="6.244171875" y1="1.469828125" x2="6.2534" y2="1.4606" width="0.1524" layer="1"/>
-<wire x1="6.2534" y1="1.4606" x2="18.75105625" y2="1.4606" width="0.508" layer="1"/>
 <contactref element="BME680" pad="1"/>
 <wire x1="7.62" y1="19.05" x2="5.08" y2="19.05" width="0.508" layer="1"/>
-<wire x1="18.75105625" y1="1.4606" x2="20.32" y2="1.4606" width="0.508" layer="1"/>
+<contactref element="S6" pad="2"/>
+<contactref element="S4" pad="1"/>
+<contactref element="S5" pad="2"/>
+<wire x1="5.08" y1="19.05" x2="3.2" y2="17.17" width="0.508" layer="1"/>
+<wire x1="3.2" y1="17.17" x2="3.2" y2="3.81" width="0.508" layer="1"/>
+<wire x1="3.2" y1="3.81" x2="5.74" y2="1.27" width="0.508" layer="1"/>
+<wire x1="5.74" y1="1.27" x2="13.97" y2="1.27" width="0.508" layer="1"/>
+<wire x1="13.97" y1="1.27" x2="13.97" y2="2.388" width="0.508" layer="1"/>
+<wire x1="13.97" y1="2.388" x2="15.265" y2="3.683" width="0.508" layer="1"/>
+<wire x1="13.97" y1="1.27" x2="25.4" y2="1.27" width="0.508" layer="1"/>
+<wire x1="25.4" y1="1.27" x2="27.33" y2="3.2" width="0.508" layer="1"/>
+<wire x1="27.33" y1="3.2" x2="27.33" y2="3.683" width="0.508" layer="1"/>
 </signal>
 <signal name="GND">
 <contactref element="R3" pad="2"/>
@@ -1773,6 +1796,7 @@ design rules under a new name.</description>
 <vertex x="36.83" y="35.56"/>
 <vertex x="0" y="35.56"/>
 </polygon>
+<wire x1="17.78" y1="19.05" x2="13.97" y2="25.4" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
