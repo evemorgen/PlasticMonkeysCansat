@@ -72,6 +72,17 @@
 <layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
 </layers>
 <library>
+<description>&lt;b&gt; Created by Jakub Podolak &lt;/b&gt; &lt;br&gt;
+
+jakubtechnet@gmail.com 
+
+&lt;br&gt;&lt;br&gt;
+
+2018 - PlasticMonkeysCansat  &lt;br&gt;
+Poland 
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Absolutely No Warranity!! 
+This library may not work, symbols and footprints are not verified</description>
 <packages>
 <package name="S9V11F3S5">
 <wire x1="-7.357" y1="-6.5" x2="7.865" y2="-6.5" width="0.127" layer="21"/>
