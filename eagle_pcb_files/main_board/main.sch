@@ -5757,8 +5757,12 @@ Source: AVX .. aphvc.pdf</description>
 </segment>
 <segment>
 <pinref part="LED_OUTPUT" gate="G$1" pin="2"/>
-<wire x1="44.45" y1="-80.01" x2="44.45" y2="-92.71" width="0.1524" layer="91"/>
+<wire x1="44.45" y1="-80.01" x2="44.45" y2="-87.63" width="0.1524" layer="91"/>
 <label x="44.45" y="-92.71" size="1.778" layer="95"/>
+<pinref part="C5" gate="G$1" pin="2"/>
+<wire x1="44.45" y1="-87.63" x2="44.45" y2="-92.71" width="0.1524" layer="91"/>
+<wire x1="41.91" y1="-87.63" x2="44.45" y2="-87.63" width="0.1524" layer="91" style="shortdash"/>
+<junction x="44.45" y="-87.63"/>
 </segment>
 <segment>
 <pinref part="U$2" gate="G$1" pin="P$1"/>
