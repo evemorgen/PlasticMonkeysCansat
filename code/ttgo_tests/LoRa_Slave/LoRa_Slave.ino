@@ -86,27 +86,42 @@ void setup()
   Serial.println("INIT OK");
 }
 
-int packet_length = 0;
+int packet_length = 20;
 bool rcv_success = false;
 int packetID = 0;
 
 String createPacket() {
-  /*int id = micros() % 1000 + 1000;
-  String p = "";
-  p += "ID: ";
-  p += String(id);
-  p += " ACK: ";
-  p += String(rcv_success);
-  packet_length = 15;
-
-  return p;*/
-
-  String p = "";
+  
+  /*String p = "";
   p += "ID: ";
   p += String(packetID);
   p += " ABCDEFGHIJKL";
 
-  packetID += 2;
+  packetID += 1;
+  return p;*/
+
+
+  //PACKET PROTOCOL:
+  //L: led (L1 - on, L0 - off) 
+  //B: buzzer
+  //
+  //
+  //
+  //
+  //
+  //
+  String p = "";
+  int len = Serial.available();
+  if (!len){
+    p += "---------------";
+  } else {
+    for (int i = 0; i < len; i++){
+      p += (char)Serial.read();
+    }
+    for (int i = len; i < 20; i++){
+      p += "-";
+    }
+  }
   return p;
 }
 
@@ -124,19 +139,10 @@ void loop()
       String received = String((char*)buf);
       rcv_success = true;
 
-      //memset(buf, 0, RH_RF95_MAX_MESSAGE_LEN);
-      //rf95.clearRxBuf();
-
-      /*for (int i = 0; i < RH_RF95_MAX_MESSAGE_LEN; i++){
-        buf[i] = 0;
-      }*/
-      //String message = createPacket();
+      String message = createPacket();
 
       Serial.print("RX: ");
       Serial.print(received);
-      //Serial.print("Len: ");
-      //Serial.println(received.length());
-      //Serial.println(len);
       Serial.print(" RSSI: ");
       Serial.print(rssi, DEC);
       Serial.print(" Time: ");
@@ -146,12 +152,12 @@ void loop()
       display.clear();
       display.drawString(0 , 15, "RX: " + received);
       display.drawString(0, 0, "RSSI: " + String(rssi));
-      //display.drawString(0, 40, "TX: " + message);
+      display.drawString(0, 40, "TX: " + message);
       display.display();
-      //delay(100);
-      //Serial.println("TX: " + message);
+      delay(80);
+      Serial.println("TX: " + message);
 
-      /*uint8_t data[50];
+      uint8_t data[50] = {0};
 
       for (int i = 0; i < packet_length; i++) {
         data[i] = (uint8_t) message[i];
@@ -161,7 +167,7 @@ void loop()
 
       rf95.send(data, packet_length); //sizeof(data)
       rf95.waitPacketSent();
-      */
+        
       digitalWrite(LED, LOW);
     }
     else
