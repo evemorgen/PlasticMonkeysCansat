@@ -13,8 +13,10 @@ class mylora(LoRa):
         self.set_dio_mapping([0] * 6)
         self.var=0
         self.counter = 1
-        self.tx_success = 0
+        self.tx_success = 1
         self.packet = ""
+        self.payload_b = []
+        self.tx_end = False
 
     def on_rx_done(self):
         BOARD.led_on()
@@ -59,20 +61,26 @@ class mylora(LoRa):
     def start(self):          
         while True:
             while (self.var==0):
-                
+
                 #tx_file = open("tx.txt", "r")
                 #line = tx_file.readline()[:-1]
                 #tx_file.close()
-                
-                if self.tx_success:
-                    self.packet = tx_f.readline()[:-1]
-                self.tx_success = 0
 
-                payload_str = self.packet + "-"*(20-len(self.packet))
-                payload_b = list(bytearray(payload_str, "utf-8"))
+                if self.tx_success:
+                    self.payload_b = list(tx_f_bin.read(20))
+                    if self.payload_b == []:
+                        self.tx_end = True
+                        break
+
+                    #self.packet = tx_f.readline()[:-1]
+                self.tx_success = 0
+                print(self.payload_b)
+                #payload_str = self.packet + "-"*(20-len(self.packet))
+                #payload_b = list(bytearray(payload_str, "utf-8"))
+                payload_b = self.payload_b
                 payload = [255, 255, 0, 0] + payload_b
                 
-                print ("Send: " + payload_str)
+                #print ("Send: " + payload_b)
 
                 self.write_payload(payload)
                 self.set_mode(MODE.TX)
@@ -87,6 +95,8 @@ class mylora(LoRa):
             
             self.var=0
             self.reset_ptr_rx()
+            if self.tx_end:
+                break
 
 lora = mylora(verbose=False)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
@@ -108,8 +118,11 @@ lora.set_low_data_rate_optim(False)
 f = open("rx.txt", "w")
 f.write("Hello")
 
-#Static TX file
-tx_f = open("tx.txt", "r")
+#Static text TX file
+#tx_f = open("tx.txt", "r")
+
+#Static binary TX file
+tx_f_bin = open("testimage_scaled.jpg", "rb")
 
 assert(lora.get_agc_auto_on() == 1)
 
