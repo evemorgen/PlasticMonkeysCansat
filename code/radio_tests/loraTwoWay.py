@@ -12,6 +12,9 @@ class mylora(LoRa):
         self.set_mode(MODE.SLEEP)
         self.set_dio_mapping([0] * 6)
         self.var=0
+        self.counter = 1
+        self.tx_success = 0
+        self.packet = ""
 
     def on_rx_done(self):
         BOARD.led_on()
@@ -19,11 +22,14 @@ class mylora(LoRa):
         raw_payload = self.read_payload(nocheck=True)
         payload = bytes(raw_payload).decode("utf-8",'ignore').strip('\x00')
         
-        rx_file = open("rx.txt", "a")
+        rx_file = open("rx.txt", "w")
         rx_file.write(payload)
         rx_file.write("\n")
+        rx_file.close()
+
         print ("Receive: " + payload)
         BOARD.led_off()
+        self.tx_success = 1
         self.var=1
 
     def on_tx_done(self):
@@ -54,7 +60,15 @@ class mylora(LoRa):
         while True:
             while (self.var==0):
                 
-                payload_str = "HelllllllooooooLORA"
+                #tx_file = open("tx.txt", "r")
+                #line = tx_file.readline()[:-1]
+                #tx_file.close()
+                
+                if self.tx_success:
+                    self.packet = tx_f.readline()[:-1]
+                self.tx_success = 0
+
+                payload_str = self.packet + "-"*(20-len(self.packet))
                 payload_b = list(bytearray(payload_str, "utf-8"))
                 payload = [255, 255, 0, 0] + payload_b
                 
@@ -62,12 +76,13 @@ class mylora(LoRa):
 
                 self.write_payload(payload)
                 self.set_mode(MODE.TX)
-                time.sleep(0.2) #TX time
+                time.sleep(0.11) #TX time
+                self.counter += 1
                 self.reset_ptr_rx()
                 self.set_mode(MODE.RXCONT) # Receiver mode
             
                 start_time = time.time()
-                while (time.time() - start_time < 0.3): # wait until receive data or 10s
+                while (time.time() - start_time < 0.17): # Slave responce
                     pass;
             
             self.var=0
@@ -92,6 +107,9 @@ lora.set_low_data_rate_optim(False)
 #RX File
 f = open("rx.txt", "w")
 f.write("Hello")
+
+#Static TX file
+tx_f = open("tx.txt", "r")
 
 assert(lora.get_agc_auto_on() == 1)
 
