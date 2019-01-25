@@ -3,9 +3,10 @@
 int counter = 0; //Counting packets
 
 String packet; //received packet
+String sentPacket;
 
-int packetsSent = 0;
-int packetsRcvd = 0;
+long packetsSent = 0;
+long packetsRcvd = 0;
 int successRatio = 100;
 
 bool success; //was a packet recieved during  slave-talk frame?
@@ -25,17 +26,17 @@ void sendPacket(){
    String sentPacket = "";
    sentPacket += "ID: ";
    if (success) {
-     for (int i = 4; i <= 7; i++){
+     for (int i = 4; i <= 8; i++){
        sentPacket += packet[i]; 
      }  
    } else {
      sentPacket += "FAIL";
    }
    
-   successRatio = packetsSent != 0 ? ((int)(100*packetsRcvd/packetsSent)) : 0;
-   sentPacket += " Succ: " + successRatio;
-   sentPacket += "% Sent: " + packetsSent;
-   sentPacket += " Rcvd: " + packetsRcvd;
+   successRatio = packetsSent != 0 ? 100*packetsRcvd/packetsSent : 0;
+   sentPacket += " Succ: " + String(successRatio);
+   sentPacket += "%\nSent: " + String(packetsSent);
+   sentPacket += " Rcvd: " + String(packetsRcvd);
    
    Serial.println("");
    Serial.print("Sending packet: ");
@@ -53,26 +54,28 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Serial init OK");
   if (!LoRa.begin(433E6)){
-    Serial.println("LoRa Initialization failed:");  
+    Serial.println("LoRa Initialization failed!");  
     while(1);
   }
-  Serial.println("LoRa setup successful");
+  Serial.println("LoRa init successful");
+  LoRa.setSpreadingFactor(7);
+  LoRa.setTxPower(20);
+  Serial.println("LoRa init successful");
 }
 
 void loop() {
   led.on();
-  delay(70);
+  delay(10);
 
   sendPacket();
 
   counter++;
   led.off();
-  delay(15);
   int time0 = millis();
-  int window = 3000;    //Slave responce time window
+  int window = 200;    //Slave responce time window
   success = false;
   while (window > 0){   //Listen for packs
-    window = 3000 - (millis()-time0);
+    window = 200 - (millis()-time0);
     int packetSize = LoRa.parsePacket();
     if (packetSize) {
       readPacket(packetSize);

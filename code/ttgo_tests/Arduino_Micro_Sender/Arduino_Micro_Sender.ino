@@ -7,7 +7,7 @@ void setup() {
   led.off();
   Serial.begin(9600);
   Serial.println("Hello Arduino Lora Sender");
-  if (!LoRa.begin(433E6)){
+  if (!LoRa.begin(434E6)){
     Serial.println("LoRa Initialization failed:");  
     while(1);
   }
