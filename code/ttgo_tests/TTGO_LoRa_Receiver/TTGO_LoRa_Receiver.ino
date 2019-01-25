@@ -55,13 +55,14 @@ void setup() {
   //Initialize LoRa
   SPI.begin(SCK,MISO,MOSI,SS);
   LoRa.setPins(SS,RST,DI0);  
-  if (!LoRa.begin(433E6)) {
+  if (!LoRa.begin(434E6)) {
     Serial.println("Starting LoRa failed!");
     display.drawString(0, 40, "LoRa Init FAIL");
     display.display();
     while (1);
   }
   LoRa.receive();
+  //LoRa.disableCrc();
   Serial.println("Init OK");
   display.drawString(0, 40, "LoRa Init OK");
   display.display();
