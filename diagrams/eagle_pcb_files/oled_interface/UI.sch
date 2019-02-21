@@ -6676,8 +6676,8 @@ BUZZER</description>
 </class>
 </classes>
 <parts>
-<part name="U$1" library="DIYMall_OLED" deviceset="I2C_OLED" device=""/>
-<part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1">
+<part name="OLED" library="DIYMall_OLED" deviceset="I2C_OLED" device=""/>
+<part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1" value="10k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -6686,7 +6686,7 @@ BUZZER</description>
 </spice>
 <attribute name="SPICEPREFIX" value="10K"/>
 </part>
-<part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1">
+<part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1" value="10k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -6695,7 +6695,7 @@ BUZZER</description>
 </spice>
 <attribute name="SPICEPREFIX" value="10K"/>
 </part>
-<part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1">
+<part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1" value="10k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -6709,7 +6709,7 @@ BUZZER</description>
 <part name="S5" library="SparkFun-Switches" deviceset="MOMENTARY-SWITCH-SPST" device="-SMD-6.0X3.5MM"/>
 <part name="S6" library="SparkFun-Switches" deviceset="MOMENTARY-SWITCH-SPST" device="-SMD-6.0X3.5MM"/>
 <part name="J1" library="Wurth_Elektronik_Electromechanic_FPC_Connectors_&amp;_Flat_Flexible_Cable_rev18c" library_urn="urn:adsk.eagle:library:488576" deviceset="686110183422" device="" package3d_urn="urn:adsk.eagle:package:3360847/1"/>
-<part name="R4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1">
+<part name="R4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1" value="10R">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -6719,7 +6719,7 @@ BUZZER</description>
 <attribute name="SPICEPREFIX" value="10K"/>
 </part>
 <part name="Q1" library="transistor-npn" library_urn="urn:adsk.eagle:library:398" deviceset="BCX59*" device="SMD" package3d_urn="urn:adsk.eagle:package:28989/2"/>
-<part name="R5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1">
+<part name="R5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1" value="10k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -6731,7 +6731,7 @@ BUZZER</description>
 <part name="GND2" library="bt" deviceset="GND" device=""/>
 <part name="C2" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="0.1UF" device="-0402-16V-10%" package3d_urn="urn:adsk.eagle:package:37413/1" value=""/>
 <part name="LED2" library="led-lumiled" library_urn="urn:adsk.eagle:library:258" deviceset="LUXEON_REBEL" device="" package3d_urn="urn:adsk.eagle:package:15630/1"/>
-<part name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1">
+<part name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1" value="10k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -6741,7 +6741,7 @@ BUZZER</description>
 <attribute name="SPICEPREFIX" value="10K"/>
 </part>
 <part name="Q2" library="transistor-npn" library_urn="urn:adsk.eagle:library:398" deviceset="BCX59*" device="SMD" package3d_urn="urn:adsk.eagle:package:28989/2"/>
-<part name="R7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1">
+<part name="R7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1" value="200R">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -6753,6 +6753,7 @@ BUZZER</description>
 <part name="C1" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" deviceset="0.1UF" device="-0402-16V-10%" package3d_urn="urn:adsk.eagle:package:37413/1" value=""/>
 <part name="GND1" library="bt" deviceset="GND" device=""/>
 <part name="LS1" library="SparkFun-Electromechanical" library_urn="urn:adsk.eagle:library:516" deviceset="BUZZER" device="-PTH" package3d_urn="urn:adsk.eagle:package:38558/1"/>
+<part name="GND3" library="bt" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -6765,23 +6766,21 @@ BUZZER</description>
 <text x="60.96" y="76.2" size="1.778" layer="95">SCL</text>
 <text x="60.96" y="78.74" size="1.778" layer="95">SDA</text>
 <text x="60.96" y="81.28" size="1.778" layer="95">VCC</text>
+<text x="71.12" y="58.42" size="1.778" layer="91">OLED</text>
 </plain>
 <instances>
-<instance part="U$1" gate="G$1" x="106.68" y="38.1" smashed="yes"/>
+<instance part="OLED" gate="G$1" x="106.68" y="38.1" smashed="yes"/>
 <instance part="R1" gate="G$1" x="-17.78" y="71.12" smashed="yes">
 <attribute name="NAME" x="-21.59" y="72.6186" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-21.59" y="67.818" size="1.778" layer="96"/>
-<attribute name="SPICEPREFIX" x="-15.24" y="68.58" size="1.778" layer="96"/>
 </instance>
 <instance part="R2" gate="G$1" x="-17.78" y="55.88" smashed="yes">
 <attribute name="NAME" x="-21.59" y="57.3786" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-21.59" y="52.578" size="1.778" layer="96"/>
-<attribute name="SPICEPREFIX" x="-15.24" y="53.34" size="1.778" layer="96"/>
 </instance>
 <instance part="R3" gate="G$1" x="-17.78" y="86.36" smashed="yes">
 <attribute name="NAME" x="-21.59" y="87.8586" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-21.59" y="83.058" size="1.778" layer="96"/>
-<attribute name="SPICEPREFIX" x="-15.24" y="83.82" size="1.778" layer="96"/>
 </instance>
 <instance part="BME680" gate="A" x="73.66" y="76.2" smashed="yes">
 <attribute name="NAME" x="67.31" y="84.455" size="1.778" layer="95"/>
@@ -6806,7 +6805,6 @@ BUZZER</description>
 <instance part="R4" gate="G$1" x="23.622" y="124.46" smashed="yes" rot="R270">
 <attribute name="NAME" x="25.1206" y="128.27" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="20.32" y="128.27" size="1.778" layer="96" rot="R270"/>
-<attribute name="SPICEPREFIX" x="21.082" y="121.92" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="Q1" gate="G$1" x="-3.302" y="123.952" smashed="yes">
 <attribute name="NAME" x="-13.462" y="131.572" size="1.778" layer="95"/>
@@ -6815,7 +6813,6 @@ BUZZER</description>
 <instance part="R5" gate="G$1" x="-23.622" y="123.952" smashed="yes">
 <attribute name="NAME" x="-27.432" y="125.4506" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-27.432" y="120.65" size="1.778" layer="96"/>
-<attribute name="SPICEPREFIX" x="-21.082" y="121.412" size="1.778" layer="96"/>
 </instance>
 <instance part="GND2" gate="1" x="-0.762" y="109.22" smashed="yes">
 <attribute name="VALUE" x="-3.302" y="106.68" size="1.778" layer="96"/>
@@ -6825,13 +6822,12 @@ BUZZER</description>
 <attribute name="VALUE" x="15.113" y="116.332" size="1.778" layer="96" font="vector" rot="R90"/>
 </instance>
 <instance part="LED2" gate="A" x="12.7" y="129.54" smashed="yes" rot="R270">
-<attribute name="NAME" x="8.128" y="125.984" size="1.778" layer="95"/>
-<attribute name="VALUE" x="8.128" y="123.825" size="1.778" layer="96"/>
+<attribute name="NAME" x="8.128" y="136.144" size="1.778" layer="95"/>
+<attribute name="VALUE" x="8.128" y="133.985" size="1.778" layer="96"/>
 </instance>
 <instance part="R6" gate="G$1" x="-29.21" y="161.29" smashed="yes">
 <attribute name="NAME" x="-33.02" y="162.7886" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-33.02" y="157.988" size="1.778" layer="96"/>
-<attribute name="SPICEPREFIX" x="-26.67" y="158.75" size="1.778" layer="96"/>
 </instance>
 <instance part="Q2" gate="G$1" x="-8.636" y="161.29" smashed="yes">
 <attribute name="NAME" x="-18.796" y="168.91" size="1.778" layer="95"/>
@@ -6840,7 +6836,6 @@ BUZZER</description>
 <instance part="R7" gate="G$1" x="26.924" y="157.988" smashed="yes" rot="R270">
 <attribute name="NAME" x="28.4226" y="161.798" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="23.622" y="161.798" size="1.778" layer="96" rot="R270"/>
-<attribute name="SPICEPREFIX" x="24.384" y="155.448" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="C1" gate="G$1" x="11.43" y="150.368" smashed="yes" rot="R90">
 <attribute name="NAME" x="8.509" y="151.892" size="1.778" layer="95" font="vector" rot="R90"/>
@@ -6853,13 +6848,16 @@ BUZZER</description>
 <attribute name="NAME" x="10.16" y="175.006" size="1.778" layer="95" font="vector"/>
 <attribute name="VALUE" x="18.034" y="170.18" size="1.778" layer="96" font="vector"/>
 </instance>
+<instance part="GND3" gate="1" x="55.118" y="40.64" smashed="yes">
+<attribute name="VALUE" x="52.578" y="38.1" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="SCL" class="0">
 <segment>
-<pinref part="U$1" gate="G$1" pin="SDA"/>
+<pinref part="OLED" gate="G$1" pin="SDA"/>
 <wire x1="27.94" y1="76.2" x2="27.94" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="27.94" y1="38.1" x2="63.5" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="BME680" gate="A" pin="3"/>
@@ -6877,7 +6875,7 @@ BUZZER</description>
 <wire x1="25.4" y1="78.74" x2="25.4" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="25.4" y1="33.02" x2="45.72" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="45.72" y1="33.02" x2="45.72" y2="53.34" width="0.1524" layer="91"/>
-<pinref part="U$1" gate="G$1" pin="VCC"/>
+<pinref part="OLED" gate="G$1" pin="VCC"/>
 <wire x1="45.72" y1="53.34" x2="63.5" y2="53.34" width="0.1524" layer="91"/>
 <pinref part="BME680" gate="A" pin="2"/>
 <wire x1="71.12" y1="78.74" x2="25.4" y2="78.74" width="0.1524" layer="91"/>
@@ -6973,15 +6971,18 @@ BUZZER</description>
 <wire x1="30.48" y1="71.12" x2="30.48" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="-5.08" y1="86.36" x2="30.48" y2="86.36" width="0.1524" layer="91"/>
 <junction x="-5.08" y="86.36"/>
-<pinref part="U$1" gate="G$1" pin="SCL"/>
+<pinref part="OLED" gate="G$1" pin="SCL"/>
 <pinref part="BME680" gate="A" pin="5"/>
-<wire x1="30.48" y1="43.18" x2="63.5" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="43.18" x2="55.118" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="55.118" y1="43.18" x2="63.5" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="71.12" x2="30.48" y2="71.12" width="0.1524" layer="91"/>
 <junction x="30.48" y="71.12"/>
 <junction x="30.48" y="86.36"/>
 <label x="30.988" y="92.456" size="1.778" layer="95" rot="R90"/>
 <wire x1="30.48" y1="86.36" x2="30.48" y2="88.9" width="0.1524" layer="91"/>
 <pinref part="J1" gate="G$1" pin="9"/>
+<pinref part="GND3" gate="1" pin="GND"/>
+<junction x="55.118" y="43.18"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -6996,7 +6997,7 @@ BUZZER</description>
 <wire x1="33.02" y1="86.36" x2="33.02" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="33.02" y1="81.28" x2="33.02" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="86.36" x2="33.02" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="U$1" gate="G$1" pin="GND"/>
+<pinref part="OLED" gate="G$1" pin="GND"/>
 <wire x1="33.02" y1="48.26" x2="63.5" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="BME680" gate="A" pin="1"/>
 <wire x1="71.12" y1="81.28" x2="33.02" y2="81.28" width="0.1524" layer="91"/>
@@ -7123,6 +7124,11 @@ BUZZER</description>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="205,1,16.1199,133.182,LED2TH,TH,,,,"/>
+<approved hash="113,1,72.188,77.6961,BME680,,,,,"/>
+<approved hash="113,1,20.1433,93.1545,J1,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>
