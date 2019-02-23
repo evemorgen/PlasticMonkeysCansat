@@ -4,71 +4,83 @@ import subprocess
 import configparser
 import msgpack
 import time
-
-#our command to get one last line from file
-tail_command = "tail -n 1 "
-
-#initialize config parser, read from config.ini
-config = configparser.ConfigParser()
-config.read('config.ini')
-
-#read some settings from config file
-output_path = config['SETTINGS']['output']
-datalog_path = config['SETTINGS']['datalog']
-sleep_time = float(config['SETTINGS']['sleeptime'])
+import sys
+import re
 
 #function to read paths to sensors' logs from config file
-def getDirectories():
+def get_directories(config):
     directories = []
     paths = config.items("PATHS")
     for key, path in paths:
         directories.append(path)
     return directories
 
+#function reads sensors' names from config file
+def get_keys(config):
+    keys = []
+    paths = config.items("PATHS")
+    for key, path in paths:
+        keys.append(key)
+    return keys
+
 #function takes paths to logs as an argument, returns list of the latest readings(int) from all paths
-def getTails(directories):
+def get_tails(directories,length):
     tails = []
     for x in directories:
-        command = tail_command + x
-        result = subprocess.Popen(command.split(), stdout=subprocess.PIPE).communicate()[0]
-        result.rstrip()
-        s = str(result, 'utf-8')
-        number = int(s)
+        with open(x, 'rb') as fh:
+            fh.seek(-1*length, 2)
+            last = fh.readlines()[-1].rstrip().decode()
+        all_numbers = re.findall('\d+',last)
+        number = int(all_numbers[-1])
         tails.append(number)
     return tails
 
-#function takes list of latest readings (ints) and returns packet in readable form
-def prepareTextPack(tails):
-    text_pack = ''
-    for x in tails:
-        text_pack = text_pack + str(x) + ';'
-    text_pack = text_pack + '\n'
-    return text_pack
+#function takes tails and makes a dict
+def prepare_dict(tails,keys):
+    dict_pack = dict(zip(keys,tails))
+    return dict_pack
 
 #function takes list of latest readings (ints) and returns ready-to-send serialized packet
-def prepareMessagePack(tails):
-    message = msgpack.packb(tails,use_bin_type="True")
+def prepare_message_pack(dict_pack):
+    message = msgpack.packb(dict_pack,use_bin_type="True")
     return message
 
 #function prints new line to binary-typed file (to disjoin binary packets)
-def binaryNewLine(out):
+def binary_new_line(out):
     line = str(0) + "\n"
     out.write(line.encode('utf-8'))
 
-directories = getDirectories()
+def run():
+    #initialize config parser, read from config file passed as an argument
+    config_file = sys.argv[1]
+    config = configparser.ConfigParser()
+    config.read(config_file)
 
-while True:
-    output = open(output_path,"ab")
-    datalog = open(datalog_path,"a")
+    #read some settings from config file
+    output_path = config['SETTINGS']['output']
+    datalog_path = config['SETTINGS']['datalog']
+    sleep_time = float(config['SETTINGS']['sleeptime'])
+    line_length = int(config['SETTINGS']['line_length'])
+    prep_text_packs = config['SETTINGS'].getboolean('text_pack')
 
-    tails = getTails(directories)
-    msg_packet = prepareMessagePack(tails)
-    text_packet = prepareTextPack(tails)
+    directories = get_directories(config)
+    keys = get_keys(config)
 
-    output.write(msg_packet)
-    binaryNewLine(output)
+    while True:
+        tails = get_tails(directories,line_length)
+        dict_pack = prepare_dict(tails,keys)
+        
+        if prep_text_packs:
+            datalog = open(datalog_path,"a")
+            datalog.write(str(dict_pack) + '\n')
+            datalog.close()
 
-    datalog.write(text_packet)
-    datalog.close()
-    output.close()
-    time.sleep(sleep_time)
+        msg_packet = prepare_message_pack(dict_pack)
+        output = open(output_path,"ab")
+        output.write(msg_packet)
+        binary_new_line(output)
+        output.close()
+
+        time.sleep(sleep_time)
+
+run()
