@@ -4,7 +4,9 @@
 in config.ini specify your settings:  
 `output` = path to file where binary ready-to-send packets are going to be stored, will be created if it doesn't exist  
 `datalog` = path to file where readable packets are going to be stored, will be created if it doesn't exist  
-`sleeptime` = delay before merges  
+`sleeptime` = delay before merges 
+`line_length` = your maximum line length - how many bytes script have to load to RAM to load last line  
+`text_packets` = yes or no - set to yes if you want to have readable packets
 
 You also specify paths to all logs that we want to merge in `[PATHS]` section like this:
 ```
