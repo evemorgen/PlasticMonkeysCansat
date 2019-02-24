@@ -10074,17 +10074,17 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="RAO2" library="RPI-Zero" deviceset="RPI-ZERO" device=""/>
 <part name="RAO3" library="POLOLU-VoltageConverter" deviceset="S7V8F3" device=""/>
 <part name="BAT1" library="pinhead" deviceset="PINHD-1X2" device=""/>
-<part name="FUSE1" library="pinhead" deviceset="PINHD-1X2" device=""/>
+<part name="FUSE1" library="pinhead" deviceset="PINHD-1X2" device="" value="1.5A"/>
 <part name="RAO4" library="POLOLU-VoltageConverter" deviceset="S7V8F3" device=""/>
 <part name="BAT2" library="pinhead" deviceset="PINHD-1X2" device=""/>
-<part name="FUSE2" library="pinhead" deviceset="PINHD-1X2" device=""/>
+<part name="FUSE2" library="pinhead" deviceset="PINHD-1X2" device="" value="1.5A"/>
 <part name="U$3" library="SparFun-FuelGauge" deviceset="POLOLU_FUEL_GAUGE" device="BREAKBOARD"/>
 <part name="U$9" library="SparFun-FuelGauge" deviceset="POLOLU_FUEL_GAUGE" device="BREAKBOARD"/>
-<part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1"/>
-<part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1"/>
-<part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1"/>
-<part name="C6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1"/>
-<part name="C7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1"/>
+<part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1" value="100nF"/>
+<part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1" value="100nF"/>
+<part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1" value="100nF"/>
+<part name="C6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1" value="100nF"/>
+<part name="C7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1" value="100nF"/>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -10104,7 +10104,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="C8" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1" value="100 nF"/>
 <part name="C9" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1" value="100 nF"/>
 <part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1"/>
+<part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1" value="100nF"/>
 <part name="J3" library="Wurth_Elektronik_Electromechanic_FPC_Connectors_&amp;_Flat_Flexible_Cable_rev18c" library_urn="urn:adsk.eagle:library:488576" deviceset="686114183522" device="" package3d_urn="urn:adsk.eagle:package:3360859/1"/>
 <part name="U$1" library="BERRYIMU" deviceset="BERRYGPS-IMUV3" device="THROUGH_HOLE_ALPHA"/>
 <part name="GND9" library="bt" deviceset="GND" device=""/>
@@ -10117,9 +10117,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="GND" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TP" device="TP19R" package3d_urn="urn:adsk.eagle:package:27972/1" value="TPTP19R"/>
 <part name="SHDN" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TP" device="TP19R" package3d_urn="urn:adsk.eagle:package:27972/1" value="TPTP19R"/>
 <part name="SHDN2" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TP" device="TP20R" package3d_urn="urn:adsk.eagle:package:27973/1" value="TPTP20R"/>
-<part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1"/>
-<part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1"/>
+<part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1" value="10k"/>
+<part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="M1206" package3d_urn="urn:adsk.eagle:package:23566/1" value="10k"/>
 <part name="C5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1" value="100 nF"/>
+<part name="GND1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10301,6 +10302,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="C5" gate="G$1" x="-117.856" y="-24.638" smashed="yes" rot="R180">
 <attribute name="NAME" x="-114.3" y="-23.749" size="1.778" layer="95" rot="R180"/>
 </instance>
+<instance part="GND1" gate="1" x="126.492" y="47.244" smashed="yes">
+<attribute name="VALUE" x="123.952" y="44.704" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -10423,16 +10427,13 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="121.412" y1="85.09" x2="121.412" y2="67.31" width="0.1524" layer="91"/>
 <pinref part="RAO2" gate="G$1" pin="GND@5"/>
 <wire x1="121.412" y1="67.31" x2="121.412" y2="54.61" width="0.1524" layer="91"/>
-<wire x1="121.412" y1="54.61" x2="121.412" y2="49.53" width="0.1524" layer="91"/>
 <wire x1="121.412" y1="67.31" x2="116.84" y2="67.31" width="0.1524" layer="91"/>
 <junction x="121.412" y="67.31"/>
 <pinref part="RAO2" gate="G$1" pin="GND@6"/>
 <wire x1="121.412" y1="54.61" x2="116.84" y2="54.61" width="0.1524" layer="91"/>
 <junction x="121.412" y="54.61"/>
-<pinref part="RAO2" gate="G$1" pin="GND@7"/>
-<wire x1="121.412" y1="49.53" x2="116.84" y2="49.53" width="0.1524" layer="91"/>
 <pinref part="GND10" gate="1" pin="GND"/>
-<wire x1="121.412" y1="32.004" x2="121.412" y2="49.53" width="0.1524" layer="91"/>
+<wire x1="121.412" y1="32.004" x2="121.412" y2="54.61" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$1" gate="G$1" pin="GND@2"/>
@@ -10470,6 +10471,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="R1" gate="G$1" pin="1"/>
 <wire x1="-143.002" y1="66.802" x2="-143.002" y2="85.09" width="0.1524" layer="91"/>
 <junction x="-143.002" y="85.09"/>
+</segment>
+<segment>
+<pinref part="GND1" gate="1" pin="GND"/>
+<pinref part="RAO2" gate="G$1" pin="GND@7"/>
+<wire x1="126.492" y1="49.784" x2="116.84" y2="49.784" width="0.1524" layer="91"/>
+<wire x1="116.84" y1="49.784" x2="116.84" y2="49.53" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="NSS" class="0">
@@ -11170,6 +11177,50 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="102,1,116.84,90.17,5V0,5V0@1,,,,"/>
+<approved hash="102,1,116.84,87.63,5V0,5V0@2,,,,"/>
+<approved hash="102,1,68.58,80.01,GND,GND@3,,,,"/>
+<approved hash="102,1,68.58,69.85,3V3,3.3V,,,,"/>
+<approved hash="102,1,68.58,41.91,GND,GND@3,,,,"/>
+<approved hash="102,1,63.5,32.766,GND,GND@3,,,,"/>
+<approved hash="102,1,-122.428,-24.638,VDD,3.3V,,,,"/>
+<approved hash="201,1,68.58,69.85,3V3,3V3\, 3.3V,,,,"/>
+<approved hash="201,1,116.84,87.63,5V0,5V0@1\, 5V0@2,,,,"/>
+<approved hash="201,1,116.84,90.17,5V0,5V0@1\, 5V0@2,,,,"/>
+<approved hash="201,1,63.5,32.766,GND,GND\, GND@3,,,,"/>
+<approved hash="201,1,68.58,41.91,GND,GND\, GND@3,,,,"/>
+<approved hash="201,1,68.58,80.01,GND,GND\, GND@3,,,,"/>
+<approved hash="104,1,-46.99,86.36,RAO1,GND.1,GND,,,"/>
+<approved hash="104,1,-46.99,83.82,RAO1,GND.2,GND,,,"/>
+<approved hash="104,1,-11.43,68.58,RAO1,GND.3,GND,,,"/>
+<approved hash="104,1,-11.43,86.36,RAO1,GND.4,GND,,,"/>
+<approved hash="202,1,-157.988,-37.338,U$2,AIN2,,,,"/>
+<approved hash="202,1,-157.988,-42.418,U$2,AIN3,,,,"/>
+<approved hash="202,1,-122.428,-34.798,U$2,ADDR,,,,"/>
+<approved hash="117,1,116.84,74.93,GND@4,,,,,"/>
+<approved hash="105,1,-95.25,76.835,N$5,,,,,"/>
+<approved hash="105,1,182.88,-11.43,N$8,,,,,"/>
+<approved hash="105,1,-95.377,49.403,N$9,,,,,"/>
+<approved hash="108,1,-95.25,104.14,N$5,,,,,"/>
+<approved hash="108,1,-95.25,-109.22,N$5,,,,,"/>
+<approved hash="107,1,-95.25,49.53,N$9,N$5,,,,"/>
+<approved hash="107,1,-95.25,49.53,N$9,N$5,,,,"/>
+<approved hash="107,1,-95.25,49.53,N$9,N$5,,,,"/>
+<approved hash="110,1,-94.996,49.022,N$5,N$9,,,,"/>
+<approved hash="110,1,-94.996,49.022,N$5,N$9,,,,"/>
+<approved hash="110,1,-179.578,49.784,N$5,N$9,,,,"/>
+<approved hash="110,1,-179.578,-1.016,N$5,N$9,,,,"/>
+<approved hash="110,1,-95.25,49.53,N$9,N$5,,,,"/>
+<approved hash="110,1,-95.25,49.53,N$9,N$5,,,,"/>
+<approved hash="110,1,-95.25,49.53,N$9,N$5,,,,"/>
+<approved hash="113,1,-75.9629,-1.04394,BAT1,,,,,"/>
+<approved hash="113,1,258.843,68.3539,BAT2,,,,,"/>
+<approved hash="113,1,255.715,-12.5233,J3,,,,,"/>
+<approved hash="113,1,110.667,-90.6145,J2,,,,,"/>
+<approved hash="115,1,-137.668,-1.016,N$9,,,,,"/>
+<approved hash="115,1,-95.377,49.403,N$9,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>
