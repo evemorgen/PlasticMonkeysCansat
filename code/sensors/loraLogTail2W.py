@@ -56,29 +56,29 @@ class mylora(LoRa):
         print("\non_FhssChangeChannel")
         print(self.get_irq_flags())
 
-    def start(self):          
+    def start(self):
         while True:
             while (self.var==0):
 
-                #tx_file = open("tx.txt", "r")
-                #line = tx_file.readline()[:-1]
-                #tx_file.close()
+                temp_file = open("/home/pi/sensor_logs/bme_imu_temp.txt", "r")
+                pres_file = open("/home/pi/sensor_logs/bme_imu_pres.txt", "r")
+                temp_file.seek(0, 2)
+                pres_file.seek(0, 2)
+                t_len, p_len = temp_file.tell(), pres_file.tell()
+                temp_file.seek(t_len-4, 0)
+                pres_file.seek(p_len-4, 0)
+                t = temp_file.read(3)
+                p = pres_file.read(3)
 
-                if self.tx_success:
-                    self.payload_b = list(tx_f_bin.read(20))
-                    if self.payload_b == []:
-                        self.tx_end = True
-                        break
-
-                    #self.packet = tx_f.readline()[:-1]
                 self.tx_success = 0
-                print(self.payload_b)
-                #payload_str = self.packet + "-"*(20-len(self.packet))
-                #payload_b = list(bytearray(payload_str, "utf-8"))
-                payload_b = self.payload_b
+                self.packet = t+p
+                #print(self.packet)
+                payload_str = self.packet + "-"*(20-len(self.packet))
+                payload_b = list(bytearray(payload_str, "utf-8"))
+                #payload_b = self.payload_b
                 payload = [255, 255, 0, 0] + payload_b
                 
-                #print ("Send: " + payload_b)
+                print ("Send: " + payload_str)
 
                 self.write_payload(payload)
                 self.set_mode(MODE.TX)
@@ -110,7 +110,7 @@ lora.set_low_data_rate_optim(False)
 # tx_f = open("tx.txt", "r")
 
 #Static binary TX file
-tx_f_bin = open("testimage_scaled.jpg", "rb")
+#tx_f_bin = open("testimage_scaled.jpg", "rb")
 
 assert(lora.get_agc_auto_on() == 1)
 
