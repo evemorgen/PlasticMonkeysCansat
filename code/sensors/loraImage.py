@@ -4,6 +4,10 @@ import time
 from SX127x.LoRa import *
 from SX127x.board_config import BOARD
 
+syslog = open("/home/pi/lora_logs/sys.txt", "w")
+syslog.write(str(os.getpid()))
+syslog.close()
+
 BOARD.setup()
 BOARD.reset()
 
@@ -29,7 +33,7 @@ class mylora(LoRa):
         raw_payload = self.read_payload(nocheck=True)
         payload = bytes(raw_payload).decode("utf-8",'ignore').strip("\x00")
 
-        rx_file = open("/home/pi/lora-logs/rx.txt", "a")
+        rx_file = open("/home/pi/lora_logs/rx.txt", "a")
         rx_file.write(payload)
         rx_file.write("\n")
         rx_file.close()

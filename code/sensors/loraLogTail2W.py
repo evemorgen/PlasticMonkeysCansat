@@ -1,6 +1,12 @@
+import os
 import time
 from SX127x.LoRa import *
 from SX127x.board_config import BOARD
+from random import randint
+
+syslog = open("/home/pi/lora_logs/sys.txt", "w")
+syslog.write(str(os.getpid()))
+syslog.close()
 
 BOARD.setup()
 BOARD.reset()
@@ -23,38 +29,15 @@ class mylora(LoRa):
         raw_payload = self.read_payload(nocheck=True)
         payload = bytes(raw_payload).decode("utf-8",'ignore')
         
-        rx_file = open("/home/pi/lora-logs/rx.txt", "a")
+        rx_file = open("/home/pi/lora_logs/rx.txt", "a")
         rx_file.write(payload)
+        rx_file.write("-"*(25-len(payload)))
         rx_file.write("\n")
         rx_file.close()
 
-        print ("Receive: " + payload)
+        #print ("Receive: " + payload)
         self.tx_success = 1
         self.var=1
-
-    def on_tx_done(self):
-        print("\nTxDone")
-        print(self.get_irq_flags())
-
-    def on_cad_done(self):
-        print("\non_CadDone")
-        print(self.get_irq_flags())
-
-    def on_rx_timeout(self):
-        print("\non_RxTimeout")
-        print(self.get_irq_flags())
-
-    def on_valid_header(self):
-        print("\non_ValidHeader")
-        print(self.get_irq_flags())
-
-    def on_payload_crc_error(self):
-        print("\non_PayloadCrcError")
-        print(self.get_irq_flags())
-
-    def on_fhss_change_channel(self):
-        print("\non_FhssChangeChannel")
-        print(self.get_irq_flags())
 
     def start(self):
         while True:
@@ -72,13 +55,12 @@ class mylora(LoRa):
 
                 self.tx_success = 0
                 self.packet = t+p
-                #print(self.packet)
-                payload_str = self.packet + "-"*(20-len(self.packet))
+                payload_str = self.packet + "-"*(25-len(self.packet))
                 payload_b = list(bytearray(payload_str, "utf-8"))
                 #payload_b = self.payload_b
                 payload = [255, 255, 0, 0] + payload_b
                 
-                print ("Send: " + payload_str)
+                #print ("Send: " + payload_str)
 
                 self.write_payload(payload)
                 self.set_mode(MODE.TX)
@@ -106,13 +88,8 @@ lora.set_preamble(12)
 lora.set_rx_crc(True)
 lora.set_low_data_rate_optim(False)
 
-# Static text TX file
-# tx_f = open("tx.txt", "r")
-
-#Static binary TX file
-#tx_f_bin = open("testimage_scaled.jpg", "rb")
-
 assert(lora.get_agc_auto_on() == 1)
+
 
 try:
     lora.start()
