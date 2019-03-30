@@ -9,7 +9,8 @@ f.close()
 qual = {
     'low': (160, 120),
     'medium': (320, 240),
-    'high': (640, 480)
+    'high': (640, 480),
+    'ultra': (1600, 1200)
 }
 
 camera = PiCamera()

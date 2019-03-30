@@ -1,3 +1,4 @@
+
 import os
 from time import sleep
 import subprocess
@@ -11,7 +12,8 @@ qual = {
     'L': 'low',
     'M': 'medium',
     'H': 'high',
-    'R': 'raw'
+    'R': 'raw',
+    'U': 'ultra'
 }
 
 def kill_lora():
