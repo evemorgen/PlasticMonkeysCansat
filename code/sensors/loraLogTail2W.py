@@ -79,7 +79,7 @@ class mylora(LoRa):
                 break
 
 lora = mylora(verbose=False)
-lora.set_freq(433.0)
+lora.set_freq(434.2)
 lora.set_pa_config(pa_select=1, max_power=21, output_power=20)
 lora.set_bw(BW.BW125)
 lora.set_coding_rate(CODING_RATE.CR4_5)
