@@ -23,10 +23,9 @@ def thermal_request(line):
     lora_status = open(sensor_logs + "lora_status.txt", "a")
     tstamps = thermal_log.readlines()
     t = int(line[1:6])
-    q = line[6]
     ti = min([abs(t-int(x)) for x in tstamps])
     tim = t - ti if str(t - ti)+"\n" in tstamps else t + ti
-    lora_status.write("T " + str(tim) + " " + str(q) + '\n')
+    lora_status.write("T " + str(tim) + " " + 0 + '\n')
     lora_status.close()
 
 def system_reboot():
