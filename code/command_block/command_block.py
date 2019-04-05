@@ -5,11 +5,13 @@ import configparser
 
 lastLine = None
 sensor_logs = "foo"
-sensors = "foo"
+text_buffer = "buffer.txt"
+lora_status_file = "lora_status.txt"
+rx_file = "foo/rx.txt"
 
 def image_request(line):
     camera_log = open(sensor_logs + "camera.txt")
-    lora_status = open(sensor_logs + "lora_status.txt", "a")
+    lora_status = open(lora_status_file, "a")
     tstamps = camera_log.readlines()
     t = int(line[1:6])
     q = line[6]
@@ -20,7 +22,7 @@ def image_request(line):
 
 def thermal_request(line):
     thermal_log = open(sensor_logs + "thermal.txt")
-    lora_status = open(sensor_logs + "lora_status.txt", "a")
+    lora_status = open(lora_status_file, "a")
     tstamps = thermal_log.readlines()
     t = int(line[1:6])
     ti = min([abs(t-int(x)) for x in tstamps])
@@ -34,23 +36,22 @@ def system_reboot():
     subprocess.Popen(cmd)
 
 def send_system_info():
-    lora_status = open(sensor_logs + "lora_status.txt", "a")
+    lora_status = open(lora_status_file, "a")
     lora_status.write("S 0 0")
     lora_status.close()
 
-def print_text(line):
-    t = line[1]
-    cmd = "python3 " + sensors+"oled.py " + str(t)
-    subprocess.Popen(cmd)
+def append_text(line):
+    text = str(line[1:10])
+    buffer = open(text_buffer, "a")
+    buffer.write(text)
 
-def print_system_info_oled():
-    cmd = "python3 " + sensors+"oled.py S"
-    subprocess.Popen(cmd)
+def clear_buffer():
+    open(text_buffer,'w').close()
 
 while True:
-    rx_f = open("foo/rx.txt", "r")
+    rx_f = open(rx_file, "r")
     rx_f.seek(0,2)
-    rx_f.seek(rx_f.tell()-26, 0)
+    rx_f.seek(rx_f.tell()-12, 0) #Packet should have a size of 11 - header + 10 characters
     line = rx_f.readline().strip("\x00")
     rx_f.close()
     print(line)
@@ -62,8 +63,8 @@ while True:
         system_reboot()
     if line[0] == "S":
         send_system_info()
-    if line[0] == "P":
-        print_text(line)
-    if line[0] == "H":
-        print_system_info_oled()
+    if line[0] == "A":
+        append_text(line)
+    if line[0] == "C":
+        clear_buffer()
     sleep(0.1)
