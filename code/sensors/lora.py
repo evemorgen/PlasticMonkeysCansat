@@ -6,9 +6,12 @@ from SX127x.LoRa import *
 from SX127x.board_config import BOARD
 
 HOME_PATH = Path.home()
-RX_LOG = HOME_PATH / 'lora_logs' / 'rx.txt' #File, where all received data is stored
-STATUS_LOG = HOME_PATH / 'lora_logs' / 'status.txt' #File, where this block's behavior is logged
-CONF_FILE = HOME_PATH / 'lora_logs' / 'conf.txt' #File, where commands for this block are issued by other scripts
+LORA_LOGS = HOME_PATH / 'lora_logs'
+RX_LOG = LORA_LOGS / 'rx.txt' #File, where all received data is stored
+STATUS_LOG = LORA_LOGS / 'status.txt' #File, where this block's behavior is logged
+CONF_FILE = LORA_LOGS / 'conf.txt' #File, where commands for this block are issued by other scripts
+IMAGES = HOME_PATH / 'images'
+THERMAL = HOME_PATH / 'thermal'
 
 #Log files with data to be sent
 #TODO: Argparse or .conf of some sort
@@ -34,10 +37,12 @@ TX_LINE_LENGTH = DOWN_PACKET_LENGTH-1 #TODO: Change this to match headers
 TX_TIME = 0.11
 RX_TIME = 0.17
 
-class TXMODE:
-    DEFAULT = 0
-    IMAGE = 1
-    THERMAL = 2
+IMG_QUAL = {
+    'L': 'low',
+    'M': 'medium',
+    'H': 'high',
+    'U': 'ultra'
+}
 
 
 class HEADER: #Packet Headers
@@ -55,9 +60,12 @@ class myLoRa(LoRa):
         self.tx_success = 1 #Keeps track of whether an ACK was rececived
         self.pending_packet = []
         self.tx_end = False #Set to true to stop the script
-        self.tx_mode = TXMODE.DEFAULT
         self.filepos = {path: 0 for path in TX_FILES} #Tracks lengths of logfiles
+        self.conf_filepos = 0
         self.buffer = [] #Temporarily stores log readings to be sent
+        self.sending_image = False
+        self.sending_thermal = False
+        self.image_size = 0
 
 
     def on_rx_done(self):
@@ -74,7 +82,7 @@ class myLoRa(LoRa):
 
     def append_mgblk_buffer(self):
         if len(self.buffer) > MAX_BUFFER_LENGTH:
-            print("Buffer overflow") 
+            print("Buffer overflow")
             for _ in range(MAX_BUFFER_APPEND):
                 self.buffer.pop(0) #Destroy enough data for the next reading to fit
 
@@ -117,17 +125,29 @@ class myLoRa(LoRa):
             pass
         self.reset_ptr_rx()
 
+    def parse_cmd(self):
+        if self.cmd[0] == "I" and not self.sending_image:
+            self.image = open(IMAGES+str(cmd[1:6])+'-'+IMG_QUAL[cmd[7]])
+            self.sending_image = True
+
+        if self.cmd[0] == "T" and not self.sending_thermal:
+            self.thermal = open(THERMAL+str(cmd[1:6]))
+            self.sending_thermal = True
+
 
     def start(self):
         while True:
-            #with open(CONF_FILE, "r") as conf:
-            #    conf.seek(0, 2)
-            #    conf.seek(conf.tell() - CMD_LENGTH, 0)
-            #    cmd = conf.readLine()
+            with open(str(CONF_FILE), "r") as conf:
+                conf.seek(0, 2)
+                pos = conf.tell()
+                if pos > self.conf_filepos:
+                    conf.seek(pos - CMD_LENGTH, 0)
+                    self.cmd = conf.readline()
+
             self.append_mgblk_buffer()
             self.tx_default()
             self.wait_for_rx()
-            #print("######################")
+
             if self.tx_end:
                 break
 
