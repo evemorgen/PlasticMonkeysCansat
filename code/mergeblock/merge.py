@@ -1,18 +1,17 @@
 #Jakub Podolak for Plastic Monkeys Cansat 2019
 
-import subprocess
 import configparser
 import msgpack
 import time
 import sys
 import re
+import logging
 
 #function to read paths to sensors' logs from config file
 def get_directories(config):
-    directories = []
     paths = config.items("PATHS")
-    for key, path in paths:
-        directories.append(path)
+    print(paths)
+    directories = [second for first,second in paths]
     return directories
 
 #function reads sensors' names from config file
@@ -42,8 +41,7 @@ def prepare_dict(tails,keys):
 
 #function takes list of latest readings (ints) and returns ready-to-send serialized packet
 def prepare_message_pack(dict_pack):
-    message = msgpack.packb(dict_pack,use_bin_type="True")
-    return message
+    return msgpack.packb(dict_pack,use_bin_type="True")
 
 #function prints new line to binary-typed file (to disjoin binary packets)
 def binary_new_line(out):
@@ -56,31 +54,39 @@ def run():
     config = configparser.ConfigParser()
     config.read(config_file)
 
+    #open log file
+    logging.basicConfig(filename="mergeblock.log",level=logging.INFO)
+    logging.info("Program starts to run...")
+
     #read some settings from config file
     output_path = config['SETTINGS']['output']
     datalog_path = config['SETTINGS']['datalog']
     sleep_time = float(config['SETTINGS']['sleeptime'])
     line_length = int(config['SETTINGS']['line_length'])
     prep_text_packs = config['SETTINGS'].getboolean('text_pack')
-
     directories = get_directories(config)
     keys = get_keys(config)
 
     while True:
-        tails = get_tails(directories,line_length)
-        dict_pack = prepare_dict(tails,keys)
-        
-        if prep_text_packs:
-            datalog = open(datalog_path,"a")
-            datalog.write(str(dict_pack) + '\n')
-            datalog.close()
+        try:
+            tails = get_tails(directories,line_length)
+            dict_pack = prepare_dict(tails,keys)
 
-        msg_packet = prepare_message_pack(dict_pack)
-        output = open(output_path,"ab")
-        output.write(msg_packet)
-        binary_new_line(output)
-        output.close()
+            if prep_text_packs:
+                datalog = open(datalog_path,"a")
+                datalog.write(str(dict_pack) + '\n')
+                datalog.close()
 
-        time.sleep(sleep_time)
+            msg_packet = prepare_message_pack(dict_pack)
+            output = open(output_path,"ab")
+            output.write(msg_packet)
+            binary_new_line(output)
+            output.close()
+            time.sleep(sleep_time)
+
+        except Exception:
+            logging.exception("Unexpected Exception!")
+            time.sleep(0.1)
+
 
 run()
