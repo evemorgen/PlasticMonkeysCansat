@@ -17,4 +17,4 @@ path3 = /home/sensors/temperature/temp.log
 ```
 
 Next you can run your mergeblock using: `python3 merge.py`  
-Libraries used: subprocess, configparser, msgpack, time, sys, re
+Libraries used: subprocess, configparser, msgpack, time, sys, re, logging
