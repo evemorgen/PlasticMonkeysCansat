@@ -24,7 +24,7 @@ TX_FILES = [
 IMAGES_PATH = HOME_PATH / 'images'
 THERMAL_PATH = HOME_PATH / 'thermal'
 
-UP_PACKET_LENGTH = 10 #Base -> Sat packet length in bytes
+UP_PACKET_LENGTH = 11 #Base -> Sat packet length in bytes
 DOWN_PACKET_LENGTH = 25 #Sat -> Base packet length in bytes
 CMD_LENGTH = 10
 
@@ -37,6 +37,8 @@ TX_LINE_LENGTH = DOWN_PACKET_LENGTH-1
 TX_TIME = 0.11
 RX_TIME = 0.14
 
+THERMAL_HEIGHT = 32
+THERMAL_WIDTH = 24
 
 IMG_QUAL = {
     'L': 'low',
@@ -72,10 +74,11 @@ class myLoRa(LoRa):
         self.buffer = [] #Temporarily stores log readings to be sent
         self.sending_image = False
         self.sending_thermal = False
+        self.thermal_counter = 0
         self.image_size = 0
         self.last_tx_mode = 'default'
 
-        with open(CONF_FILE, 'a') as cf:
+        with open(CONF_FILE, 'w') as cf:
             cf.write("NULLCMD--\n")
 
 
@@ -86,7 +89,7 @@ class myLoRa(LoRa):
         """
 
         self.clear_irq_flags(RxDone=1)
-        raw_rx_payload = self.read_payload(nocheck=True) #
+        raw_rx_payload = self.read_payload(nocheck=True) #TODO fix that crc bug or implement high-layer crc
         payload = bytes(raw_rx_payload).decode("utf-8", "ignore").strip('\x00')
         with open(RX_LOG, "a") as rx_log:
             rx_log.write(payload)
@@ -130,7 +133,7 @@ class myLoRa(LoRa):
             print("Buffer empty!")
             return
 
-        payload_str = self.buffer.pop(0) #
+        payload_str = self.buffer.pop(0)
         payload_str += "-"*(25-len(payload_str))
 
         payload_b = list(bytearray(payload_str, "utf-8"))
@@ -173,6 +176,34 @@ class myLoRa(LoRa):
         self.last_tx_mode = 'image'
 
 
+    def tx_thermal(self):
+        """
+        Transmits a chunk of MLX90640 thermal image.
+        If no ACK was received, same payload is sent.
+        Otherwise, a new chunk is loaded.
+        Upon transmitting 32 lines, stops the transmission
+        """
+        #NOT TESTED YET
+
+        if self.ack['thermal']:
+            self.thermal_counter += 1
+            if self.thermal_counter >= THERMAL_HEIGHT:
+                self.sending_thermal = False
+                return
+            row = [int(i) for i in self.thermal[self.thermal_counter]]
+            row[:] = [max(el, 0) if el < 255 else min(el, 255) for el in row]
+            self.thermal_waiting = [HEADER.THERMAL_B] + row
+
+        print(self.thermal_waiting)
+        self.ack['thermal'] = False
+        self.write_payload(HEADER.LORA + self.thermal_waiting)
+        self.set_mode(MODE.TX)
+        time.sleep(TX_TIME)
+        self.reset_ptr_rx()
+        self.set_mode(MODE.RXCONT)
+        self.last_tx_mode = 'thermal'
+
+
     def wait_for_rx(self):
         """
         Waits for slave responce.
@@ -204,11 +235,15 @@ class myLoRa(LoRa):
                     self.image = open(img_path, "rb")
                     self.image_size = int(os.path.getsize(img_path))
                     self.sending_image = True
-                    self.buffer.insert(0, "SI" + str(self.image_size) + (DOWN_PACKET_LENGTH - 8)*"-")
+                    self.buffer.insert(0, "SI" + str(self.image_size) + '_' + self.cmd[1:6] + (DOWN_PACKET_LENGTH - 14)*"-")
 
                 if self.cmd[0] == "T" and not self.sending_thermal:
-                    self.thermal = open(THERMAL+str(self.cmd[1:6]))
+                    with open(str(THERMAL)+ '/' + str(self.cmd[1:6])+".txt", "r") as t:
+                        #Sorry, too tempting...
+                        self.thermal = [[int(val) for val in line] for line in [line[:-2].split(" ") for line in t.readlines()]]
                     self.sending_thermal = True
+                    self.thermal_counter = 0
+                    self.buffer.insert(0, "ST" + str(self.cmd[1:6]) + (DOWN_PACKET_LENGTH - 7)*"-")
 
 
     def start(self):
@@ -223,6 +258,10 @@ class myLoRa(LoRa):
             self.wait_for_rx()
             if self.sending_image:
                 self.tx_image()
+                self.wait_for_rx()
+
+            if self.sending_thermal:
+                self.tx_thermal()
                 self.wait_for_rx()
 
             if self.tx_end:
