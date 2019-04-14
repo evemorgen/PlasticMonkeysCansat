@@ -1,6 +1,10 @@
+##############################
+# WORKS ONLY WITH PYTHON 3.7 #
+##############################
+
 import os
 import time
-import argparse
+#TODO import argparse
 from pathlib import Path
 from SX127x.LoRa import *
 from SX127x.board_config import BOARD
@@ -79,7 +83,7 @@ class myLoRa(LoRa):
         self.last_tx_mode = 'default'
 
         with open(CONF_FILE, 'w') as cf:
-            cf.write("NULLCMD--\n")
+            cf.write("NULLCMD--\n") #write some crap to prevent negative seek()
 
 
     def on_rx_done(self):
@@ -114,7 +118,7 @@ class myLoRa(LoRa):
             with open(path, 'r') as tx:
                 tx.seek(0, 2)
                 pos = tx.tell() #File length
-                diff = round((pos-self.filepos[path])/25) #Amount of new readings
+                diff = round((pos-self.filepos[path])/DOWN_PACKET_LENGTH) #Amount of new readings
                 self.filepos[path] = pos
                 tx.seek(pos-MAX_BACKREAD*TX_LINE_LENGTH, 0)
                 lines = [tx.read(TX_LINE_LENGTH) for i in range(MAX_BACKREAD)] #Read [MAX_BACKREAD] lines
@@ -131,10 +135,10 @@ class myLoRa(LoRa):
 
         if len(self.buffer) == 0:
             print("Buffer empty!")
-            return
+            self.buffer.insert(0, "SSBuffer Empty!")
 
         payload_str = self.buffer.pop(0)
-        payload_str += "-"*(25-len(payload_str))
+        payload_str += "-"*(DOWN_PACKET_LENGTH-len(payload_str))
 
         payload_b = list(bytearray(payload_str, "utf-8"))
         payload = HEADER.LORA + payload_b
@@ -187,10 +191,10 @@ class myLoRa(LoRa):
 
         if self.ack['thermal']:
             self.thermal_counter += 1
-            if self.thermal_counter >= THERMAL_HEIGHT:
+            if self.thermal_counter > THERMAL_HEIGHT:
                 self.sending_thermal = False
                 return
-            row = [int(i) for i in self.thermal[self.thermal_counter]]
+            row = [int(i) for i in self.thermal[self.thermal_counter-1]]
             row[:] = [max(el, 0) if el < 255 else min(el, 255) for el in row]
             self.thermal_waiting = [HEADER.THERMAL_B] + row
 
@@ -235,7 +239,7 @@ class myLoRa(LoRa):
                     self.image = open(img_path, "rb")
                     self.image_size = int(os.path.getsize(img_path))
                     self.sending_image = True
-                    self.buffer.insert(0, "SI" + str(self.image_size) + '_' + self.cmd[1:6] + (DOWN_PACKET_LENGTH - 14)*"-")
+                    self.buffer.insert(0, "SI{:07}".format(self.image_size) + self.cmd[1:7] + (DOWN_PACKET_LENGTH - 13)*"-")
 
                 if self.cmd[0] == "T" and not self.sending_thermal:
                     with open(str(THERMAL)+ '/' + str(self.cmd[1:6])+".txt", "r") as t:
