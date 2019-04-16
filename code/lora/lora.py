@@ -4,29 +4,22 @@
 
 import os
 import time
-#TODO import argparse
+import configparser
 from pathlib import Path
 from SX127x.LoRa import *
 from SX127x.board_config import BOARD
 
-HOME_PATH = Path.home()
-LORA_LOGS = HOME_PATH / 'lora_logs'
-RX_LOG = LORA_LOGS / 'rx.txt' #File, where all received data is stored
-STATUS_LOG = LORA_LOGS / 'status.txt' #File, where this block's behavior is logged
-CONF_FILE = LORA_LOGS / 'conf.txt' #File, where commands for this block are issued by other scripts
-IMAGES = HOME_PATH / 'images'
-THERMAL = HOME_PATH / 'thermal'
+cparser = configparser.ConfigParser()
+cparser.read('config.ini')
+
+RX_LOG = Path(cparser['util']['rx_log']) #File, where all received data is stored
+STATUS_LOG = Path(cparser['util']['status_log']) #File, where this block's behavior is logged
+CMD_FILE = Path(cparser['util']['cmd_file']) #File, where commands for this block are issued by other scripts
+IMAGES = Path(cparser['util']['images'])
+THERMAL = Path(cparser['util']['thermal'])
 
 #Log files with data to be sent
-#TODO: Argparse or .conf of some sort
-TX_FILES = [
-    HOME_PATH / 'sensor_logs' / 'alpha.txt',
-    HOME_PATH / 'sensor_logs' / 'bravo.txt',
-    HOME_PATH / 'sensor_logs' / 'charlie.txt'
-]
-
-IMAGES_PATH = HOME_PATH / 'images'
-THERMAL_PATH = HOME_PATH / 'thermal'
+TX_FILES = [Path(p) for p in cparser['data'].values()]
 
 UP_PACKET_LENGTH = 11 #Base -> Sat packet length in bytes
 DOWN_PACKET_LENGTH = 25 #Sat -> Base packet length in bytes
@@ -40,6 +33,7 @@ TX_LINE_LENGTH = DOWN_PACKET_LENGTH-1
 
 TX_TIME = 0.11
 RX_TIME = 0.14
+
 
 THERMAL_HEIGHT = 32
 THERMAL_WIDTH = 24
@@ -66,7 +60,7 @@ class HEADER: #Packet Headers
 
 class myLoRa(LoRa):
     def __init__(self, verbose=False):
-        super(myLoRa, self).__init__(verbose)
+        super().__init__(verbose)
         self.set_mode(MODE.SLEEP)
         self.set_dio_mapping([0] * 6)
         self.ack = {'thermal': 1, 'image':1} #Keeps track of whether an ACK was rececived
@@ -82,8 +76,8 @@ class myLoRa(LoRa):
         self.image_size = 0
         self.last_tx_mode = 'default'
 
-        with open(CONF_FILE, 'w') as cf:
-            cf.write("NULLCMD--\n") #write some crap to prevent negative seek()
+        with open(CMD_FILE, 'w') as cf:
+            cf.write("NULLCMD--\n") #write some characters to prevent negative seek()
 
 
     def on_rx_done(self):
@@ -101,6 +95,19 @@ class myLoRa(LoRa):
             rx_log.write("\n")
         print("RX:", payload)
         self.ack[self.last_tx_mode] = True #Acknowledge the previous packet
+
+    def send(self, payload):
+        """
+        Writes the given payload to LoRa module, while taking care
+        of all technical issues.
+        :param payload: payload to be written
+        """
+
+        self.write_payload(HEADER.LORA + payload)
+        self.set_mode(MODE.TX)
+        time.sleep(TX_TIME)
+        self.reset_ptr_rx()
+        self.set_mode(MODE.RXCONT)
 
 
     def append_mgblk_buffer(self):
@@ -141,14 +148,9 @@ class myLoRa(LoRa):
         payload_str += "-"*(DOWN_PACKET_LENGTH-len(payload_str))
 
         payload_b = list(bytearray(payload_str, "utf-8"))
-        payload = HEADER.LORA + payload_b
         print("TX: " + payload_str)
 
-        self.write_payload(payload)
-        self.set_mode(MODE.TX)
-        time.sleep(TX_TIME)
-        self.reset_ptr_rx()
-        self.set_mode(MODE.RXCONT)
+        self.send(payload_b)
         self.last_tx_mode = 'default'
 
 
@@ -172,11 +174,7 @@ class myLoRa(LoRa):
             self.image_waiting += (DOWN_PACKET_LENGTH-packet_length)*[45]
         print("TX:", self.image_waiting)
 
-        self.write_payload(HEADER.LORA + self.image_waiting)
-        self.set_mode(MODE.TX)
-        time.sleep(TX_TIME)
-        self.reset_ptr_rx()
-        self.set_mode(MODE.RXCONT)
+        self.send(self.image_waiting)
         self.last_tx_mode = 'image'
 
 
@@ -187,7 +185,6 @@ class myLoRa(LoRa):
         Otherwise, a new chunk is loaded.
         Upon transmitting 32 lines, stops the transmission
         """
-        #NOT TESTED YET
 
         if self.ack['thermal']:
             self.thermal_counter += 1
@@ -200,11 +197,7 @@ class myLoRa(LoRa):
 
         print(self.thermal_waiting)
         self.ack['thermal'] = False
-        self.write_payload(HEADER.LORA + self.thermal_waiting)
-        self.set_mode(MODE.TX)
-        time.sleep(TX_TIME)
-        self.reset_ptr_rx()
-        self.set_mode(MODE.RXCONT)
+        self.send(self.thermal_waiting)
         self.last_tx_mode = 'thermal'
 
 
@@ -225,7 +218,7 @@ class myLoRa(LoRa):
         Starts / ends transmissions based on received command
         """
 
-        with open(CONF_FILE, "r") as conf:
+        with open(CMD_FILE, "r") as conf:
             conf.seek(0, 2)
             pos = conf.tell()
             if pos > self.conf_filepos:
@@ -286,13 +279,5 @@ lora.set_rx_crc(True)
 lora.set_low_data_rate_optim(False)
 
 assert(lora.get_agc_auto_on() == 1)
-try:
-    lora.start()
-except KeyboardInterrupt:
-    sys.stdout.flush()
-    sys.stderr.write("KeyboardInterrupt\n")
-finally:
-    sys.stdout.flush()
-    lora.set_mode(MODE.SLEEP)
-    BOARD.teardown()
 
+lora.start()
