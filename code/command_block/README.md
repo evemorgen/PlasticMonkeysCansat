@@ -23,7 +23,7 @@
   ##### T
   Request for a thermal image from camera. Requires a destinated timestamp at `line[1]` - `line[5]`
   ##### R
-  Request for a reboot. Requires command_block running as a root
+  Checks `line[0]` - `line[5]` for `'REBOOT'` command. Request for a reboot. Requires command_block running as a root
   ##### S
   Request for a system info. Sends back cpu usage, battery percentage, free disk space
   ##### A
