@@ -10,7 +10,6 @@ import logging
 #function to read paths to sensors' logs from config file
 def get_directories(config):
     paths = config.items("PATHS")
-    print(paths)
     directories = [second for first,second in paths]
     return directories
 
@@ -62,6 +61,7 @@ def run():
     output_path = config['SETTINGS']['output']
     datalog_path = config['SETTINGS']['datalog']
     sleep_time = float(config['SETTINGS']['sleeptime'])
+    exception_sleep_time = float(config['SETTINGS']['exception_sleep_time'])
     line_length = int(config['SETTINGS']['line_length'])
     prep_text_packs = config['SETTINGS'].getboolean('text_pack')
     directories = get_directories(config)
@@ -86,7 +86,6 @@ def run():
 
         except Exception:
             logging.exception("Unexpected Exception!")
-            time.sleep(0.1)
-
+            time.sleep(exception_sleep_time)
 
 run()
