@@ -1,14 +1,18 @@
-import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
 import time
+import configparser
 
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-oled_buffer_path = 'oled_buffer.txt' # Path to oled buffer
-line_width = 20 # Number of characters in one line
-sleep_time = 2 # Delay between displaying in seconds
+config_file = sys.argv[1]
+config = configparser.ConfigParser()
+config.read(config_file)
+
+oled_buffer_path = config['SETTINGS']['oled_buffer_path'] # Path to oled buffer
+line_width = config['SETTINGS']['line_width']  # Number of characters in one line
+sleep_time = float(config['SETTINGS']['sleep_time']) # Delay between displaying in seconds
 
 RST = 24 # Raspberry Pi RST pin, which we don't have to use xd
 
@@ -44,10 +48,10 @@ def write_message(message):
     disp.image(image)
     disp.display()
 
-while(True):
+while True:
     try:
         message = get_message()
         write_message(message)
         time.sleep(sleep_time)
     except Exception:
-        sleep(0.1)
+        sleep(0.2)
