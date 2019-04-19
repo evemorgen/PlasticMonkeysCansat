@@ -10,7 +10,8 @@ config_file = sys.argv[1]
 config = configparser.ConfigParser()
 config.read(config_file)
 graphyte_address = config['SETTINGS']['graphyte_address']
-graphyte.init(graphyte_address, prefix='cansat')
+graphyte_prefix = config['SETTINGS']['graphyte_prefix']
+graphyte.init(graphyte_address, prefix=graphyte_prefix)
 
 #function to read paths to input logs from config file
 def get_directories(config):
