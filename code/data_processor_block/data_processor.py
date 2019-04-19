@@ -4,14 +4,21 @@ import graphyte
 from time import sleep
 import ast
 import configparser
+import logging
 import sys
 
 config_file = sys.argv[1]
 config = configparser.ConfigParser()
 config.read(config_file)
+
 graphyte_address = config['SETTINGS']['graphyte_address']
 graphyte_prefix = config['SETTINGS']['graphyte_prefix']
+sleep_time = float(config['SETTINGS']['sleep_time'])
+
 graphyte.init(graphyte_address, prefix=graphyte_prefix)
+
+#open log file
+logging.basicConfig(filename="data_processor.log",level=logging.INFO)
 
 #function to read paths to input logs from config file
 def get_directories(config):
@@ -44,6 +51,7 @@ def run():
                 line = file.readline()
                 line = trim_line(line)
                 data_dict = get_dict(line)
+                logging.info(data_dict)
                 send_to_graphite(data_dict)
                 sleep(0.1)
         except Exception:
