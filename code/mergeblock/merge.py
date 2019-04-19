@@ -35,7 +35,7 @@ def get_tails(directories,length):
 
 #function takes tails and makes a dict
 def prepare_dict(tails,keys):
-    dict_pack = dict(zip(keys,tails))
+    return dict(zip(keys,tails))
     return dict_pack
 
 #function takes list of latest readings (ints) and returns ready-to-send serialized packet
