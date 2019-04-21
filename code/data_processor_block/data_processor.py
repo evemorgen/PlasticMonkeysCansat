@@ -53,7 +53,7 @@ def run():
                 data_dict = get_dict(line)
                 logging.info(data_dict)
                 send_to_graphite(data_dict)
-                sleep(0.1)
+                sleep(sleep_time)
         except Exception:
             sleep(0.1)
 
