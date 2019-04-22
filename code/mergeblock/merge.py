@@ -35,16 +35,21 @@ def get_tails(directories,length):
 
 #function takes tails and makes a dict
 def prepare_dict(tails,keys):
-    return dict(zip(keys,tails))
+    dict_pack = dict(zip(keys,tails))
+    return dict_pack
 
 #function takes list of latest readings (ints) and returns ready-to-send serialized packet
-def prepare_message_pack(dict_pack):
-    return msgpack.packb(dict_pack,use_bin_type="True")
+def prepare_message_pack(string_packet):
+    return msgpack.packb(string_packet,use_bin_type="True")
 
 #function prints new line to binary-typed file (to disjoin binary packets)
 def binary_new_line(out):
-    line = str(0) + "\n"
+    line = "\n"
     out.write(line.encode('utf-8'))
+
+#prepares packet: ONE_BYTE_SIZE + MSGPACKED_DICT + FILL
+def prepare_packet(message_pack, packet_length):
+    return bytes([len(message_pack)]) + message_pack + bytes(b'-'*(packet_length-1-len(message_pack)))
 
 def run():
     #initialize config parser, read from config file passed as an argument
@@ -62,6 +67,7 @@ def run():
     sleep_time = float(config['SETTINGS']['sleeptime'])
     exception_sleep_time = float(config['SETTINGS']['exception_sleep_time'])
     line_length = int(config['SETTINGS']['line_length'])
+    packet_length = int(config['SETTINGS']['packet_length'])
     prep_text_packs = config['SETTINGS'].getboolean('text_pack')
     directories = get_directories(config)
     keys = get_keys(config)
@@ -77,8 +83,9 @@ def run():
                 datalog.close()
 
             msg_packet = prepare_message_pack(dict_pack)
+            packet = prepare_packet(msg_packet, packet_length)
             output = open(output_path,"ab")
-            output.write(msg_packet)
+            output.write(packet)
             binary_new_line(output)
             output.close()
             time.sleep(sleep_time)
