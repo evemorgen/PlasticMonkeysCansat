@@ -209,11 +209,11 @@ class myLoRa(LoRa):
     def wait_for_rx(self):
         """
         Waits for slave responce.
-        No sleep() because of expected RX callback
         """
 
         start_time = time.time()
         while time.time() - start_time < RX_TIME:
+            time.sleep(0.005)
             pass
         self.reset_ptr_rx()
 
