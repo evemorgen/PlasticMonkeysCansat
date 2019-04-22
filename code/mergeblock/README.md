@@ -25,3 +25,8 @@ one byte describing data_dict size + msgpacked data_dict + fill ('-') to `packet
 ### Start:
 Next you can run your mergeblock using: `python3 merge.py`  
 Libraries used: configparser, msgpack, time, sys, re, logging
+
+### Some additional notes:
+Mergeblock takes only last int from sensors' logs' lines: when we have line like this:  
+`123 255`  
+mergeblock will use only 255 as our value. This approach gives us the ability to add things like timestamps to each reading, that will be ignored by mergeblock, but can be useful after retrieving sd_card with sensors' logs.
