@@ -37,8 +37,8 @@ def write_message(message):
 
     draw = ImageDraw.Draw(image) # Get drawing object to draw xd
 
-    split_string = [message[i:i+line_width] for i in xrange(0, len(message), line_width)]
-    for chunk in split_string[0:]:
+    split_string = [message[i:i+line_width] for i in range(0, len(message), line_width)]
+    for chunk in split_string:
         if len(chunk) == line_width and chunk[-1] != ' ':
             chunk = chunk + '-' # adds some swaggy hyphens when we split a word between two lines
         draw.text((0,y_pos), chunk, font=font, fill = 255)
