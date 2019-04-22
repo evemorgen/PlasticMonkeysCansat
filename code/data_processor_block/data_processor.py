@@ -26,8 +26,7 @@ logging.basicConfig(filename="data_processor.log",level=logging.INFO)
 #function to read paths to input logs from config file
 def get_directories(config):
     paths = config.items("PATHS")
-    directories = [second for first,second in paths]
-    return directories
+    return [second for first,second in paths]
 
 #extracts dict from line
 def trim_line(line):
