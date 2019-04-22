@@ -5,6 +5,7 @@ from time import sleep
 import ast
 import configparser
 import logging
+import msgpack
 import sys
 
 config_file = sys.argv[1]
@@ -14,6 +15,8 @@ config.read(config_file)
 graphyte_address = config['SETTINGS']['graphyte_address']
 graphyte_prefix = config['SETTINGS']['graphyte_prefix']
 sleep_time = float(config['SETTINGS']['sleep_time'])
+exception_sleep_time = float(config['SETTINGS']['exception_sleep_time'])
+packet_length = int(config['SETTINGS']['packet_length'])
 
 graphyte.init(graphyte_address, prefix=graphyte_prefix)
 
@@ -26,14 +29,14 @@ def get_directories(config):
     directories = [second for first,second in paths]
     return directories
 
-#extracts dict from string packet
+#extracts dict from line
 def trim_line(line):
-    dict_len = int(line[0:2])
-    return line[2:2+dict_len]
+    dict_len = int(line[0])
+    return line[1:1+dict_len]
 
-#converts string-dict to dict
+#converts msgpacked bytes to dict
 def get_dict(line):
-    return ast.literal_eval(line)
+    return msgpack.unpackb(line,raw=False)
 
 def send_to_graphite(data_dict):
     for name,val in data_dict.items():
@@ -45,9 +48,9 @@ def run():
     while True:
         try:
             for input_log in directories:
-                file = open(input_log, "r")
+                file = open(input_log, "rb")
                 file.seek(0,2)
-                file.seek(file.tell()-41, 0) #Packet should have a size of 40 characters
+                file.seek(file.tell()-(packet_length+1), 0)
                 line = file.readline()
                 line = trim_line(line)
                 data_dict = get_dict(line)
@@ -55,6 +58,7 @@ def run():
                 send_to_graphite(data_dict)
                 sleep(sleep_time)
         except Exception:
-            sleep(0.1)
+            logging.exception("Unexpected Exception!")
+            sleep(exception_sleep_time)
 
 run()
