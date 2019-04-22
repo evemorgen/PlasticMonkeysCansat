@@ -1,5 +1,6 @@
 import configparser
 import serial
+import serial.tools.list_ports
 import sys
 import logging
 from time import time
@@ -12,6 +13,8 @@ logging.basicConfig(filename=cp['path']['log'] + str(int(time())) + ".txt",
                     format='%(asctime)s [%(levelname)s]: %(message)s',
                     datefmt='%m/%d/%Y %H:%M:%S')
 
+PORT = serial.tools.list_ports.comports()[0][0]
+
 UP_PACKET_LENGTH = 11
 DOWN_PACKET_LENGTH = 25
 
@@ -19,6 +22,8 @@ MAX_TX_BUFFER_LENGTH = 10
 MAX_BACKREAD = 6
 
 THERMAL_HEIGHT = 32
+
+MSGPACK_BUFFER_LINE_LENGTH = 30
 
 HEADERS = {
     83: "status",
@@ -45,6 +50,7 @@ class RxParser:
         self.log_path = log_path
         self.tx_file_pos = 0  # Tracks position in TX file
         self.image = None
+        self.thermal = None
         self.image_size = 0
         self.img_rcvd_bytes = 0
         self.lastTX = None
@@ -58,7 +64,6 @@ class RxParser:
         with open(self.tx_path, "w") as tx:  # Write some zeros to prevent negative seek()
             tx.write("0"*MAX_BACKREAD*UP_PACKET_LENGTH)
 
-
     def image_init(self):
         """
         Initializes receiving of an image.
@@ -70,7 +75,6 @@ class RxParser:
         self.image = open(self.images_path+decoded[9:15]+"_"+str(time())+".jpg", "wb")
         self.image_size = int(decoded[2:9])  # Image size in bytes
         self.img_rcvd_bytes = 0
-
 
     def image_get(self):
         """
@@ -88,7 +92,6 @@ class RxParser:
                 self.image.write(bytes(img_line))
         self.img_lastline = img_line
 
-
     def thermal_init(self):
         """
         Initializes receiving of a thermal image.
@@ -99,7 +102,6 @@ class RxParser:
         decoded = bytes(self.line).decode("ascii")
         self.thermal = open(self.thermal_path+decoded[2:7]+"_"+str(time())+".txt", "w")
         self.thermal_counter = 0
-
 
     def thermal_get(self):
         """
@@ -119,18 +121,13 @@ class RxParser:
         if self.thermal_counter == THERMAL_HEIGHT:
             self.thermal.close()
 
-
     def system(self):
         """
         Prints the received system status.
         Triggers upon receiving an 'SS' header.
         """
-        msg = "".join(self.line[2:]).strip('-')
-        print("System: ", msg)
-        with open(self.sys_log_file, "a") as syslog:
-            syslog.write(msg + "\n")
-
-
+        msg = "".join(bytes(self.line[2:]).decode("utf-8")).strip('-')
+        print("SYSTEM: ", msg)
 
     def status(self):
         """
@@ -139,18 +136,17 @@ class RxParser:
         """
         getattr(self, STATUS_HEADERS[self.line[1]])()
 
-
     def default(self):
         """
         Prints the received packet and appends
         its payload into a file.
         Used for MessagePack data.
         """
-        msgpack_chunk = bytes(self.line[1:])
-        print("M:", msgpack_chunk.decode("ascii"))
+        msgpack_chunk = bytes(self.line[1:self.line[1]+2])  # xd
+        print("M:", msgpack_chunk)
         with open(self.rx_file, "ab") as rf:
             rf.write(msgpack_chunk)
-
+            rf.write(b'-'*(MSGPACK_BUFFER_LINE_LENGTH-len(msgpack_chunk)))
 
     def tx(self):
         """
@@ -181,7 +177,6 @@ class RxParser:
         print("TX:", payload)
         self.ser.write(payload.encode())
 
-
     def start(self):
         """
         Main loop
@@ -204,6 +199,7 @@ rxParser = RxParser(cp['serial']['port'],
                     cp['path']['rx'],
                     cp['path']['log'])
 
+print("Opened serial at port", PORT)
 logging.info("Initialized successfully.")
 
 rxParser.start()
