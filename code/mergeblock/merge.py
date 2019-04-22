@@ -10,8 +10,7 @@ import logging
 #function to read paths to sensors' logs from config file
 def get_directories(config):
     paths = config.items("PATHS")
-    directories = [second for first,second in paths]
-    return directories
+    return [second for first,second in paths]
 
 #function reads sensors' names from config file
 def get_keys(config):
@@ -35,12 +34,11 @@ def get_tails(directories,length):
 
 #function takes tails and makes a dict
 def prepare_dict(tails,keys):
-    dict_pack = dict(zip(keys,tails))
-    return dict_pack
+    return dict(zip(keys,tails))
 
-#function takes list of latest readings (ints) and returns ready-to-send serialized packet
-def prepare_message_pack(string_packet):
-    return msgpack.packb(string_packet,use_bin_type="True")
+#function takes dict with latest readings and packs it using msgpack
+def prepare_message_pack(dict_pack):
+    return msgpack.packb(dict_pack,use_bin_type="True")
 
 #function prints new line to binary-typed file (to disjoin binary packets)
 def binary_new_line(out):
