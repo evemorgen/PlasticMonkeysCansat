@@ -110,7 +110,7 @@ class myLoRa(LoRa):
         self.set_mode(MODE.RXCONT)
 
 
-    def append_mgblk_buffer(self):
+    def append_mgblk_buffer(self, line_length, raw=False):
         """
         Adds new entries of casual input logs to the buffer queue.
         In case of an overflow, destroyes some data at hte front of the buffer.
@@ -122,16 +122,18 @@ class myLoRa(LoRa):
                 self.buffer.pop(0) #Destroy enough data for the next reading to fit
 
         for path in TX_FILES:
-            with open(path, 'r') as tx:
+            with open(path, 'rb') as tx:
                 tx.seek(0, 2)
                 pos = tx.tell() #File length
-                diff = round((pos-self.filepos[path])/DOWN_PACKET_LENGTH) #Amount of new readings
+                diff = round((pos-self.filepos[path])/line_length) #Amount of new readings
                 self.filepos[path] = pos
-                tx.seek(pos-MAX_BACKREAD*TX_LINE_LENGTH, 0)
-                lines = [tx.read(TX_LINE_LENGTH) for i in range(MAX_BACKREAD)] #Read [MAX_BACKREAD] lines
+                tx.seek(pos-MAX_BACKREAD*line_length, 0)
+                raw_lines = [list(tx.read(line_length)) for i in range(MAX_BACKREAD)] #Read [MAX_BACKREAD] lines
+                parsed_lines = [line[:line[0]+1] for line in raw_lines]  #Remove mergeblock wrappers
+
             waiting = min(MAX_BACKREAD, diff)
             for i in range(MAX_BACKREAD-waiting, MAX_BACKREAD): #Append only the new ones to buffer
-                self.buffer.append(HEADER.MSGPACK + lines[i])
+                self.buffer.append([HEADER.MSGPACK_B] + (raw_lines[i] if raw else parsed_lines[i]))
 
 
     def tx_default(self):
@@ -144,13 +146,16 @@ class myLoRa(LoRa):
             print("Buffer empty!")
             self.buffer.insert(0, "SSBuffer Empty!")
 
-        payload_str = self.buffer.pop(0)
-        payload_str += "-"*(DOWN_PACKET_LENGTH-len(payload_str))
+        payload = self.buffer.pop(0)
+        if type(payload) is str:
+            payload += "-"*(DOWN_PACKET_LENGTH-len(payload))
+            payload = list(bytearray(payload, "utf-8"))
+        elif type(payload) is list:
+            payload += [45]*(DOWN_PACKET_LENGTH-len(payload))
+        print("TX:", payload)
 
-        payload_b = list(bytearray(payload_str, "utf-8"))
-        print("TX: " + payload_str)
-
-        self.send(payload_b)
+        assert(len(payload) == DOWN_PACKET_LENGTH)
+        self.send(payload)
         self.last_tx_mode = 'default'
 
 
@@ -249,7 +254,7 @@ class myLoRa(LoRa):
         """
 
         while True:
-            self.append_mgblk_buffer()
+            self.append_mgblk_buffer(30, False)
             self.parse_cmd()
             self.tx_default()
             self.wait_for_rx()
