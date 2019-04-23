@@ -146,8 +146,8 @@ class RxParser:
         print("M:", msgpack_chunk)
         with open(self.rx_file, "ab") as rf:
             rf.write(msgpack_chunk)
-            rf.write(b'-'*(MSGPACK_BUFFER_LINE_LENGTH -e len(msgpack_chunk) - 1))
-w
+            rf.write(b'-'*(MSGPACK_BUFFER_LINE_LENGTH - len(msgpack_chunk) - 1))
+
     def tx(self):
         """
         Appends the FIFO queue with new readings
