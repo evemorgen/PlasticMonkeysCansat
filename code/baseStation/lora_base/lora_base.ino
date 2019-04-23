@@ -21,19 +21,15 @@ void setup()
 {
   pinMode(RFM95_RST, OUTPUT);
   digitalWrite(RFM95_RST, HIGH);
-
   pinMode(16, OUTPUT); //OLED reset pin
-
-  //Reset OLED
-  digitalWrite(16, LOW);
+  digitalWrite(16, LOW); //Reset OLED
   delay(50);
   digitalWrite(16, HIGH);
 
   while (!Serial);
-  Serial.begin(9600);mess
+  Serial.begin(9600);
   delay(100);
   Serial.println("Serial initialized");
-  // manual reset
   digitalWrite(RFM95_RST, LOW);
   delay(10);
   digitalWrite(RFM95_RST, HIGH);
@@ -43,16 +39,13 @@ void setup()
     Serial.println("LoRa init failed");
     while (1);
   }
-
-  // Defaults after init are 434.0MHz, modulation GFSK_Rb250Fd250, +13dbM
+  
   rf95.setFrequency(434.2);
-  rf95.setTxPower(18);
+  rf95.setTxPower(20);
   rf95.setSpreadingFactor(7);
   rf95.setCodingRate4(5);
   rf95.setPreambleLength(12);
   rf95.setSignalBandwidth(125000);
-  //rf95.setModemRegisters(&modem_config);
-  //rf95.setLowDatarate();
 
   display.init();
   display.clear();
@@ -69,20 +62,29 @@ bool rcv_success = false;
 int packetID = 0;
 String lastPacket = "";
 uint8_t lastBuf[RH_RF95_MAX_MESSAGE_LEN];
-
+int csum = 0;
 
 String createPacket() {
   String p = "";
+  csum = 0;
   int len = Serial.available();
   if (!len){
-    p += "A";
+    p += "B";
     send_length = 1;
   } else {
     for (int i = 0; i < len; i++){
       p += (char)Serial.read();
     }
     send_length = len;
+    
+    if (send_length != 1) { //please excuse this
+      for (int i = 0; i < len-1; i++){
+        csum += ((char)p[i]*(char)p[i+1] % 991);
+      }
+      csum = csum % 255; //it works fine though
+    }
   }
+  
   return p;
 }
 
@@ -94,26 +96,25 @@ void loop()
       int rssi = rf95.lastRssi();
       String received = String((char*)buf);
       rcv_success = true;
-
-      
       Serial.write(buf, 25);
+      display.clear();
       
       String message = createPacket();
-      
-      display.clear();
+
+      display.drawString(50, 0, String(csum));
       display.drawString(0 , 15, "RX: " + received);
       display.drawString(0, 0, "RSSI: " + String(rssi));
       display.drawString(0, 40, "TX: " + message);
       display.display();
-      delay(60);
-      //Serial.println("TX: " + message);
+      delay(80);
 
       uint8_t data[50] = {0};
       for (int i = 0; i < send_length; i++) {
         data[i] = (uint8_t) message[i];
       }
+      data[send_length] = csum;
 
-      rf95.send(data, send_length); //sizeof(data)
+      rf95.send(data, send_length+1); //sizeof(data)
       rf95.waitPacketSent();
     }
     else
