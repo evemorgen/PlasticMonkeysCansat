@@ -142,12 +142,12 @@ class RxParser:
         its payload into a file.
         Used for MessagePack data.
         """
-        msgpack_chunk = bytes(self.line[1:self.line[1]+2])  # xd
+        msgpack_chunk = bytes(self.line[1:self.line[1]+1])  # xd
         print("M:", msgpack_chunk)
         with open(self.rx_file, "ab") as rf:
             rf.write(msgpack_chunk)
-            rf.write(b'-'*(MSGPACK_BUFFER_LINE_LENGTH-len(msgpack_chunk)))
-
+            rf.write(b'-'*(MSGPACK_BUFFER_LINE_LENGTH -e len(msgpack_chunk) - 1))
+w
     def tx(self):
         """
         Appends the FIFO queue with new readings
