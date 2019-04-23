@@ -79,6 +79,20 @@ class myLoRa(LoRa):
         with open(CMD_FILE, 'w') as cf:
             cf.write("NULLCMD--\n") #write some characters to prevent negative seek()
 
+    @staticmethod
+    def check_crc(packet):
+        """
+        Checks the crc of the packet, implemented high-level
+        due to a serious bug.
+        Please excuse the algorithm :C
+        """
+        comp_crc = packet[-1]
+        crc = 0
+        for i in range(len(packet)-2):
+            crc += (packet[i]*packet[i+1]) % 991
+        crc = crc % 255
+        #print(crc, comp_crc)
+        return crc == comp_crc
 
     def on_rx_done(self):
         """
@@ -87,8 +101,13 @@ class myLoRa(LoRa):
         """
 
         self.clear_irq_flags(RxDone=1)
-        raw_rx_payload = self.read_payload(nocheck=True) #TODO fix that crc bug or implement high-layer crc
-        payload = bytes(raw_rx_payload).decode("utf-8", "ignore").strip('\x00')
+        raw_rx_payload = self.read_payload(nocheck=True)[4:] #TODO fix that crc bug or implement high-layer crc
+        #print(raw_rx_payload)
+        if not self.check_crc(raw_rx_payload):
+            print("WRONG CRC")
+            return
+
+        payload = bytes(raw_rx_payload[:-1]).decode("utf-8", "ignore")
         with open(RX_LOG, "a") as rx_log:
             rx_log.write(payload)
             rx_log.write("-"*(UP_PACKET_LENGTH-len(payload)))
@@ -237,7 +256,7 @@ class myLoRa(LoRa):
                     self.image = open(img_path, "rb")
                     self.image_size = int(os.path.getsize(img_path))
                     self.sending_image = True
-                    self.buffer.insert(0, "SI{:07}".format(self.image_size) + self.cmd[1:7] + (DOWN_PACKET_LENGTH - 13)*"-")
+                    self.buffer.insert(0, "SI{:07}".format(self.image_size) + self.cmd[1:7] + (DOWN_PACKET_LENGTH - 15)*"-")
 
                 if self.cmd[0] == "T" and not self.sending_thermal:
                     with open(str(THERMAL)+ '/' + str(self.cmd[1:6])+".txt", "r") as t:
