@@ -6,7 +6,7 @@ import logging
 from time import time
 
 cp = configparser.ConfigParser()
-cp.read("C:/Users/Bartek/Desktop/PlasticMonkeysCanSat/code/baseStation/config.ini")
+cp.read(sys.argv[1])
 
 logging.basicConfig(filename=cp['path']['log'] + str(int(time())) + ".txt",
                     level=logging.INFO,
@@ -26,17 +26,17 @@ THERMAL_HEIGHT = 32
 MSGPACK_BUFFER_LINE_LENGTH = 30
 
 HEADERS = {
-    83: "status",
-    73: "image_get",
-    84: "thermal_get",
-    77: "default"
+    ord("S"): "status",
+    ord("I"): "image_get",
+    ord("T"): "thermal_get",
+    ord("M"): "default"
 }
 
 STATUS_HEADERS = {
-    73: "image_init",
-    84: "thermal_init",
-    69: "error",
-    83: "system"
+    ord("I"): "image_init",
+    ord("T"): "thermal_init",
+    ord("E"): "error",
+    ord("S"): "system"
 }
 
 
@@ -72,7 +72,8 @@ class RxParser:
 
         print("RECEIVING IMAGE", self.line[:15])
         decoded = bytes(self.line).decode("ascii")
-        self.image = open(self.images_path+decoded[9:15]+"_"+str(time())+".jpg", "wb")
+        #self.image = open(self.images_path+decoded[9:15]+"_"+str(time())+".jpg", "wb")
+        self.image = open("{0}{1}_{2}.jpg".format(self.images_path, decoded[9:15], str(round(time()))), "wb")
         self.image_size = int(decoded[2:9])  # Image size in bytes
         self.img_rcvd_bytes = 0
 
@@ -100,7 +101,7 @@ class RxParser:
 
         print("RECEIVING THERMAL", self.line[:15])
         decoded = bytes(self.line).decode("ascii")
-        self.thermal = open(self.thermal_path+decoded[2:7]+"_"+str(time())+".txt", "w")
+        self.thermal = open("{0}{1}_{2}.txt".format(self.thermal_path, decoded[2:7], str(round(time()))), "w")
         self.thermal_counter = 0
 
     def thermal_get(self):
