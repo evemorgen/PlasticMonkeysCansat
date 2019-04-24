@@ -1,7 +1,9 @@
 import os
 from time import sleep
 
-sleep(3)
+sleep(5)
+os.system("rm -f /home/pi/lora_logs/mg1 /home/pi/lora_logs/mg2")
+sleep(0.3)
 os.system("python3 /home/pi/PlasticMonkeysCanSat/code/sensors_final/bme_imu_final/bme_imu_final.py /home/pi/PlasticMonkeysCanSat/code/sensors_final/bme_imu_final/config.ini &")
 sleep(0.3)
 os.system("python3 /home/pi/PlasticMonkeysCanSat/code/sensors_final/bme_imu_final/bme_imu_final.py /home/pi/PlasticMonkeysCanSat/code/sensors_final/bme_imu_final/config2.ini &")
@@ -11,7 +13,7 @@ sleep(1)
 os.system("python3 /home/pi/PlasticMonkeysCanSat/code/mergeblock/merge.py /home/pi/PlasticMonkeysCanSat/code/mergeblock/bmp_config.ini &")
 sleep(0.3)
 os.system("python3 /home/pi/PlasticMonkeysCanSat/code/mergeblock/merge.py /home/pi/PlasticMonkeysCanSat/code/mergeblock/gps_config.ini &")
-sleep(1)
+sleep(3)
 os.system("python3 /home/pi/PlasticMonkeysCanSat/code/command_block/command_block.py /home/pi/PlasticMonkeysCanSat/code/command_block/config.ini &")
 sleep(2)
 os.system("python3.7 /home/pi/PlasticMonkeysCanSat/code/lora/lora.py &")
