@@ -76,18 +76,20 @@ String createPacket() {
       p += (char)Serial.read();
     }
     send_length = len;
-    
-    if (send_length != 1) { //please excuse this
-      for (int i = 0; i < len-1; i++){
-        csum += ((char)p[i]*(char)p[i+1] % 991);
-      }
-      csum = csum % 255; //it works fine though
-    }
+    csum = crc(p, len);
   }
   
   return p;
 }
 
+int crc(String packet, int len){
+  if (len == 1 || len == 0) return 0;
+  int s = 0;
+  for (int i = 0; i < len-1; i++){
+    s += ((char)packet[i]*(char)packet[i+1] % 991);
+  }
+  return s % 255;
+}
 
 void loop()
 {
