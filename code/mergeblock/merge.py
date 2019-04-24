@@ -10,7 +10,6 @@ import logging
 #function to read paths to sensors' logs from config file
 def get_directories(config):
     paths = config.items("PATHS")
-    print(paths)
     directories = [second for first,second in paths]
     return directories
 
@@ -40,13 +39,17 @@ def prepare_dict(tails,keys):
     return dict_pack
 
 #function takes list of latest readings (ints) and returns ready-to-send serialized packet
-def prepare_message_pack(dict_pack):
-    return msgpack.packb(dict_pack,use_bin_type="True")
+def prepare_message_pack(string_packet):
+    return msgpack.packb(string_packet,use_bin_type="True")
 
 #function prints new line to binary-typed file (to disjoin binary packets)
 def binary_new_line(out):
-    line = str(0) + "\n"
+    line = "\n"
     out.write(line.encode('utf-8'))
+
+#prepares packet: ONE_BYTE_SIZE + MSGPACKED_DICT + FILL
+def prepare_packet(message_pack, packet_length):
+    return bytes([len(message_pack)]) + message_pack + bytes(b'-'*(packet_length-1-len(message_pack)))
 
 def run():
     #initialize config parser, read from config file passed as an argument
@@ -62,7 +65,9 @@ def run():
     output_path = config['SETTINGS']['output']
     datalog_path = config['SETTINGS']['datalog']
     sleep_time = float(config['SETTINGS']['sleeptime'])
+    exception_sleep_time = float(config['SETTINGS']['exception_sleep_time'])
     line_length = int(config['SETTINGS']['line_length'])
+    packet_length = int(config['SETTINGS']['packet_length'])
     prep_text_packs = config['SETTINGS'].getboolean('text_pack')
     directories = get_directories(config)
     keys = get_keys(config)
@@ -78,15 +83,15 @@ def run():
                 datalog.close()
 
             msg_packet = prepare_message_pack(dict_pack)
+            packet = prepare_packet(msg_packet, packet_length)
             output = open(output_path,"ab")
-            output.write(msg_packet)
-            binary_new_line(output)
+            output.write(packet)
+            #binary_new_line(output)
             output.close()
             time.sleep(sleep_time)
 
         except Exception:
             logging.exception("Unexpected Exception!")
-            time.sleep(0.1)
-
+            time.sleep(exception_sleep_time)
 
 run()

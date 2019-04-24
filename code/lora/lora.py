@@ -11,7 +11,7 @@ from SX127x.LoRa import *
 from SX127x.board_config import BOARD
 
 cparser = configparser.ConfigParser()
-cparser.read('config.ini')
+cparser.read('/home/pi/PlasticMonkeysCanSat/code/lora/config.ini')
 
 RX_LOG = Path(cparser['util']['rx_log']) #File, where all received data is stored
 STATUS_LOG = Path(cparser['util']['status_log']) #File, where this block's behavior is logged
@@ -29,7 +29,7 @@ TX_FILES = [Path(p) for p in cparser['data'].values()]
 
 UP_PACKET_LENGTH = 11 #Base -> Sat packet length in bytes
 DOWN_PACKET_LENGTH = 25 #Sat -> Base packet length in bytes
-CMD_LENGTH = 10
+CMD_LENGTH = 11
 
 #DEFAULT transmission mode constants
 MAX_BACKREAD = 5 #Maximal amount of lines expected to be logged into a file within one TX window
@@ -81,7 +81,7 @@ class myLoRa(LoRa):
         self.last_tx_mode = 'default'
 
         with open(CMD_FILE, 'w') as cf:
-            cf.write("NULLCMD--\n") #write some characters to prevent negative seek()
+            cf.write("NULLCMD---") #write some characters to prevent negative seek()
 
     @staticmethod
     def check_crc(packet):
@@ -97,6 +97,7 @@ class myLoRa(LoRa):
         for i in range(len(packet)-2):
             crc += (packet[i]*packet[i+1]) % 991
         crc = crc % 255
+        #print(crc, comp_crc)
         return crc == comp_crc
 
     def on_rx_done(self):
@@ -104,7 +105,6 @@ class myLoRa(LoRa):
         Triggers automatically upon LoRa interrupting received packets.
         Reads the packet and logs it into a file.
         """
-
         self.clear_irq_flags(RxDone=1)
         raw_rx_payload = self.read_payload(nocheck=True)[4:] #TODO fix that crc bug or implement high-layer crc
         if not self.check_crc(raw_rx_payload):
@@ -152,6 +152,7 @@ class myLoRa(LoRa):
                 tx.seek(pos-MAX_BACKREAD*line_length, 0)
                 raw_lines = [list(tx.read(line_length)) for i in range(MAX_BACKREAD)] #Read [MAX_BACKREAD] lines
                 parsed_lines = [line[:line[0]+1] for line in raw_lines]  #Remove mergeblock wrappers
+                #print(parsed_lines)
 
             waiting = min(MAX_BACKREAD, diff)
             for i in range(MAX_BACKREAD-waiting, MAX_BACKREAD): #Append only the new ones to buffer
