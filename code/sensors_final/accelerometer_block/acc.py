@@ -13,7 +13,7 @@
 #	http://ozzmaker.com/
 
 
-import time
+from time import time, sleep
 import math
 import IMU
 import datetime
@@ -172,8 +172,7 @@ while True:
 
         '''
 
-        timestamp = round(time())
-
+        unix_timestamp = round(time())
         file_dict = {
             'accx': [accx_log, ACCx],
             'accy': [accy_log, ACCy],
@@ -187,7 +186,6 @@ while True:
             open_file = open(file_dict[type][0], "a")
             open_file.write(('{} {}\n').format(unix_timestamp,file_dict[type][1]))
             open_file.close()
-
         '''
         if 1:			#Change to '0' to stop showing the angles from the accelerometer
             print ("# ACCX Angle %5.2f ACCY Angle %5.2f #  " % (AccXangle, AccYangle)),
@@ -207,6 +205,7 @@ while True:
 
 
         #slow program down a bit, makes the output more readable
-        time.sleep(sleep_time)
-    except Exception:
-        time.sleep(0.1)
+        sleep(sleep_time)
+    except Exception as ex:
+        print(ex)
+        sleep(0.1)

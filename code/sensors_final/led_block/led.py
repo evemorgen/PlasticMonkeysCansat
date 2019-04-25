@@ -21,7 +21,8 @@ while True:
         time.sleep(delay)
         GPIO.output(led_pin,GPIO.LOW)
         time.sleep(delay)
-    except Exception:
+    except Exception as ex:
+        print(ex)
         time.sleep(exception_sleep_time)
     finally:
         GPIO.output(led_pin,GPIO.LOW)

@@ -1,3 +1,4 @@
+import sys
 import RPi.GPIO as GPIO
 import configparser
 from time import sleep
@@ -22,7 +23,8 @@ while True:
         sleep(delay_on)
         p.stop()
         sleep(delay_off)
-    except Exception:
+    except Exception as ex:
+        print(ex)
         sleep(0.1)
     finally:
         p.stop()
