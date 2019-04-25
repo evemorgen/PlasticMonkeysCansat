@@ -1,11 +1,19 @@
-# This is written for Python 2.7 due to some sustem failures on my pc xdd
-# Gonna rework this to 3.7 when I fix it
-# TODO: Pathlib and Argparse
-
-from __future__ import print_function
+import configparser
 import serial
+import serial.tools.list_ports
 import sys
+import logging
 from time import time
+
+cp = configparser.ConfigParser()
+cp.read(sys.argv[1])
+
+logging.basicConfig(filename=cp['path']['log'] + str(int(time())) + ".txt",
+                    level=logging.INFO,
+                    format='%(asctime)s [%(levelname)s]: %(message)s',
+                    datefmt='%m/%d/%Y %H:%M:%S')
+
+PORT = serial.tools.list_ports.comports()[0][0]
 
 UP_PACKET_LENGTH = 11
 DOWN_PACKET_LENGTH = 25
@@ -15,30 +23,34 @@ MAX_BACKREAD = 6
 
 THERMAL_HEIGHT = 32
 
+MSGPACK_BUFFER_LINE_LENGTH = 30
+
 HEADERS = {
-    'S': "status",
-    'I': "image_get",
-    'T': "thermal_get",
-    'M': "default"
+    ord("S"): "status",
+    ord("I"): "image_get",
+    ord("T"): "thermal_get",
+    ord("M"): "default"
 }
 
 STATUS_HEADERS = {
-    'I': "image_init",
-    'T': "thermal_init",
-    'E': "error",
-    'S': "system"
+    ord("I"): "image_init",
+    ord("T"): "thermal_init",
+    ord("E"): "error",
+    ord("S"): "system"
 }
 
 
 class RxParser:
-    def __init__(self, port, baudrate, images_path, thermal_path, tx_path, rx_file):
+    def __init__(self, port, baudrate, images_path, thermal_path, tx_path, rx_file, log_path):
         self.ser = serial.Serial(port, baudrate)
         self.images_path = images_path  # Path to dir with images
         self.thermal_path = thermal_path  # Path to dir with thermal
         self.tx_path = tx_path  # Path to TX log
         self.rx_file = rx_file  # Path to RX log
+        self.log_path = log_path
         self.tx_file_pos = 0  # Tracks position in TX file
         self.image = None
+        self.thermal = None
         self.image_size = 0
         self.img_rcvd_bytes = 0
         self.lastTX = None
@@ -46,11 +58,11 @@ class RxParser:
         self.thermal_lastline = None
         self.thermal_counter = 0
         self.line = None  # Last received packet
+        self.byteline = None
         self.tx_buffer = []  # TX FIFO Queue
 
-        with open(self.tx_path, "w") as tx:  # Write some crap to prevent negative seek()
+        with open(self.tx_path, "w") as tx:  # Write some zeros to prevent negative seek()
             tx.write("0"*MAX_BACKREAD*UP_PACKET_LENGTH)
-
 
     def image_init(self):
         """
@@ -59,10 +71,11 @@ class RxParser:
         """
 
         print("RECEIVING IMAGE", self.line[:15])
-        self.image = open(self.images_path+''.join(self.line[9:15])+"_"+str(time())+".jpg", "wb")
-        self.image_size = int("".join(self.line[2:9]))  # Image size in bytes
+        decoded = bytes(self.line).decode("ascii")
+        #self.image = open(self.images_path+decoded[9:15]+"_"+str(time())+".jpg", "wb")
+        self.image = open("{0}{1}_{2}.jpg".format(self.images_path, decoded[9:15], str(round(time()))), "wb")
+        self.image_size = int(decoded[2:9])  # Image size in bytes
         self.img_rcvd_bytes = 0
-
 
     def image_get(self):
         """
@@ -77,9 +90,8 @@ class RxParser:
                 self.image.write(bytes(img_line[:(self.img_rcvd_bytes-self.image_size)]))
                 self.image.close()
             else:
-                self.image.write(bytes("".join(img_line)))
+                self.image.write(bytes(img_line))
         self.img_lastline = img_line
-
 
     def thermal_init(self):
         """
@@ -88,9 +100,9 @@ class RxParser:
         """
 
         print("RECEIVING THERMAL", self.line[:15])
-        self.thermal = open(self.thermal_path+''.join(self.line[2:7])+"_"+str(time())+".txt", "w")
+        decoded = bytes(self.line).decode("ascii")
+        self.thermal = open("{0}{1}_{2}.txt".format(self.thermal_path, decoded[2:7], str(round(time()))), "w")
         self.thermal_counter = 0
-
 
     def thermal_get(self):
         """
@@ -102,7 +114,7 @@ class RxParser:
             self.thermal_counter += 1
             print(self.thermal_counter)
             print("T", thermal_line)
-            parsed_line = ["%.1f" % (ord(el)/10.0) for el in thermal_line]  # Decompression
+            parsed_line = ["{0:.1f}".format(el/10.0) for el in thermal_line]  # Decompression
             self.thermal.write(" ".join(parsed_line))
             self.thermal.write('\n')
 
@@ -110,14 +122,13 @@ class RxParser:
         if self.thermal_counter == THERMAL_HEIGHT:
             self.thermal.close()
 
-
     def system(self):
         """
         Prints the received system status.
         Triggers upon receiving an 'SS' header.
         """
-        print("System: ", "".join(self.line[2:]).strip('-'))
-
+        msg = "".join(bytes(self.line[2:]).decode("utf-8")).strip('-')
+        print("SYSTEM: ", msg)
 
     def status(self):
         """
@@ -126,18 +137,17 @@ class RxParser:
         """
         getattr(self, STATUS_HEADERS[self.line[1]])()
 
-
     def default(self):
         """
         Prints the received packet and appends
         its payload into a file.
         Used for MessagePack data.
         """
-        pack = "".join(self.line[1:])
-        print("M:", pack)
+        msgpack_chunk = bytes(self.line[1:self.line[1]+1])  # xd
+        print("M:", msgpack_chunk)
         with open(self.rx_file, "ab") as rf:
-            rf.write(pack)
-
+            rf.write(msgpack_chunk)
+            rf.write(b'-'*(MSGPACK_BUFFER_LINE_LENGTH - len(msgpack_chunk) - 1))
 
     def tx(self):
         """
@@ -147,6 +157,7 @@ class RxParser:
         """
         if len(self.tx_buffer) > MAX_TX_BUFFER_LENGTH:
             print("TxBufferOverflow: buffer cleared")
+            logging.warning("Tx Buffer Overflow.")
             self.tx_buffer = []
 
         with open(self.tx_path, "r") as tx:
@@ -161,13 +172,11 @@ class RxParser:
             self.tx_buffer.append(lines[i].strip("-"))
 
         if len(self.tx_buffer) == 0:
-            # print("Buffer empty!")
             return
 
         payload = self.tx_buffer.pop(0)
         print("TX:", payload)
-        self.ser.write(payload)
-
+        self.ser.write(payload.encode())
 
     def start(self):
         """
@@ -175,10 +184,24 @@ class RxParser:
         """
         while True:
             if self.ser.in_waiting >= 0:
-                self.line = list(self.ser.read(DOWN_PACKET_LENGTH))
-                getattr(self, HEADERS[self.line[0]])()  # Call an appropriate method basing on header
-                self.tx()
+                try:
+                    self.line = list(self.ser.read(DOWN_PACKET_LENGTH))
+                    logging.info(self.line)
+                    getattr(self, HEADERS[self.line[0]])()  # Call an appropriate method basing on header
+                    self.tx()
+                except Exception as ex:
+                    logging.error(ex)
 
-rxParser = RxParser("/dev/ttyUSB0", 9600, "../../../images/", "../../../thermal/", "../../../tx.txt", "../../../rx.txt")
+rxParser = RxParser(cp['serial']['port'],
+                    cp['serial']['baudrate'],
+                    cp['path']['images'],
+                    cp['path']['thermal'],
+                    cp['path']['tx'],
+                    cp['path']['rx'],
+                    cp['path']['log'])
+
+print("Opened serial at port", PORT)
+logging.info("Initialized successfully.")
+
 rxParser.start()
 
