@@ -12,8 +12,9 @@ logging.basicConfig(filename=cp['path']['log'] + str(int(time())) + ".txt",
                     level=logging.INFO,
                     format='%(asctime)s [%(levelname)s]: %(message)s',
                     datefmt='%m/%d/%Y %H:%M:%S')
-
-PORT = serial.tools.list_ports.comports()[0][0]
+PLIST = serial.tools.list_ports.comports()
+print(PLIST[0][0])
+PORT = PLIST[0][0]
 
 UP_PACKET_LENGTH = 11
 DOWN_PACKET_LENGTH = 25
