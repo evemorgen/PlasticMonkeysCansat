@@ -145,7 +145,7 @@ class myLoRa(LoRa):
 
         for path in TX_FILES:
             try:
-                tx = open(path, 'rb') as tx:
+                tx = open(path, 'rb')
             except Excception as ex:
                 logging.error(ex)
                 continue
