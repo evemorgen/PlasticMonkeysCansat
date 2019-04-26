@@ -1,0 +1,146 @@
+04242019 16:22:56 [ERROR]: negative seek position -1
+04242019 16:22:56 [INFO]: b'TX:M\x00-----------------------'
+04242019 23:14:07 [INFO]: b'TX:M\x00-----------------------'
+04242019 23:14:08 [INFO]: b'TX:M\x00-----------------------'
+04242019 23:14:08 [INFO]: b'TX:M\x00-----------------------'
+04242019 23:14:08 [INFO]: b'TX:M\x00-----------------------'
+04242019 23:14:08 [INFO]: b'TX:M\x00-----------------------'
+04242019 23:14:09 [INFO]: b'TX:M\x00-----------------------'
+04242019 23:14:09 [INFO]: b'TX:M\x00-----------------------'
+04242019 23:14:09 [INFO]: b'TX:M\x00-----------------------'
+04242019 23:14:10 [INFO]: b'TX:M\x00-----------------------'
+04242019 23:14:10 [WARNING]: Buffer empty!
+04242019 23:14:10 [WARNING]: Nothing to send!
+04242019 23:14:10 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:10 [WARNING]: Buffer empty!
+04242019 23:14:10 [WARNING]: Nothing to send!
+04242019 23:14:10 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:11 [WARNING]: Buffer empty!
+04242019 23:14:11 [WARNING]: Nothing to send!
+04242019 23:14:11 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:11 [WARNING]: Buffer empty!
+04242019 23:14:11 [WARNING]: Nothing to send!
+04242019 23:14:11 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:11 [WARNING]: Buffer empty!
+04242019 23:14:11 [WARNING]: Nothing to send!
+04242019 23:14:11 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:12 [WARNING]: Buffer empty!
+04242019 23:14:12 [WARNING]: Nothing to send!
+04242019 23:14:12 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:12 [WARNING]: Buffer empty!
+04242019 23:14:12 [WARNING]: Nothing to send!
+04242019 23:14:12 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:12 [WARNING]: Buffer empty!
+04242019 23:14:12 [WARNING]: Nothing to send!
+04242019 23:14:12 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:12 [WARNING]: Buffer empty!
+04242019 23:14:12 [WARNING]: Nothing to send!
+04242019 23:14:13 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:13 [WARNING]: Buffer empty!
+04242019 23:14:13 [WARNING]: Nothing to send!
+04242019 23:14:13 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:13 [WARNING]: Buffer empty!
+04242019 23:14:13 [WARNING]: Nothing to send!
+04242019 23:14:13 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:13 [WARNING]: Buffer empty!
+04242019 23:14:13 [WARNING]: Nothing to send!
+04242019 23:14:13 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:14 [WARNING]: Buffer empty!
+04242019 23:14:14 [WARNING]: Nothing to send!
+04242019 23:14:14 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:14 [WARNING]: Buffer empty!
+04242019 23:14:14 [WARNING]: Nothing to send!
+04242019 23:14:14 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:14 [WARNING]: Buffer empty!
+04242019 23:14:14 [WARNING]: Nothing to send!
+04242019 23:14:14 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:15 [WARNING]: Buffer empty!
+04242019 23:14:15 [WARNING]: Nothing to send!
+04242019 23:14:15 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:15 [WARNING]: Buffer empty!
+04242019 23:14:15 [WARNING]: Nothing to send!
+04242019 23:14:15 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:15 [WARNING]: Buffer empty!
+04242019 23:14:15 [WARNING]: Nothing to send!
+04242019 23:14:15 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:16 [WARNING]: Buffer empty!
+04242019 23:14:16 [WARNING]: Nothing to send!
+04242019 23:14:16 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:16 [WARNING]: Buffer empty!
+04242019 23:14:16 [WARNING]: Nothing to send!
+04242019 23:14:16 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:16 [WARNING]: Buffer empty!
+04242019 23:14:16 [WARNING]: Nothing to send!
+04242019 23:14:16 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:17 [WARNING]: Buffer empty!
+04242019 23:14:17 [WARNING]: Nothing to send!
+04242019 23:14:17 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:17 [WARNING]: Buffer empty!
+04242019 23:14:17 [WARNING]: Nothing to send!
+04242019 23:14:17 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:17 [WARNING]: Buffer empty!
+04242019 23:14:17 [WARNING]: Nothing to send!
+04242019 23:14:17 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:18 [WARNING]: Buffer empty!
+04242019 23:14:18 [WARNING]: Nothing to send!
+04242019 23:14:18 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:18 [WARNING]: Buffer empty!
+04242019 23:14:18 [WARNING]: Nothing to send!
+04242019 23:14:18 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:18 [WARNING]: Buffer empty!
+04242019 23:14:18 [WARNING]: Nothing to send!
+04242019 23:14:18 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:19 [WARNING]: Buffer empty!
+04242019 23:14:19 [WARNING]: Nothing to send!
+04242019 23:14:19 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:19 [WARNING]: Buffer empty!
+04242019 23:14:19 [WARNING]: Nothing to send!
+04242019 23:14:19 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:19 [WARNING]: Buffer empty!
+04242019 23:14:19 [WARNING]: Nothing to send!
+04242019 23:14:19 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:20 [WARNING]: Buffer empty!
+04242019 23:14:20 [WARNING]: Nothing to send!
+04242019 23:14:20 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:20 [WARNING]: Buffer empty!
+04242019 23:14:20 [WARNING]: Nothing to send!
+04242019 23:14:20 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:20 [WARNING]: Buffer empty!
+04242019 23:14:20 [WARNING]: Nothing to send!
+04242019 23:14:20 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:21 [WARNING]: Buffer empty!
+04242019 23:14:21 [WARNING]: Nothing to send!
+04242019 23:14:21 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:21 [WARNING]: Buffer empty!
+04242019 23:14:21 [WARNING]: Nothing to send!
+04242019 23:14:21 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:21 [WARNING]: Buffer empty!
+04242019 23:14:21 [WARNING]: Nothing to send!
+04242019 23:14:21 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:21 [WARNING]: Buffer empty!
+04242019 23:14:21 [WARNING]: Nothing to send!
+04242019 23:14:21 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:22 [WARNING]: Buffer empty!
+04242019 23:14:22 [WARNING]: Nothing to send!
+04242019 23:14:22 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:22 [WARNING]: Buffer empty!
+04242019 23:14:22 [WARNING]: Nothing to send!
+04242019 23:14:22 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:22 [WARNING]: Buffer empty!
+04242019 23:14:22 [WARNING]: Nothing to send!
+04242019 23:14:22 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:23 [WARNING]: Buffer empty!
+04242019 23:14:23 [WARNING]: Nothing to send!
+04242019 23:14:23 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:23 [WARNING]: Buffer empty!
+04242019 23:14:23 [WARNING]: Nothing to send!
+04242019 23:14:23 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:23 [WARNING]: Buffer empty!
+04242019 23:14:23 [WARNING]: Nothing to send!
+04242019 23:14:23 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:24 [WARNING]: Buffer empty!
+04242019 23:14:24 [WARNING]: Nothing to send!
+04242019 23:14:24 [INFO]: b'TX:SSBuffer Empty!----------'
+04242019 23:14:24 [WARNING]: Buffer empty!
+04242019 23:14:24 [WARNING]: Nothing to send!
+04242019 23:14:24 [INFO]: b'TX:SSBuffer Empty!----------'
