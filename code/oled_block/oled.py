@@ -1,17 +1,21 @@
 import Adafruit_SSD1306
-import time
+from time import sleep
 import configparser
+import sys
+import logging
 
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
+
+logging.basicConfig(filename="/home/pi/PlasticMonkeysCanSat/code/oled_block/log.log")
 
 config_file = sys.argv[1]
 config = configparser.ConfigParser()
 config.read(config_file)
 
 oled_buffer_path = config['SETTINGS']['oled_buffer_path'] # Path to oled buffer
-line_width = config['SETTINGS']['line_width']  # Number of characters in one line
+line_width = int(config['SETTINGS']['line_width'])  # Number of characters in one line
 sleep_time = float(config['SETTINGS']['sleep_time']) # Delay between displaying in seconds
 
 RST = 24 # Raspberry Pi RST pin, which we don't have to use xd
@@ -52,6 +56,9 @@ while True:
     try:
         message = get_message()
         write_message(message)
-        time.sleep(sleep_time)
-    except Exception:
+        logging.info(message)
+        sleep(sleep_time)
+    except Exception as ex:
+        logging.error(ex)
+        print(ex)
         sleep(0.2)
