@@ -144,14 +144,18 @@ class myLoRa(LoRa):
                 self.buffer.pop(0) #Destroy enough data for the next reading to fit
 
         for path in TX_FILES:
-            with open(path, 'rb') as tx:
-                tx.seek(0, 2)
-                pos = tx.tell() #File length
-                diff = round((pos-self.filepos[path])/line_length) #Amount of new readings
-                self.filepos[path] = pos
-                tx.seek(pos-MAX_BACKREAD*line_length, 0)
-                raw_lines = [list(tx.read(line_length)) for i in range(MAX_BACKREAD)] #Read [MAX_BACKREAD] lines
-                parsed_lines = [line[:line[0]+1] for line in raw_lines]  #Remove mergeblock wrappers
+            try:
+                tx = open(path, 'rb') as tx:
+            except Excception as ex:
+                logging.error(ex)
+                continue
+            tx.seek(0, 2)
+            pos = tx.tell() #File length
+            diff = round((pos-self.filepos[path])/line_length) #Amount of new readings
+            self.filepos[path] = pos
+            tx.seek(pos-MAX_BACKREAD*line_length, 0)
+            raw_lines = [list(tx.read(line_length)) for i in range(MAX_BACKREAD)] #Read [MAX_BACKREAD] lines
+            parsed_lines = [line[:line[0]+1] for line in raw_lines]  #Remove mergeblock wrappers
 
             waiting = min(MAX_BACKREAD, diff)
             for i in range(MAX_BACKREAD-waiting, MAX_BACKREAD): #Append only the new ones to buffer

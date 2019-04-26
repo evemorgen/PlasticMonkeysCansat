@@ -1,6 +1,6 @@
 import configparser
 import sys
-import time
+from time import sleep
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 
 config_file = sys.argv[1]
@@ -18,12 +18,8 @@ GPIO.setwarnings(False) # Ignore warning for now
 GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
 
 GPIO.setup(left_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
-GPIO.setup(center_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
+#GPIO.setup(center_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
 GPIO.setup(right_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
-
-GPIO.add_event_detect(left_pin,GPIO.RISING,callback=left_pin) # Setup event on pin 10 rising edge
-GPIO.add_event_detect(center_pin,GPIO.RISING,callback=center_pin) # Setup event on pin 10 rising edge
-GPIO.add_event_detect(right_pin,GPIO.RISING,callback=right_pin) # Setup event on pin 10 rising edge
 
 all = config.items("QUESTIONS")
 questions = [second for first,second in all]
@@ -33,8 +29,8 @@ question_num = 0
 buffer = open(oled_buffer, "w")
 try:
     buffer.write(questions[question_num])
-except Exception:
-    pass
+except Exception as ex:
+    print(ex)
 
 def left_callback(channel):
     print("left button clicked")
@@ -79,5 +75,9 @@ def right_callback(channel):
     while GPIO.input(right_pin) == 1:
         pass
 
+GPIO.add_event_detect(left_pin,GPIO.RISING,callback=left_callback) # Setup event on pin 10 rising edge
+#GPIO.add_event_detect(center_pin,GPIO.RISING,callback=center_callback) # Setup event on pin 10 rising edge
+GPIO.add_event_detect(right_pin,GPIO.RISING,callback=right_callback) # Setup event on pin 10 rising edge
+
 while True:
-    pass
+    sleep(0.2)
