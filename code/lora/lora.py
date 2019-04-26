@@ -29,7 +29,7 @@ TX_FILES = [Path(p) for p in cparser['data'].values()]
 
 UP_PACKET_LENGTH = 11 #Base -> Sat packet length in bytes
 DOWN_PACKET_LENGTH = 25 #Sat -> Base packet length in bytes
-CMD_LENGTH = 10
+CMD_LENGTH = 11
 
 #DEFAULT transmission mode constants
 MAX_BACKREAD = 5 #Maximal amount of lines expected to be logged into a file within one TX window
@@ -81,7 +81,7 @@ class myLoRa(LoRa):
         self.last_tx_mode = 'default'
 
         with open(CMD_FILE, 'w') as cf:
-            cf.write("NULLCMD--\n") #write some characters to prevent negative seek()
+            cf.write("NULLCMD--") #write some characters to prevent negative seek()
 
     @staticmethod
     def check_crc(packet):
