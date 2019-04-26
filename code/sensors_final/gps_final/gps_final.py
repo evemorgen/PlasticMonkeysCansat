@@ -1,4 +1,5 @@
 import serial
+import sys
 import pynmea2
 import configparser
 from time import sleep, time
@@ -17,22 +18,23 @@ longitude_log = config['PATHS']['gps_longtitude_log']
 altitude_log = config['PATHS']['gps_altitude_log']
 timestamp_log = config['PATHS']['gps_timestamp_log']
 
-serialPort = serial.Serial(port_path, baudrate = uart_baudrate, timeout = uart_timeout)
+serialPort = serial.Serial(port_path, baudrate=uart_baudrate)
 
 def parseGPS(line):
     if line.find("GGA") > 0:
+        #print(line)
         msg = pynmea2.parse(line)
-        tim = (msg.timestamp.hour * 60 + msg.timestamp.minute) * 60 + msg.timestamp.second
-        lat = round((msg.latitude+90)*100000)
-        lon = round((msg.longitude+180)*100000)
-        alt = round(msg.altitude)
+        #tim = (msg.timestamp.hour * 60 + msg.timestamp.minute) * 60 + msg.timestamp.second
+        lat = round((msg.latitude+90)*100000) if msg.latitude is not None else 0
+        lon = round((msg.longitude+180)*100000) if msg.longitude is not None else 0
+        alt = round(msg.altitude) if msg.altitude is not None else 0
         unix_timestamp = round(time())
 
         file_dict = {
             'latitude': [latitude_log, lat],
-            'longtitude': [longtitude_log, lon],
-            'altitude': [altitude_log, alt],
-            'timestamp': [timestamp_log, tim]
+            'longitude': [longitude_log, lon],
+            'altitude': [altitude_log, alt] #,
+            #'timestamp': [timestamp_log, tim]
         }
 
         for type in file_dict:
@@ -46,5 +48,6 @@ while True:
         line = serialPort.readline().decode('utf-8')
         parseGPS(line)
         sleep(sleep_time)
-    except Exception:
+    except Exception as ex:
+        #print(ex)
         sleep(sleep_time)
