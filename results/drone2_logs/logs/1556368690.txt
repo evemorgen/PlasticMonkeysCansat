@@ -1,0 +1,2 @@
+04/27/2019 14:38:10 [INFO]: Initialized successfully.
+04/27/2019 14:44:30 [ERROR]: read failed: device reports readiness to read but returned no data (device disconnected or multiple access on port?)
