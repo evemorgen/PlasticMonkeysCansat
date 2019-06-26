@@ -1,0 +1,77 @@
+[[0;32m  OK  [0m] Started Show Plymouth Boot Screen.
+[[0;32m  OK  [0m] Reached target Encrypted Volumes.
+[[0;32m  OK  [0m] Reached target Paths.
+[[0;32m  OK  [0m] Started Forward Password Requests to Plymouth Directory Watch.
+[[0;32m  OK  [0m] Found device /dev/serial1.
+[[0;32m  OK  [0m] Found device /dev/disk/by-partuuid/ebc5594f-01.
+         Starting File System Check on /dev/disk/by-partuuid/ebc5594f-01...
+[[0;32m  OK  [0m] Started File System Check on /dev/disk/by-partuuid/ebc5594f-01.
+         Mounting /boot...
+[[0;32m  OK  [0m] Mounted /boot.
+[[0;32m  OK  [0m] Reached target Local File Systems.
+         Starting Create Volatile Files and Directories...
+         Starting Raise network interfaces...
+         Starting Preprocess NFS configuration...
+         Starting Set console font and keymap...
+         Starting Tell Plymouth To Write Out Runtime Data...
+[[0;32m  OK  [0m] Started Preprocess NFS configuration.
+[[0;32m  OK  [0m] Started Set console font and keymap.
+[[0;32m  OK  [0m] Started Tell Plymouth To Write Out Runtime Data.
+[[0;32m  OK  [0m] Reached target NFS client services.
+[[0;32m  OK  [0m] Reached target Remote File Systems (Pre).
+[[0;32m  OK  [0m] Reached target Remote File Systems.
+[[0;32m  OK  [0m] Started Create Volatile Files and Directories.
+         Starting Update UTMP about System Boot/Shutdown...
+         Starting Network Time Synchronization...
+[[0;32m  OK  [0m] Started Update UTMP about System Boot/Shutdown.
+[[0;32m  OK  [0m] Started Network Time Synchronization.
+[[0;32m  OK  [0m] Reached target System Initialization.
+[[0;32m  OK  [0m] Listening on triggerhappy.socket.
+[[0;32m  OK  [0m] Listening on D-Bus System Message Bus Socket.
+[[0;32m  OK  [0m] Listening on Avahi mDNS/DNS-SD Stack Activation Socket.
+[[0;32m  OK  [0m] Listening on GPS (Global Positioning System) Daemon Sockets.
+[[0;32m  OK  [0m] Reached target Sockets.
+[[0;32m  OK  [0m] Reached target Basic System.
+[[0;32m  OK  [0m] Started D-Bus System Message Bus.
+[[0;32m  OK  [0m] Started Regular background program processing daemon.
+         Starting Disable WiFi if country not set...
+         Starting System Logging Service...
+         Starting dhcpcd on all interfaces...
+         Starting Login Service...
+         Starting LSB: Autogenerate and use a swap file...
+         Starting Configure Bluetooth Modems connected by UART...
+         Starting LSB: Switch to ondemand cpu…or (unless shift key is pressed)...
+         Starting WPA supplicant...
+         Starting triggerhappy global hotkey daemon...
+         Starting Avahi mDNS/DNS-SD Stack...
+         Starting Initialize hardware monitoring sensors...
+         Starting Save/Restore Sound Card State...
+[[0;32m  OK  [0m] Started Daily Cleanup of Temporary Directories.
+[[0;32m  OK  [0m] Reached target System Time Synchronized.
+[[0;32m  OK  [0m] Started Daily apt download activities.
+[[0;32m  OK  [0m] Started Daily apt upgrade and clean activities.
+[[0;32m  OK  [0m] Reached target Timers.
+[[0;32m  OK  [0m] Started System Logging Service.
+[[0;32m  OK  [0m] Started triggerhappy global hotkey daemon.
+[[0;32m  OK  [0m] Started Disable WiFi if country not set.
+[[0;32m  OK  [0m] Started Save/Restore Sound Card State.
+[[0;32m  OK  [0m] Started Initialize hardware monitoring sensors.
+[[0;32m  OK  [0m] Started WPA supplicant.
+[[0;32m  OK  [0m] Started Avahi mDNS/DNS-SD Stack.
+[[0;32m  OK  [0m] Started Login Service.
+[[0;32m  OK  [0m] Started LSB: Switch to ondemand cpu …rnor (unless shift key is pressed).
+[[0;32m  OK  [0m] Started Raise network interfaces.
+[[0;32m  OK  [0m] Started LSB: Autogenerate and use a swap file.
+[[0;32m  OK  [0m] Listening on Load/Save RF Kill Switch Status /dev/rfkill Watch.
+         Starting Load/Save RF Kill Switch Status...
+[[0;32m  OK  [0m] Reached target Sound Card.
+[[0;32m  OK  [0m] Started Load/Save RF Kill Switch Status.
+[[0;32m  OK  [0m] Started Configure Bluetooth Modems connected by UART.
+[[0;32m  OK  [0m] Created slice system-bthelper.slice.
+         Starting Bluetooth service...
+[[0;32m  OK  [0m] Started Bluetooth service.
+[[0;32m  OK  [0m] Started Raspberry Pi bluetooth helper.
+[[0;32m  OK  [0m] Reached target Bluetooth.
+         Starting Hostname Service...
+[[0;32m  OK  [0m] Started Hostname Service.
+[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for dhcpcd on all interfaces (37s / 1min 39s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for dhcpcd on all interfaces (37s / 1min 39s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for dhcpcd on all interfaces (38s / 1min 39s)

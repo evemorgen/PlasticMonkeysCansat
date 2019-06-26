@@ -1,0 +1,573 @@
+04272019 01:40:53 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:53 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:53 [ERROR]: negative seek position -2
+04272019 01:40:53 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:53 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:53 [WARNING]: Buffer empty!
+04272019 01:40:53 [WARNING]: Nothing to send!
+04272019 01:40:53 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:54 [INFO]: b'RX:B\x00'
+04272019 01:40:54 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:54 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:54 [WARNING]: Buffer empty!
+04272019 01:40:54 [WARNING]: Nothing to send!
+04272019 01:40:54 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:54 [INFO]: b'RX:B\x00'
+04272019 01:40:54 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:54 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:54 [WARNING]: Buffer empty!
+04272019 01:40:54 [WARNING]: Nothing to send!
+04272019 01:40:54 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:54 [INFO]: b'RX:B\x00'
+04272019 01:40:54 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:54 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:54 [WARNING]: Buffer empty!
+04272019 01:40:54 [WARNING]: Nothing to send!
+04272019 01:40:54 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:54 [INFO]: b'RX:B\x00'
+04272019 01:40:55 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:55 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:55 [WARNING]: Buffer empty!
+04272019 01:40:55 [WARNING]: Nothing to send!
+04272019 01:40:55 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:55 [INFO]: b'RX:B\x00'
+04272019 01:40:55 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:55 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:55 [WARNING]: Buffer empty!
+04272019 01:40:55 [WARNING]: Nothing to send!
+04272019 01:40:55 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:55 [INFO]: b'RX:B\x00'
+04272019 01:40:55 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:55 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:55 [WARNING]: Buffer empty!
+04272019 01:40:55 [WARNING]: Nothing to send!
+04272019 01:40:55 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:55 [INFO]: b'RX:B\x00'
+04272019 01:40:56 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:56 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:56 [WARNING]: Buffer empty!
+04272019 01:40:56 [WARNING]: Nothing to send!
+04272019 01:40:56 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:56 [INFO]: b'RX:B\x00'
+04272019 01:40:56 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:56 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:56 [WARNING]: Buffer empty!
+04272019 01:40:56 [WARNING]: Nothing to send!
+04272019 01:40:56 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:56 [INFO]: b'RX:B\x00'
+04272019 01:40:56 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:56 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:56 [WARNING]: Buffer empty!
+04272019 01:40:56 [WARNING]: Nothing to send!
+04272019 01:40:56 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:56 [INFO]: b'RX:B\x00'
+04272019 01:40:57 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:57 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:57 [WARNING]: Buffer empty!
+04272019 01:40:57 [WARNING]: Nothing to send!
+04272019 01:40:57 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:57 [INFO]: b'RX:B\x00'
+04272019 01:40:57 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:57 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:57 [WARNING]: Buffer empty!
+04272019 01:40:57 [WARNING]: Nothing to send!
+04272019 01:40:57 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:57 [INFO]: b'RX:B\x00'
+04272019 01:40:57 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:57 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:57 [WARNING]: Buffer empty!
+04272019 01:40:57 [WARNING]: Nothing to send!
+04272019 01:40:57 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:57 [INFO]: b'RX:B\x00'
+04272019 01:40:58 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:58 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:58 [WARNING]: Buffer empty!
+04272019 01:40:58 [WARNING]: Nothing to send!
+04272019 01:40:58 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:58 [INFO]: b'RX:B\x00'
+04272019 01:40:58 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:58 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:58 [WARNING]: Buffer empty!
+04272019 01:40:58 [WARNING]: Nothing to send!
+04272019 01:40:58 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:58 [INFO]: b'RX:B\x00'
+04272019 01:40:58 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:58 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:58 [WARNING]: Buffer empty!
+04272019 01:40:58 [WARNING]: Nothing to send!
+04272019 01:40:58 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:58 [INFO]: b'RX:B\x00'
+04272019 01:40:58 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:59 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:59 [WARNING]: Buffer empty!
+04272019 01:40:59 [WARNING]: Nothing to send!
+04272019 01:40:59 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:59 [INFO]: b'RX:B\x00'
+04272019 01:40:59 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:59 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:59 [WARNING]: Buffer empty!
+04272019 01:40:59 [WARNING]: Nothing to send!
+04272019 01:40:59 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:59 [INFO]: b'RX:B\x00'
+04272019 01:40:59 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:40:59 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:40:59 [WARNING]: Buffer empty!
+04272019 01:40:59 [WARNING]: Nothing to send!
+04272019 01:40:59 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:40:59 [INFO]: b'RX:B\x00'
+04272019 01:40:59 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:00 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:00 [WARNING]: Buffer empty!
+04272019 01:41:00 [WARNING]: Nothing to send!
+04272019 01:41:00 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:00 [INFO]: b'RX:B\x00'
+04272019 01:41:00 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:00 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:00 [WARNING]: Buffer empty!
+04272019 01:41:00 [WARNING]: Nothing to send!
+04272019 01:41:00 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:00 [INFO]: b'RX:B\x00'
+04272019 01:41:00 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:00 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:00 [WARNING]: Buffer empty!
+04272019 01:41:00 [WARNING]: Nothing to send!
+04272019 01:41:00 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:00 [INFO]: b'RX:B\x00'
+04272019 01:41:00 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:00 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:00 [WARNING]: Buffer empty!
+04272019 01:41:01 [WARNING]: Nothing to send!
+04272019 01:41:01 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:01 [INFO]: b'RX:B\x00'
+04272019 01:41:01 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:01 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:01 [WARNING]: Buffer empty!
+04272019 01:41:01 [WARNING]: Nothing to send!
+04272019 01:41:01 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:01 [INFO]: b'RX:B\x00'
+04272019 01:41:01 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:01 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:01 [WARNING]: Buffer empty!
+04272019 01:41:01 [WARNING]: Nothing to send!
+04272019 01:41:01 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:01 [INFO]: b'RX:B\x00'
+04272019 01:41:01 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:01 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:01 [WARNING]: Buffer empty!
+04272019 01:41:01 [WARNING]: Nothing to send!
+04272019 01:41:01 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:02 [INFO]: b'RX:B\x00'
+04272019 01:41:02 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:02 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:02 [WARNING]: Buffer empty!
+04272019 01:41:02 [WARNING]: Nothing to send!
+04272019 01:41:02 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:02 [INFO]: b'RX:B\x00'
+04272019 01:41:02 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:02 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:02 [WARNING]: Buffer empty!
+04272019 01:41:02 [WARNING]: Nothing to send!
+04272019 01:41:02 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:02 [INFO]: b'RX:B\x00'
+04272019 01:41:02 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:02 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:02 [WARNING]: Buffer empty!
+04272019 01:41:02 [WARNING]: Nothing to send!
+04272019 01:41:02 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:03 [INFO]: b'RX:B\x00'
+04272019 01:41:03 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:03 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:03 [WARNING]: Buffer empty!
+04272019 01:41:03 [WARNING]: Nothing to send!
+04272019 01:41:03 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:03 [INFO]: b'RX:B\x00'
+04272019 01:41:03 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:03 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:03 [WARNING]: Buffer empty!
+04272019 01:41:03 [WARNING]: Nothing to send!
+04272019 01:41:03 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:03 [INFO]: b'RX:B\x00'
+04272019 01:41:03 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:03 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:03 [WARNING]: Buffer empty!
+04272019 01:41:03 [WARNING]: Nothing to send!
+04272019 01:41:03 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:03 [INFO]: b'RX:B\x00'
+04272019 01:41:03 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:03 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:03 [WARNING]: Buffer empty!
+04272019 01:41:03 [WARNING]: Nothing to send!
+04272019 01:41:03 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:04 [INFO]: b'RX:B\x00'
+04272019 01:41:04 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:04 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:04 [WARNING]: Buffer empty!
+04272019 01:41:04 [WARNING]: Nothing to send!
+04272019 01:41:04 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:04 [INFO]: b'RX:B\x00'
+04272019 01:41:04 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:04 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:04 [WARNING]: Buffer empty!
+04272019 01:41:04 [WARNING]: Nothing to send!
+04272019 01:41:04 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:04 [INFO]: b'RX:B\x00'
+04272019 01:41:04 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:04 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:04 [WARNING]: Buffer empty!
+04272019 01:41:04 [WARNING]: Nothing to send!
+04272019 01:41:04 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:05 [INFO]: b'RX:B\x00'
+04272019 01:41:05 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:05 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:05 [WARNING]: Buffer empty!
+04272019 01:41:05 [WARNING]: Nothing to send!
+04272019 01:41:05 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:05 [INFO]: b'RX:B\x00'
+04272019 01:41:05 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:05 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:05 [WARNING]: Buffer empty!
+04272019 01:41:05 [WARNING]: Nothing to send!
+04272019 01:41:05 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:05 [INFO]: b'RX:B\x00'
+04272019 01:41:05 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:05 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:05 [WARNING]: Buffer empty!
+04272019 01:41:05 [WARNING]: Nothing to send!
+04272019 01:41:05 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:05 [INFO]: b'RX:B\x00'
+04272019 01:41:06 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:06 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:06 [WARNING]: Buffer empty!
+04272019 01:41:06 [WARNING]: Nothing to send!
+04272019 01:41:06 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:06 [INFO]: b'RX:B\x00'
+04272019 01:41:06 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:06 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:06 [WARNING]: Buffer empty!
+04272019 01:41:06 [WARNING]: Nothing to send!
+04272019 01:41:06 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:06 [INFO]: b'RX:B\x00'
+04272019 01:41:06 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:06 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:06 [WARNING]: Buffer empty!
+04272019 01:41:06 [WARNING]: Nothing to send!
+04272019 01:41:06 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:06 [INFO]: b'RX:B\x00'
+04272019 01:41:07 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:07 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:07 [WARNING]: Buffer empty!
+04272019 01:41:07 [WARNING]: Nothing to send!
+04272019 01:41:07 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:07 [INFO]: b'RX:B\x00'
+04272019 01:41:07 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:07 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:07 [WARNING]: Buffer empty!
+04272019 01:41:07 [WARNING]: Nothing to send!
+04272019 01:41:07 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:07 [INFO]: b'RX:B\x00'
+04272019 01:41:07 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:07 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:07 [WARNING]: Buffer empty!
+04272019 01:41:07 [WARNING]: Nothing to send!
+04272019 01:41:07 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:07 [INFO]: b'RX:B\x00'
+04272019 01:41:08 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:08 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:08 [WARNING]: Buffer empty!
+04272019 01:41:08 [WARNING]: Nothing to send!
+04272019 01:41:08 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:08 [INFO]: b'RX:B\x00'
+04272019 01:41:08 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:08 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:08 [WARNING]: Buffer empty!
+04272019 01:41:08 [WARNING]: Nothing to send!
+04272019 01:41:08 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:08 [INFO]: b'RX:B\x00'
+04272019 01:41:08 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:08 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:08 [WARNING]: Buffer empty!
+04272019 01:41:08 [WARNING]: Nothing to send!
+04272019 01:41:08 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:08 [INFO]: b'RX:B\x00'
+04272019 01:41:09 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:09 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:09 [WARNING]: Buffer empty!
+04272019 01:41:09 [WARNING]: Nothing to send!
+04272019 01:41:09 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:09 [INFO]: b'RX:B\x00'
+04272019 01:41:09 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:09 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:09 [WARNING]: Buffer empty!
+04272019 01:41:09 [WARNING]: Nothing to send!
+04272019 01:41:09 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:09 [INFO]: b'RX:B\x00'
+04272019 01:41:09 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:09 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:09 [WARNING]: Buffer empty!
+04272019 01:41:09 [WARNING]: Nothing to send!
+04272019 01:41:09 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:09 [INFO]: b'RX:B\x00'
+04272019 01:41:10 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:10 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:10 [WARNING]: Buffer empty!
+04272019 01:41:10 [WARNING]: Nothing to send!
+04272019 01:41:10 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:10 [INFO]: b'RX:B\x00'
+04272019 01:41:10 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:10 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:10 [WARNING]: Buffer empty!
+04272019 01:41:10 [WARNING]: Nothing to send!
+04272019 01:41:10 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:10 [INFO]: b'RX:B\x00'
+04272019 01:41:10 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:10 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:10 [WARNING]: Buffer empty!
+04272019 01:41:10 [WARNING]: Nothing to send!
+04272019 01:41:10 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:10 [INFO]: b'RX:B\x00'
+04272019 01:41:11 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:11 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:11 [WARNING]: Buffer empty!
+04272019 01:41:11 [WARNING]: Nothing to send!
+04272019 01:41:11 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:11 [INFO]: b'RX:B\x00'
+04272019 01:41:11 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:11 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:11 [WARNING]: Buffer empty!
+04272019 01:41:11 [WARNING]: Nothing to send!
+04272019 01:41:11 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:11 [INFO]: b'RX:B\x00'
+04272019 01:41:11 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:11 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:11 [WARNING]: Buffer empty!
+04272019 01:41:11 [WARNING]: Nothing to send!
+04272019 01:41:11 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:11 [INFO]: b'RX:B\x00'
+04272019 01:41:12 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:12 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:12 [WARNING]: Buffer empty!
+04272019 01:41:12 [WARNING]: Nothing to send!
+04272019 01:41:12 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:12 [INFO]: b'RX:B\x00'
+04272019 01:41:12 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:12 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:12 [WARNING]: Buffer empty!
+04272019 01:41:12 [WARNING]: Nothing to send!
+04272019 01:41:12 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:12 [INFO]: b'RX:B\x00'
+04272019 01:41:12 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:12 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:12 [WARNING]: Buffer empty!
+04272019 01:41:12 [WARNING]: Nothing to send!
+04272019 01:41:12 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:12 [INFO]: b'RX:B\x00'
+04272019 01:41:13 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:13 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:13 [WARNING]: Buffer empty!
+04272019 01:41:13 [WARNING]: Nothing to send!
+04272019 01:41:13 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:13 [INFO]: b'RX:B\x00'
+04272019 01:41:13 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:13 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:13 [WARNING]: Buffer empty!
+04272019 01:41:13 [WARNING]: Nothing to send!
+04272019 01:41:13 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:13 [INFO]: b'RX:B\x00'
+04272019 01:41:13 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:13 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:13 [WARNING]: Buffer empty!
+04272019 01:41:13 [WARNING]: Nothing to send!
+04272019 01:41:13 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:13 [INFO]: b'RX:B\x00'
+04272019 01:41:14 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:14 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:14 [WARNING]: Buffer empty!
+04272019 01:41:14 [WARNING]: Nothing to send!
+04272019 01:41:14 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:14 [INFO]: b'RX:B\x00'
+04272019 01:41:14 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:14 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:14 [WARNING]: Buffer empty!
+04272019 01:41:14 [WARNING]: Nothing to send!
+04272019 01:41:14 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:14 [INFO]: b'RX:B\x00'
+04272019 01:41:14 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:14 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:14 [WARNING]: Buffer empty!
+04272019 01:41:14 [WARNING]: Nothing to send!
+04272019 01:41:14 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:14 [INFO]: b'RX:B\x00'
+04272019 01:41:15 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:15 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:15 [WARNING]: Buffer empty!
+04272019 01:41:15 [WARNING]: Nothing to send!
+04272019 01:41:15 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:15 [INFO]: b'RX:B\x00'
+04272019 01:41:15 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:15 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:15 [WARNING]: Buffer empty!
+04272019 01:41:15 [WARNING]: Nothing to send!
+04272019 01:41:15 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:15 [INFO]: b'RX:B\x00'
+04272019 01:41:15 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:15 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:15 [WARNING]: Buffer empty!
+04272019 01:41:15 [WARNING]: Nothing to send!
+04272019 01:41:15 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:15 [INFO]: b'RX:B\x00'
+04272019 01:41:16 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:16 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:16 [WARNING]: Buffer empty!
+04272019 01:41:16 [WARNING]: Nothing to send!
+04272019 01:41:16 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:16 [INFO]: b'RX:B\x00'
+04272019 01:41:16 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:16 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:16 [WARNING]: Buffer empty!
+04272019 01:41:16 [WARNING]: Nothing to send!
+04272019 01:41:16 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:16 [INFO]: b'RX:B\x00'
+04272019 01:41:16 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:16 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:16 [WARNING]: Buffer empty!
+04272019 01:41:16 [WARNING]: Nothing to send!
+04272019 01:41:16 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:16 [INFO]: b'RX:B\x00'
+04272019 01:41:17 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:17 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:17 [WARNING]: Buffer empty!
+04272019 01:41:17 [WARNING]: Nothing to send!
+04272019 01:41:17 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:17 [INFO]: b'RX:B\x00'
+04272019 01:41:17 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:17 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:17 [WARNING]: Buffer empty!
+04272019 01:41:17 [WARNING]: Nothing to send!
+04272019 01:41:17 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:17 [INFO]: b'RX:B\x00'
+04272019 01:41:17 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:17 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:17 [WARNING]: Buffer empty!
+04272019 01:41:17 [WARNING]: Nothing to send!
+04272019 01:41:17 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:17 [INFO]: b'RX:B\x00'
+04272019 01:41:18 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:18 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:18 [WARNING]: Buffer empty!
+04272019 01:41:18 [WARNING]: Nothing to send!
+04272019 01:41:18 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:18 [INFO]: b'RX:B\x00'
+04272019 01:41:18 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:18 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:18 [WARNING]: Buffer empty!
+04272019 01:41:18 [WARNING]: Nothing to send!
+04272019 01:41:18 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:18 [INFO]: b'RX:B\x00'
+04272019 01:41:18 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:18 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:18 [WARNING]: Buffer empty!
+04272019 01:41:18 [WARNING]: Nothing to send!
+04272019 01:41:18 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:19 [INFO]: b'RX:B\x00'
+04272019 01:41:19 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:19 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:19 [WARNING]: Buffer empty!
+04272019 01:41:19 [WARNING]: Nothing to send!
+04272019 01:41:19 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:19 [INFO]: b'RX:B\x00'
+04272019 01:41:19 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:19 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:19 [WARNING]: Buffer empty!
+04272019 01:41:19 [WARNING]: Nothing to send!
+04272019 01:41:19 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:19 [INFO]: b'RX:B\x00'
+04272019 01:41:19 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:19 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:19 [WARNING]: Buffer empty!
+04272019 01:41:19 [WARNING]: Nothing to send!
+04272019 01:41:19 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:20 [INFO]: b'RX:B\x00'
+04272019 01:41:20 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:20 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:20 [WARNING]: Buffer empty!
+04272019 01:41:20 [WARNING]: Nothing to send!
+04272019 01:41:20 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:20 [INFO]: b'RX:B\x00'
+04272019 01:41:20 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:20 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:20 [WARNING]: Buffer empty!
+04272019 01:41:20 [WARNING]: Nothing to send!
+04272019 01:41:20 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:20 [INFO]: b'RX:B\x00'
+04272019 01:41:20 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:20 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:20 [WARNING]: Buffer empty!
+04272019 01:41:20 [WARNING]: Nothing to send!
+04272019 01:41:20 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:21 [INFO]: b'RX:B\x00'
+04272019 01:41:21 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:21 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:21 [WARNING]: Buffer empty!
+04272019 01:41:21 [WARNING]: Nothing to send!
+04272019 01:41:21 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:21 [INFO]: b'RX:B\x00'
+04272019 01:41:21 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:21 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:21 [WARNING]: Buffer empty!
+04272019 01:41:21 [WARNING]: Nothing to send!
+04272019 01:41:21 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:21 [INFO]: b'RX:B\x00'
+04272019 01:41:21 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:21 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:21 [WARNING]: Buffer empty!
+04272019 01:41:21 [WARNING]: Nothing to send!
+04272019 01:41:21 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:22 [INFO]: b'RX:B\x00'
+04272019 01:41:22 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:22 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:22 [WARNING]: Buffer empty!
+04272019 01:41:22 [WARNING]: Nothing to send!
+04272019 01:41:22 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:22 [INFO]: b'RX:B\x00'
+04272019 01:41:22 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:22 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:22 [WARNING]: Buffer empty!
+04272019 01:41:22 [WARNING]: Nothing to send!
+04272019 01:41:22 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:22 [INFO]: b'RX:B\x00'
+04272019 01:41:22 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:22 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:22 [WARNING]: Buffer empty!
+04272019 01:41:22 [WARNING]: Nothing to send!
+04272019 01:41:22 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:23 [INFO]: b'RX:B\x00'
+04272019 01:41:23 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:23 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:23 [WARNING]: Buffer empty!
+04272019 01:41:23 [WARNING]: Nothing to send!
+04272019 01:41:23 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:23 [INFO]: b'RX:B\x00'
+04272019 01:41:23 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:23 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:23 [WARNING]: Buffer empty!
+04272019 01:41:23 [WARNING]: Nothing to send!
+04272019 01:41:23 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:23 [INFO]: b'RX:B\x00'
+04272019 01:41:23 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:23 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:23 [WARNING]: Buffer empty!
+04272019 01:41:23 [WARNING]: Nothing to send!
+04272019 01:41:23 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:24 [INFO]: b'RX:B\x00'
+04272019 01:41:24 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:24 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:24 [WARNING]: Buffer empty!
+04272019 01:41:24 [WARNING]: Nothing to send!
+04272019 01:41:24 [INFO]: b'TX:SSBuffer Empty!----------'
+04272019 01:41:24 [INFO]: b'RX:B\x00'
+04272019 01:41:24 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg1'
+04272019 01:41:24 [ERROR]: [Errno 2] No such file or directory: '/home/pi/lora_logs/mg2'
+04272019 01:41:24 [WARNING]: Buffer empty!
+04272019 01:41:24 [WARNING]: Nothing to send!
+04272019 01:41:24 [INFO]: b'TX:SSBuffer Empty!----------'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
